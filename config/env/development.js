@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://joshuakegley.com:27017/dev',
+	db: 'mongodb://localhost/childmanager-dev',
 	app: {
-		title: 'application - Development Environment'
+		title: 'childManager - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

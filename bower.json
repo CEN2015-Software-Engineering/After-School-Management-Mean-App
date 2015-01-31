@@ -1,7 +1,7 @@
 {
-	"name": "application",
+	"name": "childmanager",
 	"version": "0.0.1",
-	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
+	"description": "Mean Stack Child Manager for After School Program",
 	"dependencies": {
 		"bootstrap": "~3",
 		"angular": "~1.2",

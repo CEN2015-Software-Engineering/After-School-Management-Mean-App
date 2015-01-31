@@ -1,7 +1,8 @@
 {
-	"name": "application",
-	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
+	"name": "childmanager",
+	"description": "Mean Stack Child Manager for After School Program",
 	"version": "0.0.1",
+	"author": "Joshua Kegley, John Harrison, Morgan Emery, Alex Lewitt, Ian Cavitt, Eric Gordan",
 	"engines": {
 		"node": "0.10.x",
 		"npm": "1.4.x"
@@ -26,6 +27,12 @@
 		"swig": "~1.4.1",
 		"mongoose": "~3.8.8",
 		"passport": "~0.2.0",
+		"passport-local": "~1.0.0",
+		"passport-facebook": "~1.0.2",
+		"passport-twitter": "~1.0.2",
+		"passport-linkedin": "~0.1.3",
+		"passport-google-oauth": "~0.1.5",
+		"passport-github": "~0.1.5",
 		"lodash": "~2.4.1",
 		"forever": "~0.11.0",
 		"bower": "~1.3.8",

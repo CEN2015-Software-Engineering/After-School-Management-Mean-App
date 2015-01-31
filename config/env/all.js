@@ -2,8 +2,8 @@
 
 module.exports = {
 	app: {
-		title: 'application',
-		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
+		title: 'childManager',
+		description: 'Mean Stack Child Manager for After School Program',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
 	port: process.env.PORT || 3000,
