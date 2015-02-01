@@ -13,7 +13,6 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var child = new Child(req.body);
-	child.user = req.user;
 
 	child.save(function(err) {
 		if (err) {
@@ -40,7 +39,7 @@ exports.update = function(req, res) {
 	var child = req.child ;
 
 	child = _.extend(child , req.body);
-
+	child.updated = Date.now();
 	child.save(function(err) {
 		if (err) {
 			return res.status(400).send({

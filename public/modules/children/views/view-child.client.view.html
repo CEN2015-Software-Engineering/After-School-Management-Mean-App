@@ -1,7 +1,19 @@
 <section data-ng-controller="ChildrenController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
+		<h1 data-ng-bind="child.age()"></h1>
 	</div>
+	Enrolled:
+	<input type="checkbox" data-ng-model="child.enrolled" id="enrolled" class="checkbox" disabled></input>
+	<br><br>
+	<small>
+		Age: {{child.age()}}
+		<em class="text-muted">
+			Registered On:
+			<span data-ng-bind="child.created | date:'mediumDate'"></span>
+		</em>
+	</small>
+	<!--EDIT & DELETE BUTTONS-->
 	<div class="pull-right" data-ng-show="true">
 		<a class="btn btn-primary" href="/#!/children/{{child._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
@@ -10,10 +22,4 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="child.created | date:'mediumDate'"></span>
-		</em>
-	</small>
 </section>

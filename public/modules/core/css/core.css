@@ -13,3 +13,8 @@
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
 }
+
+.checkbox {
+	width: 25px;
+	height: 25px;
+}

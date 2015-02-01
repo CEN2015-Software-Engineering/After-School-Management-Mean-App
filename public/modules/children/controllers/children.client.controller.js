@@ -1,15 +1,38 @@
 'use strict';
 
 // Children controller
-angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Authentication', 'Children',
-	function($scope, $stateParams, $location, Authentication, Children) {
-		$scope.authentication = Authentication;
-
+angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Children',
+	function($scope, $stateParams, $location, Children) {
 		// Create new Child
 		$scope.create = function() {
 			// Create new Child object
+			console.log(this.email);
 			var child = new Children ({
-				name: this.name
+				firstName: this.firstName,
+				lastName: this.lastName,
+				enrolled: this.enrolled,
+				contact: {
+					email: this.contact.email,
+					home: this.contact.home,
+					work: this.contact.work,
+					street: this.contact.address.street
+				},
+				schoolName: this.schoolName,
+				size: this.size,
+				dob: {
+					day: this.dob.day,
+					month: this.dob.month,
+					year: this.dob.year
+				},
+				schedule: {
+					mon: this.schedule.mon,
+					tue: this.schedule.tue,
+					wed: this.schedule.wed,
+					thu: this.schedule.thu,
+					fri: this.schedule.fri,
+					sat: this.schedule.sat,
+					sun: this.schedule.sun
+				}
 			});
 
 			// Redirect after save
@@ -17,7 +40,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				$location.path('children/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				//$scope.name = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -62,5 +85,6 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				childId: $stateParams.childId
 			});
 		};
+
 	}
 ]);
