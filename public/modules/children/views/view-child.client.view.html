@@ -1,13 +1,108 @@
 <section data-ng-controller="ChildrenController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
-		<h1 data-ng-bind="child.age()"></h1>
+		<div class="form-inline">
+			<h4>
+				<label for="enrolled">Enrolled:</label>
+				<input type="checkbox" data-ng-model="child.enrolled" id="enrolled" class="checkbox" disabled></input>
+			</h4>
+		</div>
 	</div>
-	Enrolled:
-	<input type="checkbox" data-ng-model="child.enrolled" id="enrolled" class="checkbox" disabled></input>
-	<br><br>
+	<h4>
+	<div class="row">
+		<div class="col-sm-6">
+			Contact Information:
+		</div>
+		<div class="col-sm-6">
+			Phone Numbers:
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<span class="text-muted" data-ng-bind="child.contact.email"></span>
+		</div>
+		<div class="col-sm-6 text-muted">
+			Home: <span class="text-muted" data-ng-bind="child.contact.home"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+
+		</div>
+		<div class="col-sm-6 text-muted">
+			Work: <span class="text-muted" data-ng-bind="child.contact.work"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+		Address:
+		</div>
+		<div class="col-sm-6 text-muted">
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 text-muted">
+			<span class="text-muted" data-ng-bind="child.contact.address.street"></span>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-6">
+			Birthday:
+			<span class="text-muted" data-ng-bind="child.dob.month"></span>/<span class="text-muted" data-ng-bind="child.dob.day"></span>/<span class="text-muted" data-ng-bind="child.dob.year"></span>
+
+		</div>
+		<div class="col-sm-6">
+			Size: <span class="text-muted" data-ng-bind="child.size"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			School:
+			<span class="text-muted" data-ng-bind="child.schoolName"></span>
+
+		</div>
+		<div class="col-sm-6">
+			<!--Information here-->
+		</div>
+	</div>
+	</h4>
+	<br/>
+	<h3><span class="">Schedule</span></h3>
+	<hr>
 	<small>
-		Age: {{child.age()}}
+		<div class="controls form-inline text-center" id="schedule">
+			<label class="control-label" for="mon">Monday:</label>
+			<input type="checkbox" name="mon" data-ng-model="child.schedule.mon" id="mon" class="checkbox" disabled>
+
+			<label class="control-label" for="tue">Tuesday:</label>
+			<input type="checkbox" name="tue" data-ng-model="child.schedule.tue" id="tue" class="checkbox" disabled>
+
+			<label class="control-label" for="wed">Wednesday:</label>
+			<input type="checkbox" name="wed" data-ng-model="child.schedule.wed" id="wed" class="checkbox" disabled>
+
+			<label class="control-label" for="thu">Thursday:</label>
+			<input type="checkbox" name="thu" data-ng-model="child.schedule.thu" id="thu" class="checkbox" disabled>
+
+			<label class="control-label" for="fri">Friday:</label>
+			<input type="checkbox" name="fri" data-ng-model="child.schedule.fri" id="fri" class="checkbox" disabled>
+
+			<br />
+
+			<label class="control-label" for="sat">Saturday:</label>
+			<input type="checkbox" name="sat" data-ng-model="child.schedule.sat" id="sat" class="checkbox" disabled>
+
+			<label class="control-label" for="sun">Sunday:</label>
+			<input type="checkbox" name="sun" data-ng-model="child.schedule.sun" id="sun" class="checkbox" disabled>
+		</div>
+
+		<br>
+		<br>
+	<small>
 		<em class="text-muted">
 			Registered On:
 			<span data-ng-bind="child.created | date:'mediumDate'"></span>
