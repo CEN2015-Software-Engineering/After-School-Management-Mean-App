@@ -26,7 +26,7 @@ $git commit -a -m "Message Here, with quotes"
 
 $git push
 
-$enter username, password
+enter username, password
 
 ###-Need to Pull and Merge?
 
