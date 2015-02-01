@@ -15,6 +15,8 @@ After School Program
 -Ready to push update? 
 
 *git add .
+
 *git commit -a -m "Message Here, with quotes"
 *git push
+
 *<enter username, password>
