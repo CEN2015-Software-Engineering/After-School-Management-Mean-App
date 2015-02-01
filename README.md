@@ -1,16 +1,16 @@
 #After School Program
 
-###*Joshua Kegley
+####*Joshua Kegley
 
-###*John Harrison
+####*John Harrison
 
-###*Morgan Emery
+####*Morgan Emery
 
-###*Alex Lewitt
+####*Alex Lewitt
 
-###*Ian Cavitt
+####*Ian Cavitt
 
-###*Eric Gordan
+####*Eric Gordan
 
 
 ##-Instructions For Git:
