@@ -18,7 +18,7 @@
 ###-Clone Repo to Desktop:
 *git clone https://github.com/CEN2015-Software-Engineering/After-School-Management-Mean-App
 
-###-Ready to push update? 
+###-Ready to Push Update? 
 
 *git add .
 
@@ -27,3 +27,7 @@
 *git push
 
 *enter username, password
+
+###-Need to Pull and Merge?
+
+*git pull origin master
