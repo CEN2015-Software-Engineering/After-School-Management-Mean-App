@@ -1,11 +1,17 @@
 After School Program
 
 *Joshua Kegley
+
 *John Harrison
+
 *Morgan Emery
+
 *Alex Lewitt
+
 *Ian Cavitt
+
 *Eric Gordan
+
 
 -Instructions For Git:
 
@@ -17,6 +23,7 @@ After School Program
 *git add .
 
 *git commit -a -m "Message Here, with quotes"
+
 *git push
 
 *<enter username, password>
