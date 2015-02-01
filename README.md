@@ -26,4 +26,4 @@ After School Program
 
 *git push
 
-*<enter username, password>
+*enter username, password
