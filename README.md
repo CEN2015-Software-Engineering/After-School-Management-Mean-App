@@ -16,18 +16,18 @@
 ##-Instructions For Git:
 
 ###-Clone Repo to Desktop:
-*git clone https://github.com/CEN2015-Software-Engineering/After-School-Management-Mean-App
+$git clone https://github.com/CEN2015-Software-Engineering/After-School-Management-Mean-App
 
 ###-Ready to Push Update? 
 
-*git add .
+$git add .
 
-*git commit -a -m "Message Here, with quotes"
+$git commit -a -m "Message Here, with quotes"
 
-*git push
+$git push
 
-*enter username, password
+$enter username, password
 
 ###-Need to Pull and Merge?
 
-*git pull origin master
+$git pull origin master
