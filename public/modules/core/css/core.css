@@ -17,4 +17,15 @@
 .checkbox {
 	width: 25px;
 	height: 25px;
+	display:inline;
+	vertical-align: middle;
+}
+.half {
+	margin-left: 5px;
+	margin-right: 5px;
+	float: left;
+	width: 45%;
+	min-height: 105px;
+	display: inline-block;
+	vertical-align: middle;
 }
