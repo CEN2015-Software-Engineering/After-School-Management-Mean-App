@@ -10,7 +10,13 @@ var mongoose = require('mongoose'),
  * Child Schema
  */
 var ChildSchema = new Schema({
-	name: {
+	firstName: {
+		type: String,
+		default: '',
+		required: 'Please fill Child name',
+		trim: true
+	},
+	lastName: {
 		type: String,
 		default: '',
 		required: 'Please fill Child name',
@@ -20,9 +26,42 @@ var ChildSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
+	enrolled: {
+		type: Boolean,
+		default: true
+	},
+	contact: {
+		email: {
+			type: String,
+			trim: true,
+			default: '',
+			match: [/.+\@.+\..+/, 'Please fill a valid email address']
+		},
+		home: {
+			type: Number,
+			default: 0
+		},
+		work: {
+			type: Number,
+			default: 0
+		},
+		address: {
+			street: {
+				type: String
+			},
+			city: {
+				type: String
+			},
+			state: {
+				type: String
+			},
+			zip: {
+				type: Number
+			},
+			unit: {
+				type: String
+			}
+		}
 	}
 });
 

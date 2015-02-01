@@ -4,13 +4,7 @@
     </div>
     <div class="list-group">
         <a data-ng-repeat="child in children" data-ng-href="#!/children/{{child._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="child.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="child.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="child.name"></h4>
+            <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!children.$resolved || children.length">

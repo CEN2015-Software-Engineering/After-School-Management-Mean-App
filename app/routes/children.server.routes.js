@@ -7,12 +7,12 @@ module.exports = function(app) {
 	// Children Routes
 	app.route('/children')
 		.get(children.list)
-		.post(users.requiresLogin, children.create);
+		.post(children.create);
 
 	app.route('/children/:childId')
 		.get(children.read)
-		.put(users.requiresLogin, children.hasAuthorization, children.update)
-		.delete(users.requiresLogin, children.hasAuthorization, children.delete);
+		.put(children.update)
+		.delete(children.delete);
 
 	// Finish by binding the Child middleware
 	app.param('childId', children.childByID);
