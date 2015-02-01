@@ -1,24 +1,24 @@
-After School Program
+#After School Program
 
-*Joshua Kegley
+###*Joshua Kegley
 
-*John Harrison
+###*John Harrison
 
-*Morgan Emery
+###*Morgan Emery
 
-*Alex Lewitt
+###*Alex Lewitt
 
-*Ian Cavitt
+###*Ian Cavitt
 
-*Eric Gordan
+###*Eric Gordan
 
 
--Instructions For Git:
+##-Instructions For Git:
 
--Clone Repo to Desktop:
+###-Clone Repo to Desktop:
 *git clone https://github.com/CEN2015-Software-Engineering/After-School-Management-Mean-App
 
--Ready to push update? 
+###-Ready to push update? 
 
 *git add .
 
