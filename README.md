@@ -13,6 +13,7 @@ After School Program
 *git clone https://github.com/CEN2015-Software-Engineering/After-School-Management-Mean-App
 
 -Ready to push update? 
+
 *git add .
 *git commit -a -m "Message Here, with quotes"
 *git push
