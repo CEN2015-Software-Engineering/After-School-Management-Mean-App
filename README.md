@@ -17,6 +17,7 @@
 
 ###-Clone Repo to Desktop:
 $git clone https://github.com/CEN2015-Software-Engineering/After-School-Management-Mean-App
+$npm install
 
 ###-Ready to Push Update? 
 
