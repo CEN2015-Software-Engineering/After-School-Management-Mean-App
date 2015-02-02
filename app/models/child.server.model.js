@@ -95,6 +95,11 @@ var ChildSchema = new Schema({
 			type: Boolean
 		}
 	},
+	img: {
+		//For adding images later
+		data: Buffer,
+		contentType: String
+	},
 	updated: {
 		type: Date,
 		default: Date.now
