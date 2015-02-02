@@ -4,34 +4,33 @@
 angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Children',
 	function($scope, $stateParams, $location, Children) {
 		// Create new Child
+
 		$scope.create = function() {
 			// Create new Child object
-			console.log(this.email);
 			var child = new Children ({
 				firstName: this.firstName,
 				lastName: this.lastName,
 				enrolled: this.enrolled,
 				contact: {
-					email: this.contact.email,
-					home: this.contact.home,
-					work: this.contact.work,
-					street: this.contact.address.street
+					email: this.email,
+					home: this.home,
+					work: this.work,
+					street: this.street
+				},dob: {
+					day: this.day,
+					month: this.month,
+					year: this.year
 				},
 				schoolName: this.schoolName,
 				size: this.size,
-				dob: {
-					day: this.dob.day,
-					month: this.dob.month,
-					year: this.dob.year
-				},
 				schedule: {
-					mon: this.schedule.mon,
-					tue: this.schedule.tue,
-					wed: this.schedule.wed,
-					thu: this.schedule.thu,
-					fri: this.schedule.fri,
-					sat: this.schedule.sat,
-					sun: this.schedule.sun
+					mon: this.mon,
+					tue: this.tue,
+					wed: this.wed,
+					thu: this.thu,
+					fri: this.fri,
+					sat: this.sat,
+					sun: this.sun
 				}
 			});
 

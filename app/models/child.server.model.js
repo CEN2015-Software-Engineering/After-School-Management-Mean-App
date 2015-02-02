@@ -34,9 +34,9 @@ var ChildSchema = new Schema({
 	contact: {
 		email: {
 			type: String,
-			trim: true,
 			default: '',
-			match: [/.+\@.+\..+/, 'Please fill a valid email address']
+			match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+			trim: true
 		},
 		home: {
 			type: Number,
@@ -74,8 +74,7 @@ var ChildSchema = new Schema({
 	},
 	schedule: {
 		mon: {
-			type: Boolean,
-			default: false
+			type: Boolean
 		},
 		tue: {
 			type: Boolean
@@ -102,10 +101,5 @@ var ChildSchema = new Schema({
 	}
 });
 
-ChildSchema.methods.age = function() {
-	//var birthday = new Date(this.dob.year, this.dob.month, this.dob.day);
-	//console.log(birthday);
-	return 5;
-};
 
 mongoose.model('Child', ChildSchema);

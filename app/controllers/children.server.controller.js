@@ -72,7 +72,7 @@ exports.delete = function(req, res) {
  * List of Children
  */
 exports.list = function(req, res) { 
-	Child.find().sort('-created').populate('user', 'displayName').exec(function(err, children) {
+	Child.find().sort('-lastName').populate('user', 'displayName').exec(function(err, children) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
