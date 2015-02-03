@@ -39,3 +39,103 @@
 	display: table-cell;
 
 }
+
+/* johns stuff */
+.header {
+    overflow: hidden;
+}
+.body{
+
+}
+#slideout {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 35px;
+    padding: 12px 0;
+    text-align: center;
+    background: #666699;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -webkit-border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+    z-index: 99;
+}
+#slideout_inner {
+    position: fixed;
+    top: 0px;
+    left: -250px;
+    background-image: url(http://i.imgur.com/xmu90PA.jpg);
+    width: 200px;
+    padding: 25px;
+    height: 100%;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -webkit-border-radius: 0 0 5px 0;
+    -moz-border-radius: 0 0 5px 0;
+    border-radius: 0 0 5px 0;
+    color: #666699;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20;
+    font-weight: 900;
+    border-style: solid;
+    border-right: solid #666699;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    z-index: 99;
+}
+#slideout:hover {
+    left: 250px;
+}
+#slideout:hover #slideout_inner {
+    left: 0;
+}
+#footer {
+
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px;
+    /* Height of the footer */
+    background: #484848;
+
+    
+    box-sizing:border-box;
+    /** add this **/
+    -moz-box-sizing:border-box;
+    /** add this **/
+    -webkit-box-sizing:border-box;
+    /** add this **/
+    -ms-box-sizing:border-box;
+    /** add this **/
+    overflow: hidden;
+}
+.round-button {
+    width:25%;
+    padding-top: 2%;
+    padding-left: 4%;
+}
+.round-button-circle {
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    overflow:hidden;
+    background: #666699;
+
+}
+.round-button-circle:hover {
+    background:#30588e;
+}
+.round-button a {
+    padding-top:21%;
+    padding-bottom:50%;
+    margin-top:-0.5em;
+    color:#e2eaf3;
+}
