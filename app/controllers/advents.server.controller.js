@@ -13,7 +13,6 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var advent = new Advent(req.body);
-	advent.user = req.user;
 
 	advent.save(function(err) {
 		if (err) {

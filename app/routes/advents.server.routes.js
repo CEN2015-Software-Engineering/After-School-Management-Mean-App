@@ -7,12 +7,12 @@ module.exports = function(app) {
 	// Advents Routes
 	app.route('/advents')
 		.get(advents.list)
-		.post(users.requiresLogin, advents.create);
+		.post(advents.create);
 
 	app.route('/advents/:adventId')
 		.get(advents.read)
-		.put(users.requiresLogin, advents.hasAuthorization, advents.update)
-		.delete(users.requiresLogin, advents.hasAuthorization, advents.delete);
+		.put(advents.update)
+		.delete(advents.delete);
 
 	// Finish by binding the Advent middleware
 	app.param('adventId', advents.adventByID);

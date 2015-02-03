@@ -1,9 +1,8 @@
 'use strict';
 
 // Advents controller
-angular.module('advents').controller('AdventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Advents',
-	function($scope, $stateParams, $location, Authentication, Advents) {
-		$scope.authentication = Authentication;
+angular.module('advents').controller('AdventsController', ['$scope', '$stateParams', '$location', 'Advents',
+	function($scope, $stateParams, $location, Advents) {
 
 		// Create new Advent
 		$scope.create = function() {
