@@ -8,7 +8,13 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 		$scope.create = function() {
 			// Create new Advent object
 			var advent = new Advents ({
-				name: this.name
+				name: this.name,
+				date:{
+					day: this.day,
+					month: this.month,
+					year: this.year
+				},
+				description: this.description
 			});
 
 			// Redirect after save
