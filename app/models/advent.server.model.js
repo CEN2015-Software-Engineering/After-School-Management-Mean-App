@@ -19,6 +19,21 @@ var AdventSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
+	},
+	date: {
+		day: {
+			type: Number
+		},
+		month: {
+			type: Number
+		},
+		year: {
+			type: Number
+		}
+	},
+	description: {
+		type: String,
+		default: ''
 	}
 });
 

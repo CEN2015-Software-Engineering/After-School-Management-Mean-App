@@ -1,6 +1,19 @@
 <section data-ng-controller="AdventsController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="advent.name"></h1>
+		<div class="row">
+		<div class="col-md-6">
+			Description
+			<span class="text-muted" data-ng-bind="advent.description"></span>
+		</div>
+	</div>
+
+		<div class="row">
+		<div class="col-md-6">
+			Date:
+			<span class="text-muted" data-ng-bind="advent.date.month"></span>/<span class="text-muted" data-ng-bind="advent.date.day"></span>/<span class="text-muted" data-ng-bind="advent.date.year"></span>
+		</div>
+	</div>
 	</div>
 	<div class="pull-right">
 		<a class="btn btn-primary" href="/#!/advents/{{advent._id}}/edit">
