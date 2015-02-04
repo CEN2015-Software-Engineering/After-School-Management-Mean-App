@@ -1,21 +1,12 @@
 ::selection {
     background: rgba(0,0,0,.05);
 }
-ul, h1, h2, h3, h4 {
-    margin: 0; padding: 0;
-    list-style: none;
-}
-a, li,
+
 .calHeader .calMonthSelect .calDate,
 .calBody .calDate {
     text-decoration: none;
     transition: all .25s ease-in-out;
 }
-h1 {
-    font: 300 28px 'Open Sans';
-    color: #4c5373;
-}
-
 
 
 /****/
