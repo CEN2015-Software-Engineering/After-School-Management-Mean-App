@@ -132,8 +132,8 @@
     padding-left: 4%;
 }
 .round-button-circle {
-    width: 4em;
-    height:4em;
+    width: 40%;
+    height:90%;
     border-radius: 50%;
     overflow:hidden;
     background: #666699;
