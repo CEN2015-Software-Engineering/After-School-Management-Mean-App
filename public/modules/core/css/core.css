@@ -1,34 +1,34 @@
 .content {
-	margin-top: 50px;
+    margin-top: 50px;
 }
 .undecorated-link:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
+    display: none !important;
 }
 .ng-invalid.ng-dirty {
-	border-color: #FA787E;
+    border-color: #FA787E;
 }
 .ng-valid.ng-dirty {
-	border-color: #78FA89;
+    border-color: #78FA89;
 }
 
 .checkbox {
 
-	width: 25px;
-	height: 25px;
-	vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
     z-index: -2;
 }
 .half {
-	margin-left: 5px;
-	margin-right: 5px;
-	float: left;
-	width: 46%;
-	min-height: 105px;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: left;
+    width: 46%;
+    min-height: 105px;
 
-	vertical-align: middle;
+    vertical-align: middle;
 
 
 }
@@ -38,9 +38,10 @@
 	width: inherit;
 	vertical-align: middle;
 	display: table-cell;
-
 }
 */
+
+
 /* johns stuff */
 .header {
     overflow: hidden;
@@ -115,7 +116,7 @@
     /* Height of the footer */
     background: #484848;
     overflow: hidden;
-    
+
 
     /** add this **/
     -moz-box-sizing:border-box;
