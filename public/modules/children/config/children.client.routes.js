@@ -20,6 +20,10 @@ angular.module('children').config(['$stateProvider',
 		state('editChild', {
 			url: '/children/:childId/edit',
 			templateUrl: 'modules/children/views/edit-child.client.view.html'
+		}).
+		state('addGuardian', {
+			url: '/children/addGuardian/:childId/',
+			templateUrl: 'modules/children/views/edit-child.client.view.html'
 		});
 	}
 ]);

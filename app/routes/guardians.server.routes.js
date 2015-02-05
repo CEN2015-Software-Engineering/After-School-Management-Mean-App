@@ -10,9 +10,8 @@ module.exports = function(app) {
 		.get(guardians.list)
 		.post(guardians.create);
 
-	//Created this route for finding parents by childID, no clue if it works
-	app.route('/guardians/byChildID/:childID')
-		.get(guardians.listByChildID);
+	app.route('/children/addGuardian/:childId')
+		.post(guardians.create);
 
 	app.route('/guardians/:guardianId')
 		.get(guardians.read)
