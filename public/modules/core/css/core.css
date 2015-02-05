@@ -31,6 +31,8 @@
 
 
 }
+
+
 /*
 .homeButtons {
 	height: 105px;
@@ -148,4 +150,12 @@
     padding-bottom:50%;
     margin-top:-0.5em;
     color:#e2eaf3;
+}
+
+
+.page-break { 
+    padding-bottom: 15%;
+}
+.edit-create-form {
+    padding-bottom: 30%;
 }
