@@ -20,6 +20,10 @@ angular.module('advents').config(['$stateProvider',
 		state('editAdvent', {
 			url: '/advents/:adventId/edit',
 			templateUrl: 'modules/advents/views/edit-advent.client.view.html'
+		}).
+		state('viewCalendar', {
+			url: '/advents/cal/calendar',
+			templateUrl: 'modules/advents/views/calendar.client.view.html'
 		});
 	}
 ]);
