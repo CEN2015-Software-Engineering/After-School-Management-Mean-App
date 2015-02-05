@@ -1,45 +1,45 @@
 .content {
-	margin-top: 50px;
+    margin-top: 50px;
 }
 .undecorated-link:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
+    display: none !important;
 }
 .ng-invalid.ng-dirty {
-	border-color: #FA787E;
+    border-color: #FA787E;
 }
 .ng-valid.ng-dirty {
-	border-color: #78FA89;
+    border-color: #78FA89;
 }
 
 .checkbox {
 
-	width: 25px;
-	height: 25px;
-	vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
     z-index: -2;
 }
 .half {
-	margin-left: 5px;
-	margin-right: 5px;
-	float: left;
-	width: 46%;
-	min-height: 105px;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: left;
+    width: 46%;
+    min-height: 105px;
 
-	vertical-align: middle;
+    vertical-align: middle;
 
 
 }
-
+/*
 .homeButtons {
 	height: 105px;
 	width: inherit;
 	vertical-align: middle;
 	display: table-cell;
-
 }
+*/
 
 /* johns stuff */
 .header {
@@ -111,11 +111,11 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 12%;
+    height: 10%;
     /* Height of the footer */
     background: #484848;
     overflow: hidden;
-    
+
 
     /** add this **/
     -moz-box-sizing:border-box;
@@ -132,8 +132,8 @@
     padding-left: 4%;
 }
 .round-button-circle {
-    width: 40%;
-    height:90%;
+    width: 4em;
+    height:4em;
     border-radius: 50%;
     overflow:hidden;
     background: #666699;
@@ -142,7 +142,7 @@
 .round-button-circle:hover {
     background:#30588e;
 }
-.round-button a {
+.round-button .round-button-link {
     padding-top:21%;
     padding-bottom:50%;
     margin-top:-0.5em;
