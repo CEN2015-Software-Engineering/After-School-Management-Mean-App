@@ -55,9 +55,9 @@
 }
 .slideout {
     position: fixed;
-    top: 100px;
+    top: 30%;
     left: 0;
-    width: 35px;
+    width: 5%;
     padding: 12px 0;
     text-align: center;
     background: #666699;
