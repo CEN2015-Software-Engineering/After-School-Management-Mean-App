@@ -29,6 +29,8 @@ $git add .
 
 $git commit -a -m "Message Here, with quotes"
 
+$git pull origin master
+
 $git push
 
 enter username, password
