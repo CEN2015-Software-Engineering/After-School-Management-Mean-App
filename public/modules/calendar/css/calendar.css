@@ -8,20 +8,20 @@ calendar {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     background: white;
-    width: 300px;
+    width: 100%;
     border: solid 1px #cccccc;
     margin-bottom: 10px;
 }
 calendar > div.header {
     float: left;
     width: 100%;
-    background: #2875c7;
-    height: 40px;
+    background: #666699;
+    height: 60px;
     color: white;
 }
 calendar > div.header > * {
     height: 40px;
-    line-height: 40px !important;
+    line-height: 60px !important;
     display: inline-block;
     vertical-align: middle;
 }
@@ -72,7 +72,7 @@ calendar > div.week > span.day {
     border-left: solid 1px #cccccc;
     font-size: 0.75em;
     text-align: center;
-    height: 30px;
+    height: 60px;
     line-height: 30px !important;
     display: inline-block;
     vertical-align: middle;
@@ -84,13 +84,12 @@ calendar > div.week > span.day:first-child {
     border-left: none;
 }
 calendar > div.week > span.day.today {
-    background: #E3F2FF;
+    background: #666699;
 }
 calendar > div.week > span.day.different-month {
-    color: #C0C0C0;
 }
 calendar > div.week > span.day.selected {
-    background: #2875c7;
+    background: #666699;
     color: white;
 }
 calendar > div.week.names > span {

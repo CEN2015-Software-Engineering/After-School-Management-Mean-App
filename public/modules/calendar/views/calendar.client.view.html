@@ -1,11 +1,15 @@
 <!--<section data-ng-controller="CalendarController">-->
 <section data-ng-controller="AdventsController" data-ng-init="find()">
-	<h1>Calendar Demo</h1>
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-1">
+			<h1>Calendar Demo</h1>
+		</div>
+	</div>
 	<div class = "row">
-		<div class = "col-sm-8">
+		<div class = "col-sm-6 col-sm-offset-1">
 			<calendar selected="day"></calendar>
 		</div>
-		<div class = "col-sm-4">
+		<div class = "col-sm-5">
 			<span>Selected date: <b>{{day.format('dddd, MMMM Do YYYY')}}</b></span>
 			<div class="list-group">
 		        <a data-ng-repeat="advent in advents" onclick="console.log('ho');" data-ng-href="#!/advents/{{advent._id}}" class="list-group-item" data-ng-if = "true">
