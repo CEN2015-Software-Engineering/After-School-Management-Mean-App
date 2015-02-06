@@ -13,5 +13,12 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus',
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;
 		});
+		$scope.doTheBack = function() {
+			window.history.back();
+		};
+
+		$scope.$back = function() {
+			window.history.back();
+		};
 	}
 ]);
