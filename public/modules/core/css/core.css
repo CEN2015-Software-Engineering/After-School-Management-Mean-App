@@ -24,12 +24,14 @@
     margin-left: 5px;
     margin-right: 5px;
     float: left;
-    width: 46%;
+    width: 100%;
     min-height: 105px;
-
     vertical-align: middle;
+}
 
-
+.line-height {
+    padding-top: 29px;
+    padding-bottom: 30px;
 }
 
 
