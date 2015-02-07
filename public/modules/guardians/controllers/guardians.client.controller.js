@@ -23,6 +23,25 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$state
 			});
 		};
 
+		// Create new Guardian
+		$scope.createByChildId = function() {
+			// Create new Guardian object
+			var guardian = new Guardians ({
+				gName: this.gName,
+				childID: $stateParams.childId
+			});
+
+			// Redirect after save
+			guardian.$save(function(response) {
+				$location.path('children/' + $stateParams.childId);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
 		// Remove existing Guardian
 		$scope.remove = function(guardian) {
 			if ( guardian ) { 

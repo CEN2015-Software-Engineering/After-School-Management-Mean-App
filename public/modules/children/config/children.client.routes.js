@@ -22,8 +22,8 @@ angular.module('children').config(['$stateProvider',
 			templateUrl: 'modules/children/views/edit-child.client.view.html'
 		}).
 		state('addGuardian', {
-			url: '/children/addGuardian/:childId/',
-			templateUrl: 'modules/children/views/edit-child.client.view.html'
+			url: '/children/addGuardian/:childId',
+			templateUrl: 'modules/guardians/views/child-create-guardian.client.view.html'
 		});
 	}
 ]);

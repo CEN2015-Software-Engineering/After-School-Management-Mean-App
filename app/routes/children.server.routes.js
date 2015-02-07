@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-	var users = require('../../app/controllers/users.server.controller');
+	var guardians = require('../../app/controllers/guardians.server.controller');
 	var children = require('../../app/controllers/children.server.controller');
 
 	// Children Routes
@@ -13,6 +13,10 @@ module.exports = function(app) {
 		.get(children.read)
 		.put(children.update)
 		.delete(children.delete);
+
+	app.route('/children/addGuardian/:childId')
+		.get(guardians.read)
+		.post(guardians.create);
 
 	// Finish by binding the Child middleware
 	app.param('childId', children.childByID);
