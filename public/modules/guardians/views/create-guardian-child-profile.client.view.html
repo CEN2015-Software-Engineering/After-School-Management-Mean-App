@@ -1,4 +1,4 @@
-<section data-ng-controller="GuardiansController">
+<div class="form-container">
     <div class="page-header">
         <h1>New Guardian</h1>
     </div>
@@ -10,19 +10,14 @@
                     <div class="controls">
                         <input type="text" data-ng-model="gName" id="gName" class="form-control" placeholder="Name" required>
                     </div>
-
-                    <label class="control-label" for="childID">child id</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="childID" id="childID" class="form-control" placeholder="childID" required>
-                    </div>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-default">
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>
-</section>
+</div>

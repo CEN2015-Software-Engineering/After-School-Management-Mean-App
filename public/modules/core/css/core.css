@@ -34,7 +34,13 @@
     padding-bottom: 30px;
 }
 
+.modal-content {
+    min-height: 500px;
+}
 
+.form-container {
+    padding: 25px;
+}
 /*
 .homeButtons {
 	height: 105px;

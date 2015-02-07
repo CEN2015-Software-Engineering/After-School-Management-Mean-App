@@ -87,8 +87,8 @@ calendar > div.week > span.day.today {
     background: #ede1b9;
 }
 calendar > div.week > span.day.different-month {
-    background-color: pink;
-    color: green;
+    background-color: #f8f8ff;
+    color: lightgrey;
 }
 calendar > div.week > span.day.selected {
     background: #666699;

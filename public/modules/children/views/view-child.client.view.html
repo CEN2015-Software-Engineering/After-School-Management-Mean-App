@@ -138,5 +138,7 @@
 	<div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || guardians.length">
 		No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
 	</div>
-	<a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#!/children/addGuardian/{{child._id}}">Add Guardian</a>
+	<a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-ng-click="modalCreate('lg')">Add Guardian</a>
 </section></section>
+
+<!--href="#!/children/addGuardian/{{child._id}}"-->

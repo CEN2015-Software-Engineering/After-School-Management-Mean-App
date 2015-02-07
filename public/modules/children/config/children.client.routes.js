@@ -23,7 +23,7 @@ angular.module('children').config(['$stateProvider',
 		}).
 		state('addGuardian', {
 			url: '/children/addGuardian/:childId',
-			templateUrl: 'modules/guardians/views/child-create-guardian.client.view.html'
+			templateUrl: 'modules/guardians/views/create-guardian-child-profile.client.view.html'
 		});
 	}
 ]);

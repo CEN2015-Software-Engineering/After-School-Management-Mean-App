@@ -38,3 +38,5 @@ enter username, password
 ###-Need to Pull and Merge?
 
 $git pull origin master
+$npm install
+$bower install

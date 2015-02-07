@@ -1,8 +1,8 @@
 'use strict';
 
 // Guardians controller
-angular.module('guardians').controller('GuardiansController', ['$scope', '$stateParams', '$location', 'Guardians',
-	function($scope, $stateParams, $location, Guardians) {
+angular.module('guardians').controller('GuardiansController', ['$scope', '$stateParams', '$location', 'Guardians','$modal', '$log',
+	function($scope, $stateParams, $location, Guardians, $modal, $log) {
 
 		// Create new Guardian
 		$scope.create = function() {
@@ -23,24 +23,7 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$state
 			});
 		};
 
-		// Create new Guardian
-		$scope.createByChildId = function() {
-			// Create new Guardian object
-			var guardian = new Guardians ({
-				gName: this.gName,
-				childID: $stateParams.childId
-			});
 
-			// Redirect after save
-			guardian.$save(function(response) {
-				$location.path('children/' + $stateParams.childId);
-
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
 
 		// Remove existing Guardian
 		$scope.remove = function(guardian) {
@@ -87,6 +70,49 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$state
 			console.log($scope);
 			$scope.guardians = Guardians.query();
 			console.log(id);
+		};
+		//Open Modal Window to Add Guardian
+		$scope.modalCreate = function (size) {
+
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/guardians/views/create-guardian-child-profile.client.view.html',
+				controller: function ($scope, $modalInstance, $stateParams) {
+					// Create new Guardian
+					$scope.createByChildId = function() {
+						// Create new Guardian object
+						var guardian = new Guardians ({
+							gName: this.gName,
+							childID: $stateParams.childId
+						});
+
+						// Redirect after save
+						guardian.$save(function(response) {
+
+							$modalInstance.close();
+
+						}, function(errorResponse) {
+							$scope.error = errorResponse.data.message;
+						});
+					};
+
+					$scope.submit = function() {
+						$modalInstance.close();
+						$scope.find();
+					};
+
+					$scope.cancel = function() {
+						$modalInstance.dismiss('cancel');
+					};
+
+				},
+				size: size
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
 		};
 	}
 ]);
