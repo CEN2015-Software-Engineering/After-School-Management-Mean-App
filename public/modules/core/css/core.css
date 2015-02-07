@@ -167,3 +167,51 @@
 .edit-create-form {
     padding-bottom: 30%;
 }
+
+/*CUSTOM BUTTON FOR DAY PICKER, FOR SCHEDULING STUDENTS ATTENDANCE*/
+.btn-day {
+    border: none;
+    color: #ffffff;
+    background-color: #75777A;
+}
+
+.btn-day:hover {
+    background-color: #4b4d50;
+}
+.btn-day:focus,
+.btn-day:active,
+.btn-day.active,
+.open .dropdown-toggle.btn-day {
+    color: #ffffff;
+    background-color: #115DBA;
+    border-color: #FCFCFC;
+}
+
+.btn-day:active,
+.btn-day.active,
+.open .dropdown-toggle.btn-day {
+    background-image: none;
+}
+
+.btn-day.disabled,
+.btn-day[disabled],
+fieldset[disabled] .btn-day,
+.btn-day.disabled:hover,
+.btn-day[disabled]:hover,
+fieldset[disabled] .btn-day:hover,
+.btn-day.disabled:focus,
+.btn-day[disabled]:focus,
+fieldset[disabled] .btn-day:focus,
+.btn-day.disabled:active,
+.btn-day[disabled]:active,
+fieldset[disabled] .btn-day:active,
+.btn-day.disabled.active,
+.btn-day[disabled].active,
+fieldset[disabled] .btn-day.active {
+
+}
+
+.btn-day .badge {
+    color: #75777A;
+    background-color: #ffffff;
+}

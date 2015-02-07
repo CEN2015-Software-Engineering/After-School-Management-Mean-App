@@ -3,6 +3,17 @@
 // Children controller
 angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Children',
 	function($scope, $stateParams, $location, Children) {
+
+		$scope.checkModel = {
+			mon: false,
+			tue: false,
+			wed: false,
+			thu: false,
+			fri: false,
+			sat: false,
+			sun: false
+		};
+
 		// Create new Child
 
 		$scope.create = function() {
@@ -24,13 +35,13 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				schoolName: this.schoolName,
 				size: this.size,
 				schedule: {
-					mon: this.mon,
-					tue: this.tue,
-					wed: this.wed,
-					thu: this.thu,
-					fri: this.fri,
-					sat: this.sat,
-					sun: this.sun
+					mon: $scope.checkModel.mon,
+					tue: $scope.checkModel.tue,
+					wed: $scope.checkModel.wed,
+					thu: $scope.checkModel.thu,
+					fri: $scope.checkModel.fri,
+					sat: $scope.checkModel.sat,
+					sun: $scope.checkModel.sun
 				}
 			});
 

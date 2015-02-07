@@ -1,144 +1,174 @@
 <section data-ng-controller="ChildrenController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
-		<div class="form-inline">
-			<h4>
-				<label for="enrolled">Enrolled:</label>
-				<input type="checkbox" data-ng-model="child.enrolled" id="enrolled" class="checkbox" disabled></input>
-			</h4>
-		</div>
-	</div>
-	<h4>
-	<div class="row">
-		<div class="col-sm-6">
-			Contact Information:
-		</div>
-		<div class="col-sm-6">
-			Phone Numbers:
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-sm-5 col-sm-offset-1">
+            <h1>{{child.firstName}} {{child.lastName}}'s Profile</h1>
+        </div>
+        <div class="col-sm-5">
+            <br/>
 
-	<div class="row">
-		<div class="col-sm-6">
-			<span class="text-muted" data-ng-bind="child.contact.email"></span>
-		</div>
-		<div class="col-sm-6 text-muted">
-			Home: <span class="text-muted" data-ng-bind="child.contact.home"></span>
-		</div>
-	</div>
+            <div class="pull-right" data-ng-show="true">
+                <a class="btn btn-primary" href="/#!/children/{{child._id}}/edit">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn btn-primary" data-ng-click="remove();">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <hr/>
+        </div>
+    </div>
 
-	<div class="row">
-		<div class="col-sm-6">
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-1">
+            <h3>Birthdate:</h3>
+        </div>
+        <div class="col-sm-3">
+            <h3><i>{{child.dob.month}}/{{child.dob.day}}/{{child.dob.year}}</i></h3>
+        </div>
+        <div class="col-sm-5 col-sm-offset-1">
+             <h3>
+                <div class="btn-group">
 
-		</div>
-		<div class="col-sm-6 text-muted">
-			Work: <span class="text-muted" data-ng-bind="child.contact.work"></span>
-		</div>
-	</div>
+                    <label class="btn btn-day btn-sm btn-danger" data-ng-model="child.enrolled"
+                           btn-checkbox disabled>Status:</label>
+                    <label class="btn btn-day btn-sm custom-date-btn" data-ng-model="child.enrolled"
+                           btn-checkbox disabled><span data-ng-show="child.enrolled">Enrolled</span><span
+                            data-ng-show="!child.enrolled">Canceled</span> </label>
+                </div>
+             </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h1>
+                <h4>
+                    Schedule:
+                </h4>
 
-	<div class="row">
-		<div class="col-sm-6">
-		Address:
-		</div>
-		<div class="col-sm-6 text-muted">
+                <div class="btn-group">
+                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sun"
+                           btn-checkbox disabled>Sunday</label>
+                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.mon"
+                           btn-checkbox disabled>Monday</label>
+                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.tue"
+                           btn-checkbox disabled>Tuesday</label>
+                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.wed"
+                           btn-checkbox disabled>Wednesday</label>
+                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.thu"
+                           btn-checkbox disabled>Thursday</label>
+                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.fri"
+                           btn-checkbox disabled>Friday</label>
+                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sat"
+                           btn-checkbox disabled>Saturday</label>
+                </div>
+            </h1>
+        </div>
+    </div>
 
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12 text-muted">
-			<span class="text-muted" data-ng-bind="child.contact.address.street"></span>
-		</div>
-	</div>
-	<hr>
-	<div class="row">
-		<div class="col-sm-6">
-			Birthday:
-			<span class="text-muted" data-ng-bind="child.dob.month"></span>/<span class="text-muted" data-ng-bind="child.dob.day"></span>/<span class="text-muted" data-ng-bind="child.dob.year"></span>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h2>Contact Information:</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-1">
+            <h3>Home:</h3>
+        </div>
+        <div class="col-sm-3">
+            <h3><i>{{child.contact.home}}</i></h3>
+        </div>
+        <div class="col-sm-2">
+            <h3>Work:</h3>
+        </div>
+        <div class="col-sm-3">
+            <h3><i>{{child.contact.work}}</i></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <hr />
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h3>Email Address:</h3>
+        </div>
+        <div class="col-sm-3">
+            <h3><i>{{child.contact.email}}</i></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h3>Address:</h3>
+        </div>
+        <div class="col-sm-6">
+            <h3><i>{{child.contact.address.street}}</i></h3>
+        </div>
+    </div>
 
-		</div>
-		<div class="col-sm-6">
-			Size: <span class="text-muted" data-ng-bind="child.size"></span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-6">
-			School:
-			<span class="text-muted" data-ng-bind="child.schoolName"></span>
-
-		</div>
-		<div class="col-sm-6">
-			<!--Information here-->
-		</div>
-	</div>
-	</h4>
-	<br/>
-	<h3><span class="">Schedule</span></h3>
-	<hr>
-	<small>
-		<div class="controls form-inline text-center" id="schedule">
-
-			<label class="control-label" for="mon">Monday:</label>
-			<input type="checkbox" name="mon" data-ng-model="child.schedule.mon" id="mon" class="checkbox" disabled>
-			<label class="control-label" for="tue">Tuesday:</label>
-			<input type="checkbox" name="tue" data-ng-model="child.schedule.tue" id="tue" class="checkbox" disabled>
-
-			<label class="control-label" for="wed">Wednesday:</label>
-			<input type="checkbox" name="wed" data-ng-model="child.schedule.wed" id="wed" class="checkbox" disabled>
-
-			<label class="control-label" for="thu">Thursday:</label>
-			<input type="checkbox" name="thu" data-ng-model="child.schedule.thu" id="thu" class="checkbox" disabled>
-
-			<label class="control-label" for="fri">Friday:</label>
-			<input type="checkbox" name="fri" data-ng-model="child.schedule.fri" id="fri" class="checkbox" disabled>
-
-			<br />
-
-			<label class="control-label" for="sat">Saturday:</label>
-			<input type="checkbox" name="sat" data-ng-model="child.schedule.sat" id="sat" class="checkbox" disabled>
-
-			<label class="control-label" for="sun">Sunday:</label>
-			<input type="checkbox" name="sun" data-ng-model="child.schedule.sun" id="sun" class="checkbox" disabled>
-		</div>
-
-		<br>
-		<br>
-
-		<em class="text-muted">
-			Registered On:
-			<span data-ng-bind="child.created | date:'mediumDate'"></span>
-		</em>
-	</small>
-	<!--EDIT & DELETE BUTTONS-->
-	<div class="pull-right" data-ng-show="true">
-		<a class="btn btn-primary" href="/#!/children/{{child._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h2>Miscellaneous:</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-1">
+            <h3>School:</h3>
+        </div>
+        <div class="col-sm-3">
+            <h3><i>{{child.schoolName}}</i></h3>
+        </div>
+        <div class="col-sm-2">
+            <h3>Uniform:</h3>
+        </div>
+        <div class="col-sm-3">
+            <h3><i>{{child.size}}</i></h3>
+        </div>
+    </div>
 
 
-<section data-ng-controller="GuardiansController" data-ng-init="find()">
-	<div class="page-header">
-		<h1>Guardians</h1>
-	</div>
-	ChildID: {{child._id}}
-	<div class="list-group">
-		<a data-ng-repeat="guardian in guardians" data-ng-href="#!/guardians/{{guardian._id}}" class="list-group-item" data-ng-if="guardian.childID == child._id">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="guardian.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="guardian.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="guardian.gName"></h4>
-		</a>
-	</div>
-	<div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || guardians.length">
-		No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
-	</div>
-	<a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-ng-click="modalCreate('lg')">Add Guardian</a>
-</section></section>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <br/><br/>
+        </div>
+    </div>
+
+
+    <!--EDIT & DELETE BUTTONS-->
+
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <section data-ng-controller="GuardiansController" data-ng-init="find()">
+                <div class="page-header">
+                    <h1>Guardians</h1>
+                </div>
+                ChildID: {{child._id}}
+                <div class="list-group">
+                    <a data-ng-repeat="guardian in guardians" data-ng-href="#!/guardians/{{guardian._id}}"
+                       class="list-group-item" data-ng-if="guardian.childID == child._id">
+                        <small class="list-group-item-text">
+                            Posted on
+                            <span data-ng-bind="guardian.created | date:'medium'"></span>
+                            by
+                            <span data-ng-bind="guardian.user.displayName"></span>
+                        </small>
+                        <h4 class="list-group-item-heading" data-ng-bind="guardian.gName"></h4>
+                    </a>
+                </div>
+                <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || guardians.length">
+                    No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
+                </div>
+                <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                   data-ng-click="modalCreate('lg')">Add Guardian</a>
+            </section>
+        </div>
+    </div>
+</section>
 
 <!--href="#!/children/addGuardian/{{child._id}}"-->
