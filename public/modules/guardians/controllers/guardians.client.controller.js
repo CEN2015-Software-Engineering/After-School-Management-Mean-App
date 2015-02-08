@@ -1,7 +1,7 @@
 'use strict';
 
 // Guardians controller
-angular.module('guardians').controller('GuardiansController', ['$scope', '$window', '$stateParams', '$location', 'Guardians','$modal', '$log',
+angular.module('guardians').controller('GuardiansController', ['$scope', '$window', '$stateParams', '$location', 'Guardians', '$modal', '$log',
 	function($scope, $window, $stateParams, $location, Guardians, $modal, $log) {
 
 
@@ -43,7 +43,35 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 			console.log(id);
 		};
 
+		this.modalCreate = function (size, selectedChild) {
 
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/guardians/views/create-guardian-child-profile.client.view.html',
+				controller: function ($scope, $modalInstance, $stateParams, child) {
+					$scope.child = child;
+
+					$scope.ok = function () {
+						$modalInstance.close();
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size,
+				resolve: {
+					child: function() {
+						return selectedChild;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+		};
 
 
 		//Open Modal Window to Add Guardian
@@ -80,22 +108,22 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 	}
 ]);
 
-angular.module('guardians').controller('GuardiansCreateController', ['$scope', '$stateParams', '$location', 'Guardians',
-	function($scope, $stateParams, $location, Guardians) {
+angular.module('guardians').controller('GuardiansCreateController', ['$scope', 'Guardians', 'Notify',
+	function($scope, Guardians, Notify) {
 		// Create new Guardian
-		$scope.create = function() {
+		this.create = function(childId) {
 			// Create new Guardian object
 			var guardian = new Guardians ({
 				gName: this.gName,
-				childID: this.childID
+				childID: childId,
+				rel: this.rel
 			});
 
 			// Redirect after save
 			guardian.$save(function(response) {
-				$location.path('guardians/' + response._id);
+				//After the Guardian has been saved, send a message to the view there is a customer to show
+				Notify.sendMsg('NewGuardian', {'id': response._id});
 
-				// Clear form fields
-				$scope.name = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

@@ -1,0 +1,37 @@
+<section data-ng-controller="GuardiansController as guardianCtrl" data-ng-init="find()">
+	<div class="col-sm-8 col-sm-offset-1">
+		<div class="">
+			<h1>Guardians</h1>
+		</div>
+	</div>
+	<div class="col-sm-2">
+		<h1>
+			<a class="btn btn-warning btn-sm" data-ng-click="guardianCtrl.modalCreate('lg', child)">
+				<i class="glyphicon glyphicon-user"></i> Add Guardian
+			</a>
+		</h1>
+	</div>
+	<div class="list-group col-sm-10 col-sm-offset-1">
+
+        <span data-ng-repeat="guardian in guardians" data-ng-onclick="#!/guardians/{{guardian._id}}" class="list-group-item" data-ng-if="guardian.childID == child._id">
+			<small class="list-group-item-text">
+				<div class="pull-right">
+
+					<a class="btn btn-primary btn-sm" data-ng-click="guardianCtrl.modalUpdate('lg', guardian)">
+						<i class="glyphicon glyphicon-edit"></i>
+					</a>
+					<a class="btn btn-danger btn-sm" data-ng-click="guardianCtrl.remove(guardian);">
+						<i class="glyphicon glyphicon-trash"></i>
+					</a>
+				</div>
+
+			</small>
+            <h3 class="list-group-item-heading" data-ng-bind="guardian.gName"></h3>
+            <h4 data-ng-bind="guardian.rel"> </h4>
+        </span>
+	</div>
+	<div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || guardians.length">
+		No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
+	</div>
+	<div class="page-break"></div>
+</section>

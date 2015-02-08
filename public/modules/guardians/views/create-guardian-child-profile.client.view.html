@@ -1,25 +1,51 @@
-<div class="form-container">
-    <div class="page-header">
-        <h1>New Guardian</h1>
-    </div>
-    <div class="col-md-12">
-        <form class="form-horizontal">
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="gName">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="gName" id="gName" class="form-control" placeholder="Name" required>
-                    </div>
-                </div>
-                <div data-ng-show="error" class="text-danger">
-                    <strong data-ng-bind="error"></strong>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+<section data-ng-controller="GuardiansCreateController as guardianCreateCtrl">
 
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Add Guardian</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-</div>
+
+    <div class="modal-header">
+        <h3 class="modal-title">Update Guardian: {{guardian.gName}}</h3>
+    </div>
+    <div class="modal-body row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label" for="gName">Name</label>
+
+                        <div class="controls">
+                            <input type="text" data-ng-model="guardianCreateCtrl.gName" id="gName" class="form-control"
+                                   placeholder="Name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="gName">Relationship</label>
+
+                        <div class="controls">
+                            <select class="btn btn-default btn-lg" data-ng-model="guardianCreateCtrl.rel"
+                                    ng-options="relationship for relationship in relationships"></select>
+                        </div>
+                    </div>
+                    <label class="control-label" for="childID">For Debug: childID</label>
+
+                    <div class="controls">
+                        <input type="text" data-ng-model="child._id" id="childID" class="form-control"
+                               placeholder="childID" required>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="modal-footer">
+            <div class="col-sm-4 col-sm-offset-8">
+                <button class="btn btn-primary"
+                        ng-click="guardianCreateCtrl.create(child._id); console.log(child._id); ok()">Add Guardian
+                </button>
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-show="error" class="text-danger">
+        <strong data-ng-bind="error"></strong>
+    </div>
+</section>

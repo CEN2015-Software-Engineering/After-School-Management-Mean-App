@@ -1,4 +1,4 @@
-<section data-ng-controller="ChildrenController" data-ng-init="findOne()">
+<section data-ng-controller="ChildrenController as childFullProfile" data-ng-init="findOne()">
     <div class="row">
         <div class="col-sm-5 col-sm-offset-1">
             <h1>{{child.firstName}} {{child.lastName}}'s Profile</h1>
@@ -144,29 +144,7 @@
 
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-            <section data-ng-controller="GuardiansController" data-ng-init="find()">
-                <div class="page-header">
-                    <h1>Guardians</h1>
-                </div>
-                ChildID: {{child._id}}
-                <div class="list-group">
-                    <a data-ng-repeat="guardian in guardians" data-ng-href="#!/guardians/{{guardian._id}}"
-                       class="list-group-item" data-ng-if="guardian.childID == child._id">
-                        <small class="list-group-item-text">
-                            Posted on
-                            <span data-ng-bind="guardian.created | date:'medium'"></span>
-                            by
-                            <span data-ng-bind="guardian.user.displayName"></span>
-                        </small>
-                        <h4 class="list-group-item-heading" data-ng-bind="guardian.gName"></h4>
-                    </a>
-                </div>
-                <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || guardians.length">
-                    No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
-                </div>
-                <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
-                   data-ng-click="modalCreate('lg')">Add Guardian</a>
-            </section>
+            <guardian-list></guardian-list>
         </div>
     </div>
 </section>

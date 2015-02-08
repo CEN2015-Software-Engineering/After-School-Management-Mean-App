@@ -23,11 +23,13 @@ angular.module('guardians')
 
 			notify.getMsg = function(msg, func, scope){
 				var unbind = $rootScope.$on(msg, func);
-
+				console.log('message received');
 				if( scope ) {
-					scope.$on('destory', unbind);
+					scope.$on('destroy', unbind);
 				}
 			};
+
+			return notify;
 		}
 
 	]);
