@@ -34,10 +34,6 @@
     padding-bottom: 30px;
 }
 
-.modal-content {
-
-}
-
 .form-container {
     padding: 25px;
 }
@@ -221,7 +217,7 @@ fieldset[disabled] .btn-day:active,
 .btn-day.disabled.active,
 .btn-day[disabled].active,
 fieldset[disabled] .btn-day.active {
-
+    background-image: none;
 }
 
 .btn-day .badge {
