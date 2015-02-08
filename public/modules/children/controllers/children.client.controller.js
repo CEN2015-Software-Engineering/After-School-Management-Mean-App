@@ -1,8 +1,8 @@
 'use strict';
 
 // Children controller
-angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Children',
-	function($scope, $stateParams, $location, Children) {
+angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', '$modal', '$log',
+	function($scope, $window, $stateParams, $location, Children, $modal, $log) {
 
 		$scope.checkModel = {
 			mon: false,
@@ -58,18 +58,21 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		// Remove existing Child
 		$scope.remove = function(child) {
-			if ( child ) { 
-				child.$remove();
+			console.log(child);
+			if($window.confirm('Are you sure you want to delete ' + child.firstName + ' ' + child.lastName + ' ?')) {
+				if (child) {
+					child.$remove();
 
-				for (var i in $scope.children) {
-					if ($scope.children [i] === child) {
-						$scope.children.splice(i, 1);
+					for (var i in $scope.children) {
+						if ($scope.children [i] === child) {
+							$scope.children.splice(i, 1);
+						}
 					}
+				} else {
+					$scope.child.$remove(function () {
+						$location.path('children');
+					});
 				}
-			} else {
-				$scope.child.$remove(function() {
-					$location.path('children');
-				});
 			}
 		};
 
@@ -96,5 +99,51 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			});
 		};
 
+		//Open Modal Window to Update Guardian
+		this.modalUpdate = function (size, selectedChild) {
+
+			var modalInstance = $modal.open({
+				templateUrl: '/modules/children/views/edit-child.client.view.html',
+				controller: function ($scope, $modalInstance, $stateParams, child) {
+					$scope.child = child;
+
+
+					$scope.ok = function () {
+						$modalInstance.close($scope.child);
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+					};
+				},
+				size: size,
+				resolve: {
+					child: function() {
+						return selectedChild;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+		};
+	}
+]);
+
+angular.module('children').controller('ChildrenUpdateController', ['$scope', '$stateParams', '$location', 'Children',
+	function($scope, $stateParams, $location, Children) {
+		// Update existing Child
+		this.update = function(selectedChild) {
+			var child = selectedChild;
+
+			child.$update(function() {
+				$location.path('children/' + child._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 	}
 ]);

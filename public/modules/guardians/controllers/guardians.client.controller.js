@@ -43,6 +43,7 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 			console.log(id);
 		};
 
+		//Open Modal Window to Add Guardian
 		this.modalCreate = function (size, selectedChild) {
 
 			var modalInstance = $modal.open({
@@ -74,7 +75,7 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 		};
 
 
-		//Open Modal Window to Add Guardian
+		//Open Modal Window to Update Guardian
 		this.modalUpdate = function (size, selectedGuardian) {
 
 			var modalInstance = $modal.open({

@@ -43,6 +43,11 @@ angular.module('calendar').directive('calendar', [
 				scope.selected = _removeTime(scope.selected || moment());
 				scope.month = scope.selected.clone();
 
+				//Added this line so that when calendar is loaded, the date
+				//selected is today
+				scope.selected = moment();
+
+
 				var start = scope.selected.clone();
 				start.date(1);
 				_removeTime(start.day(0));
