@@ -9,6 +9,9 @@ module.exports = function(app) {
 		.get(children.list)
 		.post(children.create);
 
+	app.route('/children/roster/:childId')
+		.get(children.read);
+
 	app.route('/children/:childId')
 		.get(children.read)
 		.put(children.update)

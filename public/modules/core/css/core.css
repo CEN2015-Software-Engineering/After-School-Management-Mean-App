@@ -168,6 +168,19 @@
     padding-bottom: 30%;
 }
 
+
+/*CUSTOM BUTTON FOR PARENT CHECKOUT */
+.checkout-btn {
+    height: 50px;
+    border: 1px solid black;
+    margin-bottom: 15px;
+}
+
+.checkout-btn:hover {
+    background-color: #666699;
+    color: white;
+}
+
 /*CUSTOM BUTTON FOR DAY PICKER, FOR SCHEDULING STUDENTS ATTENDANCE*/
 .btn-day {
     border: none;
