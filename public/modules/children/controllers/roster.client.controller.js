@@ -10,6 +10,9 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
 			$scope.day = moment().format('ddd').toLowerCase();
 			console.log($scope.day);
 		};
+		this.theDate = function() {
+			return moment().format('dddd, MMMM Do YYYY');
+		};
 
 		this.enrolledToday = function(child){
 			if($scope.day === 'sun' && child.schedule.sun){
