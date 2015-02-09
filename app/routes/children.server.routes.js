@@ -9,7 +9,7 @@ module.exports = function(app) {
 		.get(children.list)
 		.post(children.create);
 
-	app.route('/children/roster/:childId')
+	app.route('/todays-roster/:childId')
 		.get(children.read);
 
 	app.route('/children/:childId')

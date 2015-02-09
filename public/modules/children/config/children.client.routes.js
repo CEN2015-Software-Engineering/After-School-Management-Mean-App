@@ -22,7 +22,7 @@ angular.module('children').config(['$stateProvider',
 			templateUrl: 'modules/children/views/view-child.client.view.html'
 		}).
 		state('signOutChild', {
-			url: '/children/roster/:childId',
+			url: '/todays-roster/:childId',
 			templateUrl: 'modules/children/views/sign-out-child.client.view.html'
 		}).
 		state('editChild', {
