@@ -74,28 +74,35 @@ var ChildSchema = new Schema({
 	},
 	schedule: {
 		mon: {
-			type: Boolean
+			type: Boolean,
+			default: false
 		},
 		tue: {
-			type: Boolean
+			type: Boolean,
+			default: false
 		},
 		wed: {
-			type: Boolean
+			type: Boolean,
+			default: false
 		},
 		thu: {
-			type: Boolean
+			type: Boolean,
+			default: false
 		},
 		fri: {
-			type: Boolean
+			type: Boolean,
+			default: false
 		},
 		sat: {
-			type: Boolean
+			type: Boolean,
+			default: false
 		},
 		sun: {
-			type: Boolean
+			type: Boolean,
+			default: false
 		}
 	},
-	img: {
+	signature: {
 		//For adding images later
 		data: Buffer,
 		contentType: String

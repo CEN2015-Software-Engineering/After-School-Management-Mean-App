@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/childmanager-test',
+	db: 'mongodb://joshuakegley.com:27017/childmanager-test',
 	port: 3001,
 	app: {
 		title: 'childManager - Test Environment'
