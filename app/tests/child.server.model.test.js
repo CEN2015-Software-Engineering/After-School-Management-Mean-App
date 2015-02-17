@@ -5,40 +5,29 @@
  */
 var should = require('should'),
 	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
 	Child = mongoose.model('Child');
 
 /**
  * Globals
  */
-var user, child;
+var  child;
 
 /**
  * Unit tests
  */
 describe('Child Model Unit Tests:', function() {
 	beforeEach(function(done) {
-		user = new User({
-			firstName: 'Full',
-			lastName: 'Name',
-			displayName: 'Full Name',
-			email: 'test@test.com',
-			username: 'username',
-			password: 'password'
-		});
 
-		user.save(function() { 
 			child = new Child({
-				name: 'Child Name',
-				user: user
+				firstName: 'Tom',
+				lastName: 'Jones'
 			});
-
 			done();
-		});
 	});
 
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
+			this.timeout(0);
 			return child.save(function(err) {
 				should.not.exist(err);
 				done();
@@ -46,7 +35,7 @@ describe('Child Model Unit Tests:', function() {
 		});
 
 		it('should be able to show an error when try to save without name', function(done) { 
-			child.name = '';
+			child.firstName = '';
 
 			return child.save(function(err) {
 				should.exist(err);
@@ -57,7 +46,6 @@ describe('Child Model Unit Tests:', function() {
 
 	afterEach(function(done) { 
 		Child.remove().exec();
-		User.remove().exec();
 
 		done();
 	});

@@ -4,7 +4,8 @@
             <h1>{{child.firstName}} {{child.lastName}}'s Profile</h1>
         </div>
         <div class="col-sm-5 col-sm-offset-1">
-            <h1><a class="btn btn-lg btn-day" data-ng-href="#!/"><span class="fa fa-calendar"> Sign-Out Records</span></a></h1>
+            <h1><a class="btn btn-lg btn-day" data-ng-href="#!/"><span
+                    class="fa fa-calendar"> Sign-Out Records</span></a></h1>
         </div>
     </div>
     <div class="row">
@@ -21,7 +22,7 @@
             <h3><i>{{child.dob.month}}/{{child.dob.day}}/{{child.dob.year}}</i></h3>
         </div>
         <div class="col-sm-2">
-             <h3>
+            <h3>
                 <div class="btn-group">
 
                     <label class="btn btn-day btn-sm btn-danger" data-ng-model="child.enrolled"
@@ -30,7 +31,7 @@
                            btn-checkbox disabled><span data-ng-show="child.enrolled">Enrolled</span><span
                             data-ng-show="!child.enrolled">Canceled</span> </label>
                 </div>
-             </h3>
+            </h3>
         </div>
         <div class="col-sm-4">
             <h3>
@@ -93,7 +94,7 @@
     </div>
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-            <hr />
+            <hr/>
         </div>
     </div>
     </div>
@@ -150,8 +151,31 @@
 
 
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-6">
             <guardian-list></guardian-list>
+        </div>
+        <div class="col-sm-6">
+            <h2>Allergies & Disabilities</h2>
+        </div>
+        <div class="list-group col-sm-10 col-sm-offset-1">
+
+        <span data-ng-repeat="guardian in guardians" data-ng-onclick="#!/guardians/{{guardian._id}}"
+              class="list-group-item" data-ng-if="guardian.childID == child._id">
+            <small class="list-group-item-text">
+                <div class="pull-right">
+
+                    <a class="btn btn-primary btn-sm" data-ng-click="guardianCtrl.modalUpdate('lg', guardian)">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" data-ng-click="guardianCtrl.remove(guardian);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+
+            </small>
+            <h3 class="list-group-item-heading" data-ng-bind="guardian.gName"></h3>
+            <h4 data-ng-bind="guardian.rel"></h4>
+        </span>
         </div>
     </div>
 </section>

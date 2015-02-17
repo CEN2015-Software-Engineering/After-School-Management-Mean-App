@@ -15,7 +15,7 @@ var mongoose = require('mongoose'),
 var ChildSchema = new Schema({
 	firstName: {
 		type: String,
-		default: '',
+		required: 'Please fill Child name',
 		trim: true
 	},
 	lastName: {

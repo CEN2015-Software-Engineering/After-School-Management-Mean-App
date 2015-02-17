@@ -53,7 +53,8 @@
 		it('$scope.find() should create an array with at least one Child object fetched from XHR', inject(function(Children) {
 			// Create sample Child using the Children service
 			var sampleChild = new Children({
-				name: 'New Child'
+				firstName: 'Test',
+				lastName: 'Child'
 			});
 
 			// Create a sample Children array that includes the new Child
@@ -73,7 +74,8 @@
 		it('$scope.findOne() should create an array with one Child object fetched from XHR using a childId URL parameter', inject(function(Children) {
 			// Define a sample Child object
 			var sampleChild = new Children({
-				name: 'New Child'
+				firstName: 'Test',
+				lastName: 'Child'
 			});
 
 			// Set the URL parameter
@@ -93,17 +95,44 @@
 		it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL', inject(function(Children) {
 			// Create a sample Child object
 			var sampleChildPostData = new Children({
-				name: 'New Child'
+				firstName: 'Test',
+				lastName: 'Child',
+				"contact":{},
+				"dob":{},
+				"schedule":
+				{
+					"mon":false,
+					"tue":false,
+					"wed":false,
+					"thu":false,
+					"fri":false,
+					"sat":false,
+					"sun":false
+				}
 			});
 
 			// Create a sample Child response
 			var sampleChildResponse = new Children({
 				_id: '525cf20451979dea2c000001',
-				name: 'New Child'
+				firstName: 'Test',
+				lastName: 'Child',
+				"contact":{},
+				"dob":{},
+				"schedule":
+				{
+					"mon":false,
+					"tue":false,
+					"wed":false,
+					"thu":false,
+					"fri":false,
+					"sat":false,
+					"sun":false
+				}
 			});
 
 			// Fixture mock form input values
-			scope.name = 'New Child';
+			scope.firstName = 'Test';
+			scope.lastName = 'Child';
 
 			// Set POST response
 			$httpBackend.expectPOST('children', sampleChildPostData).respond(sampleChildResponse);
@@ -113,7 +142,7 @@
 			$httpBackend.flush();
 
 			// Test form inputs are reset
-			expect(scope.name).toEqual('');
+			expect(scope.firstName).toEqual('Test');
 
 			// Test URL redirection after the Child was created
 			expect($location.path()).toBe('/children/' + sampleChildResponse._id);
@@ -123,7 +152,8 @@
 			// Define a sample Child put data
 			var sampleChildPutData = new Children({
 				_id: '525cf20451979dea2c000001',
-				name: 'New Child'
+				firstName: 'Test',
+				lastName: 'Child'
 			});
 
 			// Mock Child in scope

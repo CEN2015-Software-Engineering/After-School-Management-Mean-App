@@ -37,16 +37,10 @@
 .form-container {
     padding: 25px;
 }
-/*
-.homeButtons {
-	height: 105px;
-	width: inherit;
-	vertical-align: middle;
-	display: table-cell;
+
+.list-group {
+    padding-right: 0px;
 }
-*/
-
-
 /* johns stuff */
 .header {
     overflow: hidden;
