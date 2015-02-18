@@ -34,7 +34,7 @@ describe('Child Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without name', function(done) { 
+		it('should be able to show an error when try to save without fname', function(done) {
 			child.firstName = '';
 
 			return child.save(function(err) {
