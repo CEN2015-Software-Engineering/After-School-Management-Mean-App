@@ -1,7 +1,7 @@
 /**
  * Created by Joshua on 2/18/2015.
  */
-describe('After School Add Child, Edit Child, Delete Child', function() {
+describe('After School Add Child, Edit Child,', function() {
     it('Navigate to student Records and click add student', function() {
         browser.get('http://localhost:3000/');
 
@@ -56,10 +56,25 @@ describe('After School Add Child, Edit Child, Delete Child', function() {
         expect(element(by.name('fullNameField')).getText()).toEqual('Protractor Test\'s Profile');
     });
 
-    it('Delete Child', function() {
-        element(by.name('deleteChildButton')).click();
+    it('Edit Child', function() {
+        //open modal
+        element(by.name('editChildButton')).click();
 
-        //Click the Accept box in the Alert window
-        browser.switchTo().alert().accept();
+        //old values
+        expect(element(by.name('firstName')).getAttribute('value')).toEqual('Protractor');
+        expect(element(by.name('lastName')).getAttribute('value')).toEqual('Test');
+
+        //new values
+        element(by.name('firstName')).clear();
+        element(by.name('lastName')).clear();
+        element(by.name('firstName')).sendKeys('Edited Protractor');
+        element(by.name('lastName')).sendKeys('Edited Test');
+
+        //exit modal
+        element(by.name('confirmButton')).click();
+
+        expect(element(by.name('fullNameField')).getText()).toEqual('Edited Protractor Edited Test\'s Profile');
+
     });
+
 });
