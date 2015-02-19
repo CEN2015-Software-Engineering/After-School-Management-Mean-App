@@ -25,7 +25,7 @@ describe('Child Model Unit Tests:', function() {
 			done();
 	});
 
-	describe('Method Save', function() {
+	describe('Testing child model, FName is required on Method Save', function() {
 		it('should be able to save without problems', function(done) {
 			this.timeout(0);
 			return child.save(function(err) {
@@ -34,7 +34,7 @@ describe('Child Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without name', function(done) { 
+		it('should be able to show an error when try to save without fname', function(done) {
 			child.firstName = '';
 
 			return child.save(function(err) {
