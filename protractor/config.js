@@ -3,10 +3,5 @@
  */
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['addchild.editchild.js'],
-    multiCapabilities: [{
-        'browserName': 'safari'
-    }, {
-        'browserName': 'chrome'
-    }]
+    specs: ['addchild.editchild.js']
 };

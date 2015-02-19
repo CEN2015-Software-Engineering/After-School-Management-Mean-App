@@ -30,8 +30,11 @@
             <h4 data-ng-bind="guardian.rel"> </h4>
         </span>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || guardians.length">
-    	No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
+    <div class="list-group col-sm-10 col-sm-offset-1">
+
+        <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || guardians.length">
+            No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
+        </div>
     </div>
     <div class="page-break"></div>
 </section>

@@ -4,7 +4,7 @@
 describe('After School Add Child, Edit Child,', function() {
     it('Navigate to student Records and click add student', function() {
         browser.get('http://localhost:3000/');
-
+        browser.driver.manage().window().setSize(1280, 1024);
         element(by.name('studentRecordsButton')).click();
         element(by.name('addChildButton')).click();
 
@@ -42,7 +42,7 @@ describe('After School Add Child, Edit Child,', function() {
         expect(element(by.name('address')).getAttribute('value')).toEqual('1234 Cherry Oak Drive, Gainesville Florida');
         expect(element(by.name('schoolName')).getAttribute('value')).toEqual('Forrest Elementary School');
         expect(element(by.name('size')).getAttribute('value')).toEqual('XXL');
-
+        browser.sleep(2000);
         element(by.name('submit')).click();
 
 
@@ -67,14 +67,36 @@ describe('After School Add Child, Edit Child,', function() {
         //new values
         element(by.name('firstName')).clear();
         element(by.name('lastName')).clear();
-        element(by.name('firstName')).sendKeys('Edited Protractor');
-        element(by.name('lastName')).sendKeys('Edited Test');
+        element(by.name('firstName')).sendKeys('Name');
+        element(by.name('lastName')).sendKeys('New');
 
         //exit modal
         element(by.name('confirmButton')).click();
 
-        expect(element(by.name('fullNameField')).getText()).toEqual('Edited Protractor Edited Test\'s Profile');
+        expect(element(by.name('fullNameField')).getText()).toEqual('Name New\'s Profile');
+
+    });
+    it('Open & Close Guardian Modal, Create new Sister', function() {
+        browser.sleep(2000);
+        browser.executeScript('window.scrollTo(0,100);').then(function () {
+            element(by.name('createGuardianButton')).click();
+        });
+        element(by.name('name')).sendKeys('Susan Test');
+
+        element(by.name('relationship')).element(by.cssContainingText('option', 'Sister')).click();
+
+        element(by.name('confirmButton')).click();
+        browser.executeScript('window.scrollTo(0,200);');
+
+        browser.sleep(2000);
 
     });
 
+
+    it('Delete Child', function() {
+        element(by.name('deleteChildButton')).click();
+
+        //Click the Accept box in the Alert window
+        browser.switchTo().alert().accept();
+    });
 });

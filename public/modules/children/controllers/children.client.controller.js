@@ -1,8 +1,8 @@
 'use strict';
 
 // Children controller
-angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', '$modal', '$log', '$timeout',
-	function($scope, $window, $stateParams, $location, Children, $modal, $log, $timeout) {
+angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Guardians', '$modal', '$log', '$timeout',
+	function($scope, $window, $stateParams, $location, Children, Guardians, $modal, $log, $timeout) {
 
 		$scope.checkModel = {
 			mon: false,
@@ -60,11 +60,22 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 		};
 
 		// Remove existing Child
-		$scope.remove = function(child) {
+		$scope.remove = function(child, guardians) {
 			console.log(child);
 			//Confirm childs deletion or if Karma Test, delete child. Karma Child ID = 525a8422f6d0f87f0e407a33
 			var sure = $window.confirm('Are you sure you want to delete ' + child.firstName + ' ' + child.lastName + ' ?');
             if( sure || child._id === '525a8422f6d0f87f0e407a33') {
+
+                for(var g in guardians) {
+                    if (guardians.hasOwnProperty(g)) {
+                        if(guardians[g].childID === child._id) {
+                            console.log(guardians[g].gName);
+                            guardians[g].$remove();
+                        }
+                    }
+                }
+
+
 				if (child) {
 					child.$remove();
 					for (var i in $scope.children) {
@@ -74,7 +85,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 					}
                     $timeout(function(){
                         $location.path('children');
-                    }, 1000);
+                    }, 2000);
                 } else {
 					$scope.child.$remove(function () {
 						$location.path('children');
@@ -82,6 +93,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 				}
 			}
 		};
+
+
 
 		// Update existing Child
 		$scope.update = function() {
@@ -96,7 +109,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			});
 		};
 
-		// Find a list of Children
+        $scope.guardians = Guardians.query();
+
+
+        // Find a list of Children
 		$scope.find = function() {
 			$scope.children = Children.query();
 		};

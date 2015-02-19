@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Child = mongoose.model('Child'),
-	_ = require('lodash');
+    Guardian = mongoose.model('Guardian'),
+    _ = require('lodash');
 
 /**
  * Create a Child
@@ -56,7 +57,6 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 	var child = req.child ;
-
 	child.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
