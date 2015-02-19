@@ -97,17 +97,17 @@
 			var sampleChildPostData = new Children({
 				firstName: 'Test',
 				lastName: 'Child',
-				"contact":{},
-				"dob":{},
-				"schedule":
+				contact:{},
+				dob:{},
+				schedule:
 				{
-					"mon":false,
-					"tue":false,
-					"wed":false,
-					"thu":false,
-					"fri":false,
-					"sat":false,
-					"sun":false
+					mon:false,
+					tue:false,
+					wed:false,
+					thu:false,
+					fri:false,
+					sat:false,
+					sun:false
 				}
 			});
 
@@ -116,17 +116,17 @@
 				_id: '525cf20451979dea2c000001',
 				firstName: 'Test',
 				lastName: 'Child',
-				"contact":{},
-				"dob":{},
-				"schedule":
+				contact:{},
+				dob:{},
+				schedule:
 				{
-					"mon":false,
-					"tue":false,
-					"wed":false,
-					"thu":false,
-					"fri":false,
-					"sat":false,
-					"sun":false
+					mon:false,
+					tue:false,
+					wed:false,
+					thu:false,
+					fri:false,
+					sat:false,
+					sun:false
 				}
 			});
 

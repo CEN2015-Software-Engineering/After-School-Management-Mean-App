@@ -1,7 +1,7 @@
 <section data-ng-controller="ChildrenController as childFullProfile" data-ng-init="findOne()">
     <div class="row">
         <div class="col-sm-5 col-sm-offset-1">
-            <h1>{{child.firstName}} {{child.lastName}}'s Profile</h1>
+            <h1 name="fullNameField">{{child.firstName}} {{child.lastName}}'s Profile</h1>
         </div>
         <div class="col-sm-5 col-sm-offset-1">
             <h1><a class="btn btn-lg btn-day" data-ng-href="#!/"><span
@@ -19,7 +19,7 @@
             <h3>Birthdate:</h3>
         </div>
         <div class="col-sm-2">
-            <h3><i>{{child.dob.month}}/{{child.dob.day}}/{{child.dob.year}}</i></h3>
+            <h3 name="birthDateField"><i>{{child.dob.month}}/{{child.dob.day}}/{{child.dob.year}}</i></h3>
         </div>
         <div class="col-sm-2">
             <h3>
@@ -39,7 +39,7 @@
                     <a class="btn btn-primary" data-ng-click="childFullProfile.modalUpdate('lg', child)">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <a class="btn btn-danger" data-ng-click="remove(child);">
+                    <a class="btn btn-danger" name="deleteChildButton" data-ng-click="remove(child);">
                         <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </div>

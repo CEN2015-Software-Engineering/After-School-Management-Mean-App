@@ -29,7 +29,7 @@ exports.create = function(req, res) {
  * Show the current Child
  */
 exports.read = function(req, res) {
-	res.jsonp(req.child);
+    res.jsonp(req.child);
 };
 
 /**

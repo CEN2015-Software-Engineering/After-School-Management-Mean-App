@@ -1,8 +1,8 @@
 'use strict';
 
 // Children controller
-angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', '$modal', '$log',
-	function($scope, $window, $stateParams, $location, Children, $modal, $log) {
+angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', '$modal', '$log', '$timeout',
+	function($scope, $window, $stateParams, $location, Children, $modal, $log, $timeout) {
 
 		$scope.checkModel = {
 			mon: false,
@@ -18,14 +18,17 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 
 		$scope.create = function() {
 			// Create new Child object
+            var newHome = ('' + this.home).replace(/\D/g,'');
+            var newWork = ('' + this.work).replace(/\D/g,'');
+
 			var child = new Children ({
 				firstName: this.firstName,
 				lastName: this.lastName,
 				enrolled: this.enrolled,
 				contact: {
 					email: this.email,
-					home: this.home,
-					work: this.work,
+					home: newHome,
+					work: newWork,
 					street: this.street
 				},dob: {
 					day: this.day,
@@ -60,16 +63,19 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 		$scope.remove = function(child) {
 			console.log(child);
 			//Confirm childs deletion or if Karma Test, delete child. Karma Child ID = 525a8422f6d0f87f0e407a33
-			if($window.confirm('Are you sure you want to delete ' + child.firstName + ' ' + child.lastName + ' ?') || child._id == '525a8422f6d0f87f0e407a33') {
+			var sure = $window.confirm('Are you sure you want to delete ' + child.firstName + ' ' + child.lastName + ' ?');
+            if( sure || child._id === '525a8422f6d0f87f0e407a33') {
 				if (child) {
 					child.$remove();
-
 					for (var i in $scope.children) {
 						if ($scope.children [i] === child) {
 							$scope.children.splice(i, 1);
 						}
 					}
-				} else {
+                    $timeout(function(){
+                        $location.path('children');
+                    }, 1000);
+                } else {
 					$scope.child.$remove(function () {
 						$location.path('children');
 					});
@@ -80,6 +86,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 		// Update existing Child
 		$scope.update = function() {
 			var child = $scope.child;
+            child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
+            child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
 
 			child.$update(function() {
 				$location.path('children/' + child._id);
@@ -139,7 +147,8 @@ angular.module('children').controller('ChildrenUpdateController', ['$scope', '$s
 		// Update existing Child
 		this.update = function(selectedChild) {
 			var child = selectedChild;
-
+            child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
+            child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
 			child.$update(function() {
 				$location.path('children/' + child._id);
 			}, function(errorResponse) {

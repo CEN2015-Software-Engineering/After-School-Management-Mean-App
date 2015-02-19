@@ -39,11 +39,11 @@ var ChildSchema = new Schema({
 			trim: true
 		},
 		home: {
-			type: Number,
+			type: String,
 			default: 0
 		},
 		work: {
-			type: Number,
+			type: String,
 			default: 0
 		},
 		address: {
