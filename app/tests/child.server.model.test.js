@@ -20,7 +20,31 @@ describe('Child Model Unit Tests:', function() {
 
 			child = new Child({
 				firstName: 'Tom',
-				lastName: 'Jones'
+				lastName: 'Jones',
+                enrolled: false,
+                contact: {
+                    email:'tom.jones@gmail.com',
+                    home:'1234561234',
+                    work:'7894561234',
+                    address:'202 working lane, gvill, Fl 32612'
+                },
+                dob: {
+                    month: 10,
+                    day: 10,
+                    year: 1994
+
+                },
+                schoolName: 'the cool school',
+                size: 'medium',
+                schedule: {
+                    mon: false,
+                    tue: false,
+                    wed: false,
+                    thu: false,
+                    fri: false,
+                    sat: false,
+                    sun: false
+                }
 			});
 			done();
 	});
