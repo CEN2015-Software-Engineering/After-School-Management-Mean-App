@@ -21,7 +21,10 @@ describe('Child CRUD tests', function() {
 		// Save a user to the test db and create new Child
 		child = {
 			firstName: 'James',
-			lastName: 'Sucks'
+			lastName: 'Sucks',
+            contact: {
+                email: 'james.Sucks@gmail.com'
+            }
 		};
 
 		done();
@@ -73,7 +76,10 @@ describe('Child CRUD tests', function() {
 	});
 
 	it('should be able to update Child', function(done) {
-			// Save a new Child
+            //give james his name back
+            child.firstName = 'james';
+
+            // Save a new Child
 			agent.post('/children')
 				.send(child)
 				.expect(200)

@@ -46,7 +46,9 @@ describe('Child Model Unit Tests:', function() {
                     sun: false
                 }
 			});
-			done();
+        child.created = new Date;
+        child.updated = new Date;
+		done();
 	});
 
 	describe('Testing child model, FName is required on Method Save', function() {
@@ -67,6 +69,26 @@ describe('Child Model Unit Tests:', function() {
 			});
 		});
 	});
+
+    describe('Testing child model, email is correctly created and validated', function() {
+        it('should be able to save without problems', function(done) {
+            this.timeout(0);
+
+            return child.save(function(err) {
+                should.not.exist(err);
+                done();
+            });
+        });
+
+        it('should be able to show an error when try to save with incorrect email format', function(done) {
+            child.contact.email = 'tom.jones.gmail.com';
+
+            return child.save(function(err) {
+                should.exist(err);
+                done();
+            });
+        });
+    });
 
 	afterEach(function(done) { 
 		Child.remove().exec();
