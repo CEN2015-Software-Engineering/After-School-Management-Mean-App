@@ -65,7 +65,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			//Confirm childs deletion or if Karma Test, delete child. Karma Child ID = 525a8422f6d0f87f0e407a33
 			var sure = $window.confirm('Are you sure you want to delete ' + child.firstName + ' ' + child.lastName + ' ?');
             if( sure || child._id === '525a8422f6d0f87f0e407a33') {
-
+                $scope.guardians = Guardians.query();
                 for(var g in guardians) {
                     if (guardians.hasOwnProperty(g)) {
                         if(guardians[g].childID === child._id) {
@@ -99,8 +99,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 		// Update existing Child
 		$scope.update = function() {
 			var child = $scope.child;
-            child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
-            child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
+            //child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
+            //child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
 
 			child.$update(function() {
 				$location.path('children/' + child._id);
@@ -109,7 +109,6 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			});
 		};
 
-        $scope.guardians = Guardians.query();
 
 
         // Find a list of Children

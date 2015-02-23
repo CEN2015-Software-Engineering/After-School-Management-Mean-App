@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 
 var validateEmail = function(email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return re.test(email)
+    return re.test(email);
 };
 
 
@@ -45,12 +45,10 @@ var ChildSchema = new Schema({
 			trim: true
 		},
 		home: {
-			type: String,
-			default: 0
+			type: String
 		},
 		work: {
-			type: String,
-			default: 0
+			type: String
 		},
 		address: {
 			street: {

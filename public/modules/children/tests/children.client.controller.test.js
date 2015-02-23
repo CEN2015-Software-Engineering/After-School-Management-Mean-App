@@ -54,7 +54,10 @@
 			// Create sample Child using the Children service
 			var sampleChild = new Children({
 				firstName: 'Test',
-				lastName: 'Child'
+				lastName: 'Child',
+                contact: {
+                    email: 'tod@tod.com'
+                }
 			});
 
 			// Create a sample Children array that includes the new Child
@@ -78,9 +81,10 @@
 				lastName: 'Child'
 			});
 
+
 			// Set the URL parameter
 			$stateParams.childId = '525a8422f6d0f87f0e407a33';
-
+            // Create a sample Children array that includes the new Child
 			// Set GET response
 			$httpBackend.expectGET(/children\/([0-9a-fA-F]{24})$/).respond(sampleChild);
 
@@ -97,7 +101,11 @@
 			var sampleChildPostData = new Children({
 				firstName: 'Test',
 				lastName: 'Child',
-				contact:{},
+				contact:{
+                    email: 'tod@tod.com',
+                    home: '',
+                    work: ''
+                },
 				dob:{},
 				schedule:
 				{
@@ -116,7 +124,11 @@
 				_id: '525cf20451979dea2c000001',
 				firstName: 'Test',
 				lastName: 'Child',
-				contact:{},
+				contact:{
+                    email: 'tod@tod.com',
+                    home: '',
+                    work: ''
+                },
 				dob:{},
 				schedule:
 				{
@@ -133,6 +145,7 @@
 			// Fixture mock form input values
 			scope.firstName = 'Test';
 			scope.lastName = 'Child';
+            scope.email = 'tod@tod.com';
 
 			// Set POST response
 			$httpBackend.expectPOST('children', sampleChildPostData).respond(sampleChildResponse);
@@ -177,9 +190,13 @@
 			});
 
 			// Create new Children array and include the Child
+            var sampleGaurdians;
 			scope.children = [sampleChild];
 
-			// Set expected DELETE response
+            //Get all the parents to find this childs
+            $httpBackend.expectGET('guardians').respond(sampleGaurdians);
+
+            // Set expected DELETE response
 			$httpBackend.expectDELETE(/children\/([0-9a-fA-F]{24})$/).respond(204);
 
 			// Run controller functionality

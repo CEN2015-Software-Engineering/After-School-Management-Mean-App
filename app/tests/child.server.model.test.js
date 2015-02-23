@@ -46,8 +46,8 @@ describe('Child Model Unit Tests:', function() {
                     sun: false
                 }
 			});
-        child.created = new Date;
-        child.updated = new Date;
+        child.created = new Date();
+        child.updated = new Date();
 		done();
 	});
 
