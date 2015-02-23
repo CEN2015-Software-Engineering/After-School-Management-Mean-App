@@ -77,6 +77,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
         // Find an Attendance that occurs today
         this.attendingToday = function(attendance){
+            console.log(attendance.childID);
             if( (attendance.date.day === $scope.day) && (attendance.date.month === $scope.month+1) && (attendance.date.year === $scope.year) ){
                 return true;
             }

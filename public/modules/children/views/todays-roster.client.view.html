@@ -10,7 +10,7 @@
 
 	</div>
     <div class="list-group">
-        <a data-ng-repeat="attendance in attendances" data-ng-href="#!/attendances/{{attendance._id}}" class="list-group-item" data-ng-if="att.attendingToday(attendance)">
+        <a data-ng-repeat="attendance in attendances" data-ng-href="#!/todays-roster/{{attendance.childID}}" class="list-group-item" data-ng-if="att.attendingToday(attendance)">
             <h1 class="list-group-item-heading text-center" data-ng-bind="attendance.childName"></h1>
         </a>
     </div>
