@@ -6,10 +6,10 @@
 				<h3>Relationship:</h3><h4 data-ng-bind="guardian.rel"></h4>
 			</div>
 			<div class="pull-right">
-				<a class="btn btn-primary btn-lg" data-ng-click="guardianCtrl.modalUpdate('lg', guardian)">
+				<a class="btn btn-primary btn-lg" name="updateParentButton" data-ng-click="guardianCtrl.modalUpdate('lg', guardian)">
 					<i class="glyphicon glyphicon-edit"></i>
 				</a>
-				<a class="btn btn-primary btn-lg" data-ng-click="remove();">
+				<a class="btn btn-primary btn-lg" name="deleteParentButton" data-ng-click="remove();">
 					<i class="glyphicon glyphicon-trash"></i>
 				</a>
 			</div>

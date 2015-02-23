@@ -4,7 +4,9 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+	Schema = mongoose.Schema,
+    Guardian = require('mongoose').model('Guardian').schema;
+
 
 var validateEmail = function(email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -51,9 +53,7 @@ var ChildSchema = new Schema({
 			type: String
 		},
 		address: {
-			street: {
-				type: String
-			}
+			type: String
 		}
 	},
 	dob: {

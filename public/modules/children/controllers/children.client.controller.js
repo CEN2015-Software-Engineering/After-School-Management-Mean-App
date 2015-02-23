@@ -20,7 +20,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			// Create new Child object
             var newHome = ('' + this.home).replace(/\D/g,'');
             var newWork = ('' + this.work).replace(/\D/g,'');
-
+            console.log(this.address);
 			var child = new Children ({
 				firstName: this.firstName,
 				lastName: this.lastName,
@@ -29,7 +29,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 					email: this.email,
 					home: newHome,
 					work: newWork,
-					street: this.street
+                    address: this.address
 				},dob: {
 					day: this.day,
 					month: this.month,
@@ -65,12 +65,15 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			//Confirm childs deletion or if Karma Test, delete child. Karma Child ID = 525a8422f6d0f87f0e407a33
 			var sure = $window.confirm('Are you sure you want to delete ' + child.firstName + ' ' + child.lastName + ' ?');
             if( sure || child._id === '525a8422f6d0f87f0e407a33') {
-                $scope.guardians = Guardians.query();
-                for(var g in guardians) {
-                    if (guardians.hasOwnProperty(g)) {
-                        if(guardians[g].childID === child._id) {
-                            console.log(guardians[g].gName);
-                            guardians[g].$remove();
+                console.log(guardians);
+                console.log('BLAH');
+                var lookForGuardians = Guardians.query();
+
+                for(var g in lookForGuardians) {
+                    if (lookForGuardians.hasOwnProperty(g)) {
+                        if(lookForGuardians[g].childID === child._id) {
+                            console.log(lookForGuardians[g].gName);
+                            lookForGuardians[g].$remove();
                         }
                     }
                 }

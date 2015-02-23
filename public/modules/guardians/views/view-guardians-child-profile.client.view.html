@@ -17,16 +17,16 @@
 			<small class="list-group-item-text">
 				<div class="pull-right">
 
-					<a class="btn btn-primary btn-sm" data-ng-click="guardianCtrl.modalUpdate('lg', guardian)">
+					<a class="btn btn-primary btn-sm" name="updateParentButton" data-ng-click="guardianCtrl.modalUpdate('lg', guardian)">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
-					<a class="btn btn-danger btn-sm" data-ng-click="guardianCtrl.remove(guardian);">
+					<a class="btn btn-danger btn-sm" name="deleteParentButton" data-ng-click="guardianCtrl.remove(guardian);">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</div>
 
 			</small>
-            <h3 class="list-group-item-heading" data-ng-bind="guardian.gName"></h3>
+            <h3 class="list-group-item-heading" name="guardianNameField" data-ng-bind="guardian.gName"></h3>
             <h4 data-ng-bind="guardian.rel"> </h4>
         </span>
 	</div>

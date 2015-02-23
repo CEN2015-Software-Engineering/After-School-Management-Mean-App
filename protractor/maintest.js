@@ -92,6 +92,22 @@ describe('After School Add Child, Edit Child,', function() {
 
     });
 
+    it('Open Guardian Modal, Edit Sister to Mom', function() {
+        browser.executeScript('window.scrollTo(0,document.body.scrollHeight);').then(function () {
+            element(by.name('updateParentButton')).click();
+        });
+        element(by.model('guardian.gName')).clear();
+        element(by.model('guardian.gName')).sendKeys('Susan Sucks');
+
+        element(by.model('guardian.rel')).element(by.cssContainingText('option', 'Mom')).click();
+
+        element(by.name('confirmButton')).click();
+        browser.executeScript('window.scrollTo(0,document.body.scrollHeight);');
+
+        browser.sleep(2000);
+
+    });
+
 
     it('Delete Child', function() {
         element(by.name('deleteChildButton')).click();

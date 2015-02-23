@@ -3,7 +3,7 @@
 		<h1>{{roster.theDate()}} Roster</h1>
 	</div>
 	<div class="list-group">
-		<a data-ng-repeat="child in children" onclick="console.log('ho');" data-ng-href="#!/todays-roster/{{child._id}}" class="list-group-item" data-ng-if="roster.enrolledToday(child) && child.enrolled">
+		<a data-ng-repeat="child in children" data-ng-href="#!/todays-roster/{{child._id}}" class="list-group-item" data-ng-if="roster.enrolledToday(child) && child.enrolled">
 			<h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
 		</a>
 	</div>

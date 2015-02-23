@@ -1,4 +1,6 @@
 <section data-ng-controller="ChildrenController as childFullProfile" data-ng-init="findOne()">
+    <section data-ng-controller="GuardiansController as guardianCtrl" data-ng-init="find()">
+
     <div class="row">
         <div class="col-sm-5 col-sm-offset-1">
             <h1 name="fullNameField">{{child.firstName}} {{child.lastName}}'s Profile</h1>
@@ -111,7 +113,7 @@
             <h3>Address:</h3>
         </div>
         <div class="col-sm-6">
-            <h3><i>{{child.contact.address.street}}</i></h3>
+            <h3><i>{{child.contact.address}}</i></h3>
         </div>
     </div>
     <div class="row">
@@ -162,6 +164,5 @@
 
         </div>
     </div>
-</section>
-
+</section></section>
 <!--href="#!/children/addGuardian/{{child._id}}"-->
