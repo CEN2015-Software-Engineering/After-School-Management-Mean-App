@@ -14,15 +14,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     day: this.day,
                     month: this.month,
                     year: this.year
-                },
-                absent: this.absent,
-                unscheduled: this.unscheduled,
-                signout:{
-                    timestamp: this.timestamp,
-                    guardID: this.guardID,
-                    override: this.override
-                },
-                eventID: this.eventID
+                }
 			});
 
 			// Redirect after save
@@ -67,6 +59,13 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 		// Find a list of Attendances
 		$scope.find = function() {
 			$scope.attendances = Attendances.query();
+            console.log($scope.attendances);
+            $scope.day = moment().date();
+            console.log($scope.day);
+            $scope.month = moment().month();
+            console.log($scope.month);
+            $scope.year = moment().year();
+            console.log($scope.year);
 		};
 
 		// Find existing Attendance
@@ -75,5 +74,21 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 				attendanceId: $stateParams.attendanceId
 			});
 		};
+
+        // Find an Attendance that occurs today
+        this.attendingToday = function(attendance){
+            if( (attendance.date.day === $scope.day) && (attendance.date.month === $scope.month+1) && (attendance.date.year === $scope.year) ){
+                return true;
+            }
+            else{
+                return false;
+            }
+        };
+
+        // Test
+        this.aT = function(attendance){
+            return true;
+        };
+
 	}
 ]);
