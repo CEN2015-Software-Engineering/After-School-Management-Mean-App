@@ -12,7 +12,6 @@ var mongoose = require('mongoose'),
 var GuardianSchema = new Schema({
 	gName: {
 		type: String,
-		default: '',
 		required: 'Please fill Guardian name',
 		trim: true
 	},
@@ -20,14 +19,15 @@ var GuardianSchema = new Schema({
 		type: String
 	},
 	num: {
-		type: Number
+		type: String
 	},
 	created: {
 		type: Date,
 		default: Date.now
 	},
 	childID: {
-		type: String
+		type: String,
+        required: 'Can\'t save a guardian without a child'
 	}
 });
 

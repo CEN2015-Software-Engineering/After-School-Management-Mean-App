@@ -17,6 +17,7 @@ var  child;
  */
 describe('Child Model Unit Tests:', function() {
 	beforeEach(function(done) {
+           this.timeout(0);
 
 			child = new Child({
 				firstName: 'Tom',
@@ -62,6 +63,7 @@ describe('Child Model Unit Tests:', function() {
 
 		it('should be able to show an error when try to save without fname', function(done) {
 			child.firstName = '';
+            this.timeout(0);
 
 			return child.save(function(err) {
 				should.exist(err);
@@ -72,6 +74,7 @@ describe('Child Model Unit Tests:', function() {
 
     describe('Testing child model, email is correctly created and validated', function() {
         it('should be able to save without problems', function(done) {
+            child.contact.email = 'tom.jones@gmail.com';
             this.timeout(0);
 
             return child.save(function(err) {
