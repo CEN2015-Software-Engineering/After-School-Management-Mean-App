@@ -17,8 +17,8 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus',
 			window.history.back();
 		};
 
-		$scope.$back = function() {
-			window.history.back();
+		$scope.goHome = function() {
+			window.location.href = "/#!/";
 		};
 	}
 ]);
