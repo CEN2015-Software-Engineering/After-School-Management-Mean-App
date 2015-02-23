@@ -1,21 +1,23 @@
 <section data-ng-controller="AttendancesController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="attendance.name"></h1>
+
 	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == attendance.user._id))">
-		<a class="btn btn-primary" href="/#!/attendances/{{attendance._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="attendance.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="attendance.user.displayName"></span>
-		</em>
-	</small>
+    <div>
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+                <h3><i>{{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}</i></h3>
+                <h4 name="childName">{{attendance.childName}}</h4>
+            </div>
+        </div>
+        <h3>
+            <div class="pull-right" data-ng-show="true">
+                <a class="btn btn-danger" name="deleteAttendaceButton" data-ng-click="remove(attendance);">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+        </h3>
+    </div>
+
+
 </section>

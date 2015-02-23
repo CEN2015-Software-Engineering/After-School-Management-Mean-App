@@ -4,13 +4,8 @@
     </div>
     <div class="list-group">
         <a data-ng-repeat="attendance in attendances" data-ng-href="#!/attendances/{{attendance._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="attendance.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="attendance.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="attendance.name"></h4>
+            <h1 class="list-group-item-heading text-center" data-ng-bind="attendance.childName"></h1>
+            <h3 class="text-center"><i>{{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}</i></h3>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!attendances.$resolved || attendances.length">

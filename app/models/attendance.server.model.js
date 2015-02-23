@@ -31,28 +31,6 @@ var AttendanceSchema = new Schema({
             type: Number,
             required: ''
         }
-    },
-    absent: {
-        type: Boolean,
-        default: false,
-        required: ''
-    },
-    unscheduled: {
-        type: Boolean
-    },
-    signout: {
-        timestamp: {
-            type: Date
-        },
-        guardID: {
-            type: String
-        },
-        override: {
-            type: Boolean
-        }
-    },
-    eventID: {
-        type: String
     }
 });
 
