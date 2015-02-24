@@ -102,7 +102,7 @@ calendar > div.week > span.eventExist {
     width:15px;
     height:15px;
     border-radius:50px;
-    margin-left: 14px;
+    margin-left: 42%;
     background:linear-gradient(to bottom, #995675, #666699)
 }
 
