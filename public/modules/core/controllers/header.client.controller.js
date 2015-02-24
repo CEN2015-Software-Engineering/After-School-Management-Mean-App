@@ -18,7 +18,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus',
 		};
 
 		$scope.goHome = function() {
-			window.location.href = "/#!/";
+			window.location.href = '/#!/';
 		};
 	}
 ]);

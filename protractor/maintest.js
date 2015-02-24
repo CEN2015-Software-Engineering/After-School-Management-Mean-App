@@ -5,6 +5,8 @@ describe('After School Add Child, Edit Child,', function() {
     it('Navigate to student Records and click add student', function() {
         browser.get('http://localhost:3000/');
         browser.driver.manage().window().setSize(1280, 1024);
+        browser.sleep(2000);
+
         element(by.name('studentRecordsButton')).click();
         element(by.name('addChildButton')).click();
 
@@ -67,18 +69,18 @@ describe('After School Add Child, Edit Child,', function() {
         //new values
         element(by.name('firstName')).clear();
         element(by.name('lastName')).clear();
-        element(by.name('firstName')).sendKeys('Name');
-        element(by.name('lastName')).sendKeys('New');
+        element(by.name('firstName')).sendKeys('Gregory');
+        element(by.name('lastName')).sendKeys('House M.D.');
 
         //exit modal
         element(by.name('confirmButton')).click();
 
-        expect(element(by.name('fullNameField')).getText()).toEqual('Name New\'s Profile');
+        expect(element(by.name('fullNameField')).getText()).toEqual('Gregory House M.D.\'s Profile');
 
     });
     it('Open & Close Guardian Modal, Create new Sister', function() {
         browser.sleep(2000);
-        browser.executeScript('window.scrollTo(0,100);').then(function () {
+        browser.executeScript('window.scrollTo(0,document.body.scrollHeight);').then(function () {
             element(by.name('createGuardianButton')).click();
         });
         element(by.name('name')).sendKeys('Susan Test');
@@ -86,7 +88,7 @@ describe('After School Add Child, Edit Child,', function() {
         element(by.name('relationship')).element(by.cssContainingText('option', 'Sister')).click();
 
         element(by.name('confirmButton')).click();
-        browser.executeScript('window.scrollTo(0,200);');
+        browser.executeScript('window.scrollTo(0,document.body.scrollHeight);');
 
         browser.sleep(2000);
 
@@ -97,7 +99,7 @@ describe('After School Add Child, Edit Child,', function() {
             element(by.name('updateParentButton')).click();
         });
         element(by.model('guardian.gName')).clear();
-        element(by.model('guardian.gName')).sendKeys('Susan Sucks');
+        element(by.model('guardian.gName')).sendKeys('House\'s Mom');
 
         element(by.model('guardian.rel')).element(by.cssContainingText('option', 'Mom')).click();
 

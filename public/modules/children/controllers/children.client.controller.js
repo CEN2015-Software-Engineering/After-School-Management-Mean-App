@@ -68,7 +68,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
                 console.log(guardians);
                 console.log('BLAH');
                 var lookForGuardians = Guardians.query();
-
+                console.log(lookForGuardians);
                 for(var g in lookForGuardians) {
                     if (lookForGuardians.hasOwnProperty(g)) {
                         if(lookForGuardians[g].childID === child._id) {

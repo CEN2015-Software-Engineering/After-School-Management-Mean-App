@@ -2,6 +2,10 @@
 
 angular.module('calendar').directive('calendar', [
 	function() {
+
+
+
+
 		function _removeTime(date) {
 			return date.day(0).hour(0).minute(0).second(0).millisecond(0);
 		}
@@ -36,17 +40,19 @@ angular.module('calendar').directive('calendar', [
 		return {
 			restrict: 'E',
 			templateUrl: 'modules/calendar/views/calendar.template.client.view.html',
-			scope: {
-				selected: '='
+            scope: {
+				selected: '=',
+                advents: '='
 			},
 			link: function (scope) {
-				scope.selected = _removeTime(scope.selected || moment());
+
+
+                scope.selected = _removeTime(scope.selected || moment());
 				scope.month = scope.selected.clone();
 
 				//Added this line so that when calendar is loaded, the date
 				//selected is today
 				scope.selected = moment();
-
 
 				var start = scope.selected.clone();
 				start.date(1);
@@ -72,6 +78,18 @@ angular.module('calendar').directive('calendar', [
 					scope.month.month(scope.month.month() - 1);
 					_buildMonth(scope, previous, scope.month);
 				};
+
+                scope.hasEvent = function(day) {
+                    var result = false;
+                    angular.forEach(scope.advents ,function(value, index){
+                        if(parseInt(day.date.format('MM')) === value.date.month && parseInt(day.date.format('D')) === value.date.day && parseInt(day.date.format('YYYY')) === value.date.year) {
+                            result = true;
+                        }
+                    });
+                    return result;
+                };
+
+
 			}
 		};
 

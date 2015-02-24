@@ -69,6 +69,7 @@ calendar > div.week:first-child {
     border-top: none;
 }
 calendar > div.week > span.day {
+    position: relative;
     float: left;
     width: 14.285714285714286%;
     -webkit-box-sizing: border-box;
@@ -88,8 +89,23 @@ calendar > div.week > span.day:first-child {
     border-left: none;
 }
 calendar > div.week > span.day.today {
-    background: #ede1b9;
+    background-color: rgb(150, 153, 153);
 }
+
+calendar > div.week > span.eventExist {
+
+    background-color: rgb(153, 86, 117);
+}
+.grad{
+    position: absolute;
+    bottom:2px;
+    width:15px;
+    height:15px;
+    border-radius:50px;
+    margin-left: 14px;
+    background:linear-gradient(to bottom, #995675, #666699)
+}
+
 calendar > div.week > span.day.different-month {
     background-color: #f8f8ff;
     color: lightgrey;
@@ -102,3 +118,4 @@ calendar > div.week.names > span {
     color: #2875c7;
     font-weight: bold;
 }
+
