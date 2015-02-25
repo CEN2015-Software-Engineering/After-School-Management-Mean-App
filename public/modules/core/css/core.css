@@ -178,6 +178,9 @@
     border: none;
     color: #ffffff;
     background-color: #75777A;
+    font-size: 13px;
+    margin: 2px;
+    padding: 10px;
 }
 
 .btn-day:hover {

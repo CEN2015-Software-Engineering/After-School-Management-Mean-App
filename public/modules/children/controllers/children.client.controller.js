@@ -126,6 +126,14 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			});
 		};
 
+        this.age = function(child) {
+            if(child.hasOwnProperty('dob')) {
+                var ageDifMs  = Date.now() - new Date(child.dob.year, child.dob.month, child.dob.day, 0, 0, 0, 0);
+                var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                return Math.abs(ageDate.getUTCFullYear() - 1970);
+            }
+        };
+
 		//Open Modal Window to Update Guardian
 		this.modalUpdate = function (size, selectedChild) {
 

@@ -2,167 +2,147 @@
     <section data-ng-controller="GuardiansController as guardianCtrl" data-ng-init="find()">
 
     <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
-            <h1 name="fullNameField">{{child.firstName}} {{child.lastName}}'s Profile</h1>
+        <div class="col-sm-8 col-sm-offset-1">
+            <h2 name="fullNameField">{{child.firstName}} {{child.lastName}}'s Profile - {{childFullProfile.age(child)}} </h2>
         </div>
-        <div class="col-sm-5 col-sm-offset-1">
-            <h1><a class="btn btn-lg btn-day" data-ng-href="#!/"><span
-                    class="fa fa-calendar"> Sign-Out Records</span></a></h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <hr/>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-2 col-sm-offset-1">
-            <h3>Birthdate:</h3>
-        </div>
-        <div class="col-sm-2">
-            <h3 name="birthDateField"><i>{{child.dob.month}}/{{child.dob.day}}/{{child.dob.year}}</i></h3>
-        </div>
-        <div class="col-sm-2">
-            <h3>
-                <div class="btn-group">
-
-                    <label class="btn btn-day btn-sm btn-danger" data-ng-model="child.enrolled"
-                           btn-checkbox disabled>Status:</label>
-                    <label class="btn btn-day btn-sm custom-date-btn" data-ng-model="child.enrolled"
-                           btn-checkbox disabled><span data-ng-show="child.enrolled">Enrolled</span><span
-                            data-ng-show="!child.enrolled">Canceled</span> </label>
-                </div>
-            </h3>
-        </div>
-        <div class="col-sm-4">
-            <h3>
-                <div class="pull-right" data-ng-show="true">
-                    <a class="btn btn-primary" name="editChildButton" data-ng-click="childFullProfile.modalUpdate('lg', child)">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                    <a class="btn btn-danger" name="deleteChildButton" data-ng-click="remove(child, guardians);">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </div>
-            </h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <h1>
+            <div class="col-sm-3">
                 <h4>
-                    Schedule:
+                    <div class="pull-right" data-ng-show="true">
+                        <a class="btn btn-primary" name="editChildButton" data-ng-click="childFullProfile.modalUpdate('lg', child)">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a class="btn btn-danger" name="deleteChildButton" data-ng-click="remove(child, guardians);">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </div>
                 </h4>
+            </div>
+        </div>
 
-                <div class="btn-group">
-                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sun"
-                           btn-checkbox disabled>Sunday</label>
-                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.mon"
-                           btn-checkbox disabled>Monday</label>
-                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.tue"
-                           btn-checkbox disabled>Tuesday</label>
-                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.wed"
-                           btn-checkbox disabled>Wednesday</label>
-                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.thu"
-                           btn-checkbox disabled>Thursday</label>
-                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.fri"
-                           btn-checkbox disabled>Friday</label>
-                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sat"
-                           btn-checkbox disabled>Saturday</label>
+    <tabset justified="true">
+        <tab name="contactInfoTab">
+            <tab-heading>
+                <i class="fa fa-info fa-2x"></i><h4> Information </h4>
+            </tab-heading>
+
+
+
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-1">
+                    <h5>Home:</h5>
+                    <h4><i>{{child.contact.home}}</i></h4>
                 </div>
-            </h1>
-        </div>
-    </div>
+                <div class="col-sm-3">
+                    <h5>Work:</h5>
+                    <h4><i>{{child.contact.work}}</i></h4>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Address:</h5>
+                    <h4><i>{{child.contact.address}}</i></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-1">
+                    <h5>Email Address:</h5>
+                    <h4> <i>{{child.contact.email}}</i></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <hr/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <h4>Miscellaneous:</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <h5>School:</h5>
+                    <h4><i>{{child.schoolName}}</i></h4>
+                </div>
+                <div class="col-sm-2">
+                    <h5>Uniform:</h5>
+                    <h4><i>{{child.size}}</i></h4>
+                </div>
+                <div class="col-sm-5">
+                    <h5>Birthdate:</h5>
+                    <h4 name="birthDateField"><i>{{child.dob.month}}/{{child.dob.day}}/{{child.dob.year}}</i></h4>
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <h2>Contact Information:</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2 col-sm-offset-1">
-            <h3>Home:</h3>
-        </div>
-        <div class="col-sm-3">
-            <h3><i>{{child.contact.home}}</i></h3>
-        </div>
-        <div class="col-sm-2">
-            <h3>Work:</h3>
-        </div>
-        <div class="col-sm-3">
-            <h3><i>{{child.contact.work}}</i></h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <hr/>
-        </div>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3 col-sm-offset-1">
-            <h3>Email Address:</h3>
-        </div>
-        <div class="col-sm-3">
-            <h3><i>{{child.contact.email}}</i></h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3 col-sm-offset-1">
-            <h3>Address:</h3>
-        </div>
-        <div class="col-sm-6">
-            <h3><i>{{child.contact.address}}</i></h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <hr/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <h2>Miscellaneous:</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2 col-sm-offset-1">
-            <h3>School:</h3>
-        </div>
-        <div class="col-sm-3">
-            <h3><i>{{child.schoolName}}</i></h3>
-        </div>
-        <div class="col-sm-2">
-            <h3>Uniform:</h3>
-        </div>
-        <div class="col-sm-3">
-            <h3><i>{{child.size}}</i></h3>
-        </div>
-    </div>
+        </tab>
 
+        <tab name="enrollmentInfoTab">
+            <tab-heading>
+                <i class="fa fa-check-square-o fa-2x"></i><h4> Enrollment </h4>
+            </tab-heading>
+            <div class="row">
+                <h1>
+                <div class="col-sm-4 col-sm-offset-2">
+                    <h3>
+                        <div class="btn-group">
 
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <br/><br/>
-        </div>
-    </div>
+                            <label class="btn btn-day btn-danger" data-ng-model="child.enrolled"
+                                   btn-checkbox disabled>Status:</label>
+                            <label class="btn btn-day" data-ng-model="child.enrolled"
+                                   btn-checkbox disabled><span data-ng-show="child.enrolled">Enrolled</span><span
+                                    data-ng-show="!child.enrolled">Canceled</span> </label>
+                        </div>
+                    </h3>
+                </div>
+                <div class="col-sm-5">
+                    <h1><a class="btn btn-default btn-lg" data-ng-href="#!/"><span
+                            class="fa fa-calendar"> Sign-Out Records</span></a></h1>
+                </div>
+                </h1>
+            </div>
+            <div class="row">
 
+                <div class="col-sm-10 col-sm-offset-2">
+                    <h4>
+                        Schedule:
+                    </h4>
+                        <div class="btn-group">
+                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sun"
+                                   btn-checkbox disabled>Sunday</label>
+                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.mon"
+                                   btn-checkbox disabled>Monday</label>
+                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.tue"
+                                   btn-checkbox disabled>Tuesday</label>
+                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.wed"
+                                   btn-checkbox disabled>Wednesday</label>
+                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.thu"
+                                   btn-checkbox disabled>Thursday</label>
+                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.fri"
+                                   btn-checkbox disabled>Friday</label>
+                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sat"
+                                   btn-checkbox disabled>Saturday</label>
+                        </div>
+                </div>
+            </div>
+        </tab>
+        <tab name="personalInfoTab">
+            <tab-heading>
+                <i class="fa fa-child fa-2x fa-spin"></i><h4> Personal </h4>
+            </tab-heading>
+            <div class="col-sm-6">
+                <h4>Allergies & Disabilities</h4>
+            </div>
+        </tab>
 
-    <!--EDIT & DELETE BUTTONS-->
-
-
-    <div class="row">
-        <div class="col-sm-6">
+        <tab name="guardiansInfoTab">
+            <tab-heading>
+                <i class="fa fa-users fa-2x"></i><h4> Guardians </h4>
+            </tab-heading>
             <guardian-list></guardian-list>
-        </div>
-        <div class="col-sm-6">
-            <h2>Allergies & Disabilities</h2>
-        </div>
-        <div class="list-group col-sm-10 col-sm-offset-1">
+        </tab>
+    </tabset>
 
 
-        </div>
-    </div>
+
+
 </section></section>
 <!--href="#!/children/addGuardian/{{child._id}}"-->
