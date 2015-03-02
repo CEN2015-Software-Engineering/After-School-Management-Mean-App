@@ -1,6 +1,11 @@
+
 <div class="header">
     <i class="fa fa-angle-left" ng-click="previous()"></i>
-    <span>{{month.format("MMMM, YYYY")}}</span>
+        <span>
+            {{month.format("MMMM, YYYY")}} 
+            <label class="btn btn-sm" ng-click="goToday()">Today
+            </label>
+        </span>
     <i class="fa fa-angle-right" ng-click="next()"></i>
 </div>
 <div class="week names">

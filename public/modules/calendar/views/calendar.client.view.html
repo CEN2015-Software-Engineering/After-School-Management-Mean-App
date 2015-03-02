@@ -1,11 +1,8 @@
 <!--<section data-ng-controller="CalendarController">-->
-<section data-ng-controller="CalendarController as cal" data-ng-init="find()">
+<section data-ng-controller="CalendarController as cal" data-ng-init="find()" data-ng-init="getToday">
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-1">
 			<h1>Calendar Demo</h1>
-		</div>
-		<div class="col-sm-2">
-			<br /><br />BUTTON
 		</div>
 		<div class="col-sm-5">
 			<br /><br /><span>Selected date: <b>{{day.format('dddd MMMM D YYYY')}}</b></span>
