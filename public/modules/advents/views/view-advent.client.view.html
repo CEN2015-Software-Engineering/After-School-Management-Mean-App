@@ -1,4 +1,4 @@
-<section data-ng-controller="AdventsController" data-ng-init="findOne()">
+<section data-ng-controller="AdventsController" data-ng-controller="AttendancesController" data-ng-controller="ChildrenController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="advent.name"></h1>
 		<div class="row">
@@ -27,8 +27,8 @@
 		<em class="text-muted">
 			Posted on
 			<span data-ng-bind="advent.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="advent.user.displayName"></span>
 		</em>
 	</small>
 </section>
+	<label class="btn btn-day btn-lg custom-date-btn " ng-click="">Add Child Attendance</label>
+	

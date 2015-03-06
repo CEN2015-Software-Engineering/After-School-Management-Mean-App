@@ -34,7 +34,8 @@ var AdventSchema = new Schema({
 	description: {
 		type: String,
 		default: ''
-	}
+	},
+	
 });
 
 mongoose.model('Advent', AdventSchema);
