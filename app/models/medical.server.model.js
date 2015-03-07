@@ -20,6 +20,9 @@ var MedicalSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+    type: {
+        type: String
+    },
     desc: {
         type: String
     },

@@ -1,4 +1,8 @@
-<section data-ng-controller="MedicalsController as medicalCtrl" data-ng-init="find()">
+<section data-ng-controller="MedicalsController as medicalCtrl" data-ng-init="report()">
+
+    {{allergies}}
+    {{disabilities}}
+    {{others}}
     <div class="col-sm-7 col-sm-offset-1">
         <div class="">
             <h1>Allergies & Disabilities</h1>
@@ -11,9 +15,60 @@
             </a>
         </h1>
     </div>
+    <div class="col-sm-7 col-sm-offset-1">
+        <div class="">
+            <h3>Allergies:</h3>
+        </div>
+    </div>
+    <div class="list-group col-sm-10 col-sm-offset-1">
+        <span data-ng-repeat="medical in allergies" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id && medical.type == 'Allergy'" >
+			<small class="list-group-item-text">
+                <div class="pull-right">
+
+                    <a class="btn btn-primary btn-sm" name="updateMedicalButton" data-ng-click="medicalCtrl.modalUpdate('lg', medical)">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" name="deleteMedicalButton" data-ng-click="medicalCtrl.remove(medical);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+
+            </small>
+            <h3 class="list-group-item-heading" name="medicalNameField" data-ng-bind="medical.name"></h3>
+            <h4 data-ng-bind="guardian.rel"> </h4>
+        </span>
+    </div>
+    <div class="col-sm-7 col-sm-offset-1">
+        <div class="">
+            <h3>Disabilities:</h3>
+        </div>
+    </div>
+    <div class="list-group col-sm-10 col-sm-offset-1">
+        <span data-ng-repeat="medical in disabilities" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id && medical.type == 'Disability'" >
+			<small class="list-group-item-text">
+                <div class="pull-right">
+
+                    <a class="btn btn-primary btn-sm" name="updateMedicalButton" data-ng-click="medicalCtrl.modalUpdate('lg', medical)">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" name="deleteMedicalButton" data-ng-click="medicalCtrl.remove(medical);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+
+            </small>
+            <h3 class="list-group-item-heading" name="medicalNameField" data-ng-bind="medical.name"></h3>
+            <h4 data-ng-bind="guardian.rel"> </h4>
+        </span>
+    </div>
+    <div class="col-sm-7 col-sm-offset-1">
+        <div class="">
+            <h3>Others:</h3>
+        </div>
+    </div>
     <div class="list-group col-sm-10 col-sm-offset-1">
         <!--data-ng-if="medical.childID == child._id"-->
-        <span data-ng-repeat="medical in medicals" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" >
+        <span data-ng-repeat="medical in others" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id" >
 			<small class="list-group-item-text">
                 <div class="pull-right">
 
