@@ -19,7 +19,14 @@ var MedicalSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	}
+	},
+    desc: {
+        type: String
+    },
+    childID: {
+        type: String,
+        required: 'Can\'t save a disability without a child'
+    }
 });
 
 mongoose.model('Medical', MedicalSchema);

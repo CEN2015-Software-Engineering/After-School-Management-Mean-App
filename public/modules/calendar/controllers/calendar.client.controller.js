@@ -10,7 +10,7 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Advents'
             $scope.advents = Advents.query();
         };
 
-                        $scope.getToday = function() {
+        $scope.getToday = function() {
                 	var result = false;
                 	console.log(1);
                 	$scope.month = $scope.selected.clone();
@@ -22,7 +22,7 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Advents'
 					result = true;
 					console.log(0);
 					return result;
-	                };
+        };
 
 
 	}

@@ -9,10 +9,6 @@ angular.module('guardians').config(['$stateProvider',
 			url: '/guardians',
 			templateUrl: 'modules/guardians/views/list-guardians.client.view.html'
 		}).
-		state('createGuardian', {
-			url: '/guardians/create',
-			templateUrl: 'modules/guardians/views/create-guardian.client.view.html'
-		}).
 		state('viewGuardian', {
 			url: '/guardians/:guardianId',
 			templateUrl: 'modules/guardians/views/view-guardian.client.view.html'

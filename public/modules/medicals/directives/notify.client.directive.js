@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 angular.module('medicals').directive('medicalList', ['Medicals', 'Notify', function(Medicals, Notify) {
     return {
         restrict: 'E',
@@ -8,7 +8,7 @@ angular.module('medicals').directive('medicalList', ['Medicals', 'Notify', funct
         link: function(scope, element, attrs) {
             //when a customer is added, update the customer list
 
-            Notify.getMsg('NewGuardian', function(event, data) {
+            Notify.getMsg('NewMedical', function(event, data) {
                 scope.$$childHead.medicals = Medicals.query();
             });
         }
@@ -29,3 +29,4 @@ angular.module('medicals').directive('medicalCheckOut', ['Medicals', 'Notify', f
         }
     };
 }]);
+    */
