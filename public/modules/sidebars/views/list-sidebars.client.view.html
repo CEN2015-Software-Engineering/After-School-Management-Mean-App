@@ -1,0 +1,19 @@
+<section data-ng-controller="SidebarsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Sidebars</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="sidebar in sidebars" data-ng-href="#!/sidebars/{{sidebar._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="sidebar.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="sidebar.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="sidebar.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!sidebars.$resolved || sidebars.length">
+    	No Sidebars yet, why don't you <a href="/#!/sidebars/create">create one</a>?
+    </div>
+</section>
