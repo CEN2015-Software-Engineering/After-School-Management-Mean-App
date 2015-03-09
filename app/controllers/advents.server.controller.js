@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Advent = mongoose.model('Advent'),
-	_ = require('lodash');
+    Attendance = mongoose.model('Attendance'),
+    _ = require('lodash');
 
 /**
  * Create a Advent
@@ -72,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Advents
  */
 exports.list = function(req, res) { 
-	Advent.find().sort('-created').populate('user', 'displayName').exec(function(err, advents) {
+	Advent.find().exec(function(err, advents) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -82,6 +83,24 @@ exports.list = function(req, res) {
 		}
 	});
 };
+
+
+/**
+ * List of Attendances for an Advent
+ * middleware
+ * */
+exports.attendanceByAdvent = function(req, res, next, id) {
+    Attendance.find().where({adventID: id}).exec(function(err, attendances) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(attendances);
+        }
+    });
+};
+
 
 /**
  * Advent middleware

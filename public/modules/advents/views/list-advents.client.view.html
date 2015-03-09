@@ -3,7 +3,7 @@
         <h1>Advents</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="advent in advents" data-ng-href="#!/advents/{{advent._id}}" class="list-group-item">
+        <a data-ng-repeat="advent in advents | orderBy: 'name'" data-ng-href="#!/advents/{{advent._id}}" class="list-group-item">
             <h1 class="list-group-item-heading text-center" data-ng-bind="advent.name"></h1>
         </a>
     </div>

@@ -7,6 +7,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 		// Create new Attendance
 		$scope.create = function() {
 			// Create new Attendance object
+            console.log(this.adventID);
 			var attendance = new Attendances ({
 				childID: this.childID,
                 childName: this.childName,
@@ -14,15 +15,15 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     day: this.day,
                     month: this.month,
                     year: this.year
-                }
+                },
+                adventB: false,
+                adventID: this.adventID
 			});
 
 			// Redirect after save
 			attendance.$save(function(response) {
 				$location.path('attendances/' + response._id);
 
-				// Clear form fields
-				$scope.name = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -50,7 +51,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 			var attendance = $scope.attendance;
 
 			attendance.$update(function() {
-				$location.path('attendances/' + attendance._id);
+				$location.path('attendances/' + attendance._id + '/edit');
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
