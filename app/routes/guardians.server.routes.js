@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = function(app) {
-	var users = require('../../app/controllers/users.server.controller');
 	var children = require('../../app/controllers/children.server.controller');
 	var guardians = require('../../app/controllers/guardians.server.controller');
 
