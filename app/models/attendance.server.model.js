@@ -32,7 +32,7 @@ var AttendanceSchema = new Schema({
             required: ''
         },
         /*Updated from here down so this can be used to track attendance to events as well*/
-        advent:{
+        adventB:{
             type: Boolean,//true means the attendance was for an event false means for class
             default: false
         },
