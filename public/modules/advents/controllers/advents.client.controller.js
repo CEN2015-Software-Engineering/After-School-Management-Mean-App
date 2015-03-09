@@ -81,17 +81,31 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
     //CREATE ATTENDANCE ENTRY WHEN THIS FUNCTION IS CALLED
     //PASS IN - EVENT ID, CHILD ID
     function($scope, $stateParams, $location, Advents, Children, Attendances) {
-        // Update existing Guardian
-        this.update = function(updatedAdvent) {
-            var advent = updatedAdvent;
 
-            advent.$update(function() {
-                //this updates the guardian
+    	this.createAttendances = function(child, advent)
+    	{
+    		var i = 0;
+    		var attendanceses;
+    		while(i<child.length)
+    		{
+    			var attendance = new Attendances ({
+					childID: child[i].childID,
+	                childName: child[i].childName,
+	                date:{
+	                    day: advent.day,
+	                    month: advent.month,
+	                    year: advent.year
+	                },
+	                adventB: true,
+	                adventID: advent.adventID
+				});
+				//attendanceses[i] = attendance;
+				attendance.$save();
+				++i;
+    		}
+    	};
 
-            }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
-            });
-        };
+
 
 
         $scope.guardians = Advents.query();
