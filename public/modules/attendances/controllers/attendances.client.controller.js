@@ -16,7 +16,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     month: this.month,
                     year: this.year
                 },
-                advent: false,
+                adventB: false,
                 adventID: this.adventID
 			});
 
