@@ -5,31 +5,6 @@ angular.module('medicals').controller('MedicalsController', ['$scope', '$statePa
 	function($scope, $stateParams, $location, Authentication, Medicals, $window, Notify, $modal, $log) {
 
 
-        $scope.report = function(childID) {
-            $scope.medicals = Medicals.query();
-            console.log('GETTING HERE');
-            $scope.allergies = [1];
-            $scope.disabilities = [];
-            $scope.others = [];
-            console.log($scope.medicals);
-            for (var i in $scope.medicals) {
-                if($scope.medical[i].childID === childID){
-                    console.log($scope.medicals[i]);
-                    if ($scope.medicals[i].type === 'Allergy') {
-                        console.log('allergy');
-                        $scope.allergies.push($scope.medicals [i]);
-                    }else if ($scope.medicals[i].type === 'Disability') {
-                        console.log('disability');
-                        $scope.disabilities.push($scope.medicals [i]);
-                    }else {
-                        console.log('other');
-                        $scope.others.push($scope.medicals [i]);
-                    }
-                }
-            }
-        };
-
-
         // Create new Medical
         $scope.create = function(childId) {
             // Create new Medical object
@@ -150,6 +125,7 @@ angular.module('medicals').controller('MedicalsController', ['$scope', '$statePa
 		// Find a list of Medicals
 		$scope.find = function() {
 			$scope.medicals = Medicals.query();
+            console.log($scope);
 		};
 
 		// Find existing Medical
@@ -158,6 +134,11 @@ angular.module('medicals').controller('MedicalsController', ['$scope', '$statePa
 				medicalId: $stateParams.medicalId
 			});
 		};
+        $scope.filterFunction = function(element) {
+            if(!element.type.match('Allergy') && !element.type.match('Disability')) {
+                return true;
+            }
+        };
         $scope.medicalTypes = ['Allergy', 'Disability', 'Special Requirement', 'Other'];
 
     }

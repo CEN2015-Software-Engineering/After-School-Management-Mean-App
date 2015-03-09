@@ -152,6 +152,7 @@ angular.module('guardians').controller('GuardiansUpdateController', ['$scope', '
 		$scope.relationships = ['Mom', 'Dad', 'Sister', 'Brother', 'Aunt', 'Uncle', 'Grandma', 'Grandpa', 'Other'];
 
 		$scope.guardians = Guardians.query();
+
 	}
 ]);
 

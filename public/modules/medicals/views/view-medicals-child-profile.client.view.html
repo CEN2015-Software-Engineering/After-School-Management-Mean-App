@@ -1,4 +1,4 @@
-<section data-ng-controller="MedicalsController as medicalCtrl" data-ng-init="report()">
+<section data-ng-controller="MedicalsController as medicalCtrl" data-ng-init="find()">
 
     {{allergies}}
     {{disabilities}}
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="list-group col-sm-10 col-sm-offset-1">
-        <span data-ng-repeat="medical in allergies" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id && medical.type == 'Allergy'" >
+        <span data-ng-repeat="medical in medicals | filter: {type: 'Allergy'}" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id && medical.type == 'Allergy'" >
 			<small class="list-group-item-text">
                 <div class="pull-right">
 
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="list-group col-sm-10 col-sm-offset-1">
-        <span data-ng-repeat="medical in disabilities" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id && medical.type == 'Disability'" >
+        <span data-ng-repeat="medical in medicals | filter: {type: 'Disability'}" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id && medical.type == 'Disability'" >
 			<small class="list-group-item-text">
                 <div class="pull-right">
 
@@ -68,7 +68,7 @@
     </div>
     <div class="list-group col-sm-10 col-sm-offset-1">
         <!--data-ng-if="medical.childID == child._id"-->
-        <span data-ng-repeat="medical in others" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id" >
+        <span data-ng-repeat="medical in medicals | filter: filterFunction" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id" >
 			<small class="list-group-item-text">
                 <div class="pull-right">
 

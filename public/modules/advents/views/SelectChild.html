@@ -1,0 +1,7 @@
+<section data-ng-controller="ChildrenController as childCtrl" data-ng-init="find()">
+	<div class="list-group" data-ng-show="adding">
+		       		 <a data-ng-repeat="child in children" data-ng-href="#!/children/{{child._id}}" class="list-group-item">
+		            	<h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
+		       		 </a>
+	   		 </div>
+</section>

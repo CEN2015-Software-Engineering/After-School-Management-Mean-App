@@ -4,6 +4,10 @@
 angular.module('advents').controller('AdventsController', ['$scope', '$stateParams', '$location', 'Advents',
 	function($scope, $stateParams, $location, Advents) {
 
+
+        //MODAL TO OPEN ADVENT - USE GUARDIAN AS A TEMPLATE
+
+
 		// Create new Advent
 		$scope.create = function() {
 			// Create new Advent object
@@ -68,4 +72,46 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 			});
 		};
 	}
+]);
+
+// Advents controller
+angular.module('advents').controller('AdventsAttendModalController', ['$scope', '$stateParams', '$location', 'Advents', 'Children', 'Attendances',
+
+
+    //CREATE ATTENDANCE ENTRY WHEN THIS FUNCTION IS CALLED
+    //PASS IN - EVENT ID, CHILD ID
+    function($scope, $stateParams, $location, Advents, Children, Attendances) {
+
+    	this.createAttendances = function(child, advent)
+    	{
+    		var i = 0;
+    		var attendanceses;
+    		while(i<child.length)
+    		{
+    			var attendance = new Attendances ({
+					childID: child[i].childID,
+	                childName: child[i].childName,
+	                date:{
+	                    day: advent.day,
+	                    month: advent.month,
+	                    year: advent.year
+	                },
+	                adventB: true,
+	                adventID: advent.adventID
+				});
+				//attendanceses[i] = attendance;
+				attendance.$save();
+				++i;
+    		}
+    	};
+
+
+
+
+        $scope.guardians = Advents.query();
+        $scope.children = Children.query();
+        $scope.attendances = Attendances.query();
+    }
+
+
 ]);

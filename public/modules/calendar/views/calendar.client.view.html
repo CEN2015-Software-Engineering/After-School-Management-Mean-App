@@ -14,7 +14,8 @@
 		</div>
 		<div class = "col-sm-5">
 			<div class="list-group">
-		        <a data-ng-repeat="advent in advents" data-ng-href="#!/advents/{{advent._id}}" data-ng-if="day.format('MM') == advent.date.month && day.format('D') == advent.date.day && day.format('YYYY') == advent.date.year" class="list-group-item">
+                <!--#!/advents/{{advent._id}}-->
+		        <a data-ng-repeat="advent in advents" data-ng-click="cal.openModal(lg, advent)" data-ng-if="day.format('MM') == advent.date.month && day.format('D') == advent.date.day && day.format('YYYY') == advent.date.year" class="list-group-item">
 
                     <h1 class="list-group-item-heading text-center" data-ng-bind="advent.name"></h1>
 		        </a>
