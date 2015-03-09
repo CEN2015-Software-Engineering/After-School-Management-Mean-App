@@ -1,4 +1,4 @@
-
+  /*
 body {
   display: flex;
   background: #fff;
@@ -15,7 +15,7 @@ body {
   background: #1abc9c;
   position: relative;
   overflow: hidden;
-  /*
+
   &:before {
       content: '';
       background: darken(#1abc9c, 10%);
