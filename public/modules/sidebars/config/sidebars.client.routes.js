@@ -17,6 +17,10 @@ angular.module('sidebars').config(['$stateProvider',
 			url: '/sidebars/:sidebarId',
 			templateUrl: 'modules/sidebars/views/view-sidebar.client.view.html'
 		}).
+		state('homezSidebar', {
+			url: '/sidebars/home',
+			templateUrl: 'modules/sidebars/views/HomePageView.client.view.html'
+		}).
 		state('editSidebar', {
 			url: '/sidebars/:sidebarId/edit',
 			templateUrl: 'modules/sidebars/views/edit-sidebar.client.view.html'

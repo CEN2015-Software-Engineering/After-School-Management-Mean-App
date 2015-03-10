@@ -13,7 +13,6 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var sidebar = new Sidebar(req.body);
-	sidebar.user = req.user;
 
 	sidebar.save(function(err) {
 		if (err) {
