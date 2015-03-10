@@ -51,11 +51,11 @@ var AttendanceSchema = new Schema({
     },
     //Sign out data
     timeStamp:{
-        date: Date,
-        default: date.now
+        type: Date,
+        default: Date.now
     },
-    INeedAnAdult{//Guardian or other authorized person's name who signed out the child
-        name: String
+    INeedAnAdult:{//Guardian or other authorized person's name who signed out the child
+        type: String
     }
 
 

@@ -13,6 +13,9 @@ module.exports = function(app) {
 		.put(attendances.update)
 		.delete(attendances.delete);
 
+    app.route('/todays-roster/:childID')
+        .get(attendances.read);
+
 	// Finish by binding the Attendance middleware
 	app.param('attendanceId', attendances.attendanceByID);
 };
