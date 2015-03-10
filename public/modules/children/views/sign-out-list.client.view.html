@@ -1,23 +1,10 @@
 <section data-ng-controller="TodaysRosterController as roster" data-ng-init="find()">
     <section data-ng-controller="AttendancesController as att" data-ng-init="find()">
     <div class="page-header">
-        <h1>{{roster.theDate()}} Roster</h1>
-    </div>
-    <div class="list-group">
-        <h4>Extra Students</h4>
-        <h1>
-            <!-- TODO link button to a new today attendance -->
-            <a class="btn btn-warning btn-sm" name="createAttendanceButton" data-ng-click="">
-                <i class="glyphicon glyphicon-user"></i> Add Student
-            </a>
-        </h1>
-        <a data-ng-repeat="attendance in attendances" data-ng-href="#!/sign-out-list/{{attendance.childID}}" class="list-group-item" data-ng-if="att.attendingToday(attendance)">
-            <h1 class="list-group-item-heading text-center" data-ng-bind="attendance.childName"></h1>
-        </a>
+        <h1>{{roster.theDate()}} </br>Student Sign-Out</h1>
     </div>
         <div class="list-group">
-            <h4>Regularly Scheduled Students</h4>
-            <a data-ng-repeat="child in children" data-ng-href="#!/sign-out-list/{{child._id}}" class="list-group-item" data-ng-if="roster.enrolledToday(child) && child.enrolled && !att.markedAbsent(child, attendances)">
+            <a data-ng-repeat="child in children" data-ng-href="#!/sign-out-list/{{child._id}}" class="list-group-item" data-ng-if="(roster.enrolledToday(child) && child.enrolled && !att.markedAbsent(child, attendances))||(att.hasAttend(child,attendances) && !att.markedAbsent(child,attendances))">
                 <!--need to take out children who are marked absent by the instructor-->
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
             </a>

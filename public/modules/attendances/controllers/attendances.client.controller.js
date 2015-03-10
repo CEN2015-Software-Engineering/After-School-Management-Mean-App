@@ -95,6 +95,8 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
         this.markedAbsent = function(child, attendances){
         	var i = 0;
+        	console.log('THIS IS YOUR CHILD');
+        	console.log(child.firstName);
 			  for(i; i < attendances.length; ++i)
 			  {
 			  	console.log('THIS IS YOUR ATTENDANCE!');
@@ -103,6 +105,22 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 			  	console.log(!attendances[i].attended);
 			  	console.log(attendances[i]);
 			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].attended)
+			  	{
+			  		console.log('made it here');
+			  		return true;
+			  	}
+			  }
+			  return false;
+		};
+		this.hasAttend = function(child, attendances)
+		{
+			var i = 0;
+			  for(i; i < attendances.length; ++i)
+			  {
+			  	if(attendances[i].childName === 'Harriet Balls'){
+			  	console.log('CHECK DIS SHIEETTT');
+			  	console.log(attendances[i].childID ===child._id);}
+			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year)
 			  	{
 			  		console.log('made it here');
 			  		return true;
