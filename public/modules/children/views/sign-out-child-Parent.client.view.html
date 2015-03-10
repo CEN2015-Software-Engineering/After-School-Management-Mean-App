@@ -1,0 +1,26 @@
+<section data-ng-controller="ChildrenController as childFullProfile" data-ng-init="findOne()">
+    <div class="row">
+        <div class="col-sm-7 col-sm-offset-3">
+            <h1>Checkout: {{child.firstName}} {{child.lastName}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+           <h3>Approved For Pickup:</h3>
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <guardian-check-out></guardian-check-out>
+        </div>
+    </div>
+</section>
+
+<!--href="#!/children/addGuardian/{{child._id}}"-->

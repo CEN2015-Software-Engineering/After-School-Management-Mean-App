@@ -126,8 +126,25 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
             }
         };
 
-	}
-]);
+        this.markedAbsent = function(child, attendances){
+        	var i = 0;
+			  for(i; i < attendances.length; ++i)
+			  {
+			  	console.log('THIS IS YOUR ATTENDANCE!');
+			  	console.log(attendances[i].childID ===child._id);
+			  	console.log(attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year);
+			  	console.log(!attendances[i].attended);
+			  	console.log(attendances[i]);
+			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].attended)
+			  	{
+			  		console.log('made it here');
+			  		return true;
+			  	}
+			  }
+			  return false;
+		};
+}]);
+
 
 angular.module('attendances').controller('AttendancesUpdateController', ['$scope', '$stateParams', '$location', 'Attendances',
     function($scope, $stateParams, $location, Attendances) {
@@ -136,9 +153,9 @@ angular.module('attendances').controller('AttendancesUpdateController', ['$scope
             var attendance = selectedAttendance;
             attendance.$update(function() {
                 $location.path('attendances/' + attendance._id);
-            }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
-            });
-        };
-    }
+}, function(errorResponse) {
+    $scope.error = errorResponse.data.message;
+    });
+};
+}
 ]);

@@ -12,6 +12,9 @@ module.exports = function(app) {
 	app.route('/todays-roster/:childId')
 		.get(children.read);
 
+	app.route('/sign-out-list/:childId')
+		.get(children.read);
+
 	app.route('/children/:childId')
 		.get(children.read)
 		.put(children.update)
