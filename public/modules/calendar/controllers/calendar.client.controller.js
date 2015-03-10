@@ -15,7 +15,7 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Advents'
         this.openModal = function (size, selectedEvent) {
 
             var modalInstance = $modal.open({
-                templateUrl: '/modules/advents/views/view-advent.client.view.html',
+                templateUrl: '/modules/advents/views/view-advent-from-calendar.client.view.html',
                 controller: function ($scope, $modalInstance, $stateParams, advent) {
                     $scope.advent = advent;
 

@@ -10,8 +10,8 @@ angular.module('calendar').config(['$stateProvider',
 			templateUrl: 'modules/calendar/views/calendar.client.view.html'
 		}).
         state('viewAttendancesByAdvent', {
-            url: '/calendar/:adventId',
-            templateUrl: 'modules/advents/views/view-advent.client.view.html'
+            url: '/calendar/:adventIdForAttendance',
+            templateUrl: 'modules/advents/views/view-advent-from-calendar.client.view.html'
         });
     }
 ]);

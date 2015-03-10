@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
 	var advents = require('../../app/controllers/advents.server.controller');
-    var attendances = require('../../app/controllers/attendances.server.controller');
+    //var attendances = require('../../app/controllers/attendances.server.controller');
 
 	// Advents Routes
 	app.route('/advents')
@@ -14,14 +14,14 @@ module.exports = function(app) {
 		.put(advents.update)
 		.delete(advents.delete);
 
-    app.route('/calendar/:adventId')
+    app.route('/calendar/:adventIdForAttendance')
         .get(advents.attendanceByAdvent);
 
 
-	// Finish by binding the Advent middleware
+    // Finish by binding the Advent middleware
 	app.param('adventId', advents.adventByID);
 
-    app.param('adventId', advents.attendanceByAdvent);
+    app.param('adventIdForAttendance', advents.attendanceByAdvent);
 
 
 };

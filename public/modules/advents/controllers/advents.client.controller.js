@@ -67,48 +67,72 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 
 		// Find existing Advent
 		$scope.findOne = function() {
-			$scope.advent = Advents.get({ 
-				adventId: $stateParams.adventId
-			});
-		};
+            $scope.advent = Advents.get({
+                adventId: $stateParams.adventId
+            });
+        };
 	}
 ]);
 
 // Advents controller
-angular.module('advents').controller('AdventsAttendModalController', ['$scope', '$stateParams', '$location', 'Advents', 'Children', 'Attendances',
-
-
+angular.module('advents').controller('AdventsAttendModalController', ['$scope', '$http', '$stateParams', '$location', 'Advents', 'Children', 'Attendances',
     //CREATE ATTENDANCE ENTRY WHEN THIS FUNCTION IS CALLED
     //PASS IN - EVENT ID, CHILD ID
-    function($scope, $stateParams, $location, Advents, Children, Attendances) {
+    function($scope, $http, $stateParams, $location, Advents, Children, Attendances) {
 
-    	this.createAttendances = function(child, advent)
-    	{
-    		var i = 0;
-    		var attendanceses;
-    		while(i<child.length)
-    		{
-    			var attendance = new Attendances ({
-					childID: child[i].childID,
-	                childName: child[i].childName,
-	                date:{
-	                    day: advent.day,
-	                    month: advent.month,
-	                    year: advent.year
-	                },
-	                adventB: true,
-	                adventID: advent.adventID
-				});
-				//attendanceses[i] = attendance;
-				attendance.$save();
-				++i;
-    		}
-    	};
+        this.processEvent = function (child, advent) {
+            console.log(advent);
+            if(child.attending){
+                //child is not attending event now, delete attendance
+                console.log('deleteing attendance');
+            }else{
+                //child is attending now, create attendance
+                console.log('creating attendance');
 
+                var attendance = new Attendances({
+                    childID: child._id,
+                    childName: child.firstName + child.lastName,
+                    date: {
+                        day: advent.date.day,
+                        month: advent.date.month,
+                        year: advent.date.year
+                    },
+                    adventB: true,
+                    adventID: advent._id
+                });
+                console.log(attendance);
+                attendance.$save();
+            }
+            console.log('Processing Event');
+        };
 
+        $scope.init = function (adventID) {
+            //Get the Advent
+            /*$scope.advent = Advents.get({
+                adventId: $stateParams.adventIdForAttendance
+            });*/
 
+            console.log($scope);
+            //Get the Calendar information
+            $http.get('/calendar/' + adventID).
+                success(function (data) {
+                    console.log(data);
+                    $scope.attendancesForAdvent = data;
+                }).then(function() {
+                    console.log('complete');
+                    for(var i in $scope.children){
+                        for(var j in $scope.attendancesForAdvent){
+                            if($scope.children[i]._id === $scope.attendancesForAdvent[j].childID){
+                                console.log($scope.children[i].firstName + ' ' + $scope.children[i].lastName + ' is attending this event already');
+                                $scope.children[i].attending = true;
+                            }
+                        }
+                    }
 
-        $scope.guardians = Advents.query();
+                });
+        };
+
+        $scope.advents = Advents.query();
         $scope.children = Children.query();
         $scope.attendances = Attendances.query();
     }
