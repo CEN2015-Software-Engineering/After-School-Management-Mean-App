@@ -2,6 +2,7 @@
     <div class="col-sm-6 col-sm-offset-1">
         <div class="">
             <h1>Guardians</h1>
+            meow {{editGuardians}}
         </div>
     </div>
     <div class="col-sm-2 col-sm-offset-1">
@@ -12,7 +13,7 @@
 			<small class="list-group-item-text">
                 <div class="pull-right">
 
-                    <a class="btn btn-primary btn-sm" name="updateParentButton" data-ng-click="guardianCtrl.modalUpdate('lg', guardian)">
+                    <a class="btn btn-primary btn-sm" name="updateParentButton" data-ng-show = "editGuardians" data-ng-click="guardianCtrl.modalUpdate('lg', guardian)">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
                     <a class="btn btn-danger btn-sm" name="deleteParentButton" data-ng-click="guardianCtrl.remove(guardian);">
@@ -33,3 +34,4 @@
     </div>
     <div class="page-break"></div>
 </section>
+ 
