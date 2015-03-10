@@ -109,15 +109,5 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 			  	}
 			  }
 			  return false;
-
-<<<<<<< HEAD
-        };
-        // Test
-        this.aT = function(attendance){
-            return true;
-        };
-
-=======
->>>>>>> 78cd78d5d13a757d4aec81ca90e290afc17a2a17
-	}
-]);
+		};
+}]);
