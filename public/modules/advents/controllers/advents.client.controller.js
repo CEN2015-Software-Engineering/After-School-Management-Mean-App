@@ -82,16 +82,37 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
 
         this.processEvent = function (child, advent) {
             console.log(advent);
+            var attendance;
             if(child.attending){
                 //child is not attending event now, delete attendance
                 console.log('deleteing attendance');
+                console.log(child.attendance);
+                if(child.attendance) {
+                    attendance = child.attendance;
+                    if ( attendance ) {
+                        console.log('Attendance Before Remove');
+                        console.log(attendance);
+                        //GETTING THE ATTENDANCE
+                        $http.get('/attendances/' + attendance._id).
+                            success(function (data) {
+                                console.log(data);
+                                $scope.removingThisAttend = data;
+                            }).then(function() {
+                                console.log('complete');
+                                $scope.removingThisAttend.$remove();
+                        });
+                    }else{
+                        console.log('doesn\'t exist');
+                    }
+                }
+
             }else{
                 //child is attending now, create attendance
                 console.log('creating attendance');
 
-                var attendance = new Attendances({
+                attendance = new Attendances({
                     childID: child._id,
-                    childName: child.firstName + child.lastName,
+                    childName: child.firstName + ' ' + child.lastName,
                     date: {
                         day: advent.date.day,
                         month: advent.date.month,
@@ -103,7 +124,6 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
                 console.log(attendance);
                 attendance.$save();
             }
-            console.log('Processing Event');
         };
 
         $scope.init = function (adventID) {
@@ -125,6 +145,7 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
                             if($scope.children[i]._id === $scope.attendancesForAdvent[j].childID){
                                 console.log($scope.children[i].firstName + ' ' + $scope.children[i].lastName + ' is attending this event already');
                                 $scope.children[i].attending = true;
+                                $scope.children[i].attendance = $scope.attendancesForAdvent[j];
                             }
                         }
                     }

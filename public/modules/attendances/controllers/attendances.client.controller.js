@@ -39,6 +39,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 						$scope.attendances.splice(i, 1);
 					}
 				}
+                $location.path('attendances');
 			} else {
 				$scope.attendance.$remove(function() {
 					$location.path('attendances');
