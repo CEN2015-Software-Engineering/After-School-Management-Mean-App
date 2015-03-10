@@ -6,34 +6,75 @@
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="childName">Child's Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="childName" id="childName" class="form-control" placeholder="Enter the child's name" required>
-                    </div>
 
                     <label class="control-label" for="childID">Child's ID</label>
                     <div class="controls">
                         <input type="text" data-ng-model="childID" id="childID" class="form-control" placeholder="Enter the child's ID" required>
                     </div>
-                    <label class="control-label" for="adventID">Event ID</label>
+
+                    <label class="control-label" for="childName">Child's Name</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="adventID" id="adventID" class="form-control" placeholder="Enter the adventID" required>
+                        <input type="text" data-ng-model="childName" id="childName" class="form-control" placeholder="Enter the child's name" required>
                     </div>
+
                     <label class="control-label" for="date">Date</label>
                     <div class="controls form-inline">
-                        <select type="text" name="month" data-ng-model="month" id="date" class="form-control">
+                        <select type="text" name="month" data-ng-model="month" id="date" class="form-control" required>
                             <option value="1">January</option><option value="2">February</option><option value="3">March</option>
                             <option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option>
                             <option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
                         </select>
-                        <select type="text" name="day "data-ng-model="day" id="day" class="form-control">
+                        <select type="text" name="day "data-ng-model="day" id="day" class="form-control" required>
                             <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
                             <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
                             <option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
                         </select>
-                        <select type="text" name="year" data-ng-model="year" id="year" class="form-control">
+                        <select type="text" name="year" data-ng-model="year" id="year" class="form-control" required>
                             <option value="2016">2016</option><option value="2015">2015</option>
                         </select>
+                    </div>
+
+                    <label class="control-label" for="attended">Attended</label>
+                    <div class ="controls form-inline">
+                        <select type="text" name="attended" data-ng-model="attended" id="attended" class="form-control">
+                            <option value="null">Null</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+
+                    <label class="control-label" for="scheduledAbsent">Scheduled Absent</label>
+                    <div class ="controls form-inline">
+                        <select type="text" name="scheduledAbsent" data-ng-model="scheduledAbsent" id="scheduledAbsent" class="form-control">
+                            <option value="null">Null</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+
+                    <label class="control-label" for="guardian">Signout Guardian</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="guardian" id="guardian" class="form-control" placeholder="Enter the guardian name">
+                    </div>
+
+                    <label class="control-label" for="time">Signout Time</label>
+                    <div class ="controls form-inline">
+                        <select type="text" name="time" data-ng-model="time" id="time" class="form-control">
+                            <option value="null">Null</option>
+                        </select>
+                    </div>
+
+                    <label class="control-label" for="isAdvent">Is this an Event or Class?</label>
+                    <div class ="controls form-inline">
+                        <select type="text" name="isAdvent" data-ng-model="isAdvent" id="isAdvent" class="form-control">
+                            <option value="true">Event</option>
+                            <option value="false">Class</option>
+                        </select>
+                    </div>
+
+                    <label class="control-label" for="adventID">Event ID</label>
+                    <div class ="controls form-inline">
+                        <input type="text" data-ng-model="adventID" id="adventID" class="form-control" placeholder="Enter the adventID">
                     </div>
 
                 </div>

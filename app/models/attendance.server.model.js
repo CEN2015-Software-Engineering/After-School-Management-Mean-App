@@ -37,21 +37,25 @@ var AttendanceSchema = new Schema({
     },
     // Indicates if the child attended the class (true) or was absent (false)
     attended:{
-        type: Boolean
+        type: Boolean,
+        default: true
     },
     // If attended is false, this indicates if the absence was scheduled (true) or unscheduled (false)
     scheduledAbsent:{
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     // Information about the signout for this Attendance
     signout: {
         // Exact time the child was signed out
         time:{
-            type: Date
+            type: Date,
+            default: null
         },
         // Name of person who signed the child out
         guardian:{
-            type: String
+            type: String,
+            default: ''
         }
     },
     // Indicates if this Attendance is for an Advent (true) or a regular class (false)
