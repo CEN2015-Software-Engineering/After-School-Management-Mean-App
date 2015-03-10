@@ -110,7 +110,7 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
                         month: advent.date.month,
                         year: advent.date.year
                     },
-                    adventB: true,
+                    isAdvent: true,
                     adventID: advent._id
                 });
                 attendance.$save();
