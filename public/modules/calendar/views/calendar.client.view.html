@@ -9,12 +9,11 @@
 		</div>
 	</div>
 	<div class = "row">
-		<div class = "col-sm-6 col-sm-offset-1">
+		<div class = "col-sm-6 col-sm-offset-1 col-xs-12">
 			<calendar selected="day" advents="advents"></calendar>
 		</div>
-		<div class = "col-sm-5">
+		<div class = "col-sm-5 col-xs-12">
 			<div class="list-group">
-                <!--#!/advents/{{advent._id}}-->
 		        <a data-ng-repeat="advent in advents" data-ng-click="cal.openModal(lg, advent)" data-ng-if="day.format('MM') == advent.date.month && day.format('D') == advent.date.day && day.format('YYYY') == advent.date.year" class="list-group-item">
 
                     <h1 class="list-group-item-heading text-center" data-ng-bind="advent.name"></h1>

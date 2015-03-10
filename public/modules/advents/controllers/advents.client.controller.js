@@ -119,6 +119,7 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
             }
         };
 
+
         $scope.init = function (adventID) {
             //Get the Advent
             /*$scope.advent = Advents.get({
