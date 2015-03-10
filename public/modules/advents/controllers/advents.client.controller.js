@@ -86,21 +86,13 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
             if(child.attending){
                 //child is not attending event now, delete attendance
                 console.log('deleteing attendance');
-                console.log(child.attendance);
                 if(child.attendance) {
                     attendance = child.attendance;
                     if ( attendance ) {
-                        console.log('Attendance Before Remove');
-                        console.log(attendance);
-                        //GETTING THE ATTENDANCE
-                        $http.get('/attendances/' + attendance._id).
+                        $http.delete('/attendances/' + attendance._id).
                             success(function (data) {
                                 console.log(data);
-                                $scope.removingThisAttend = data;
-                            }).then(function() {
-                                console.log('complete');
-                                $scope.removingThisAttend.$remove();
-                        });
+                            });
                     }else{
                         console.log('doesn\'t exist');
                     }
@@ -121,8 +113,9 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
                     adventB: true,
                     adventID: advent._id
                 });
-                console.log(attendance);
                 attendance.$save();
+                console.log(attendance);
+                child.attendence = attendance;
             }
         };
 
