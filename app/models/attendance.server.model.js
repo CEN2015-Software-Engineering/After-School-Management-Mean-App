@@ -40,7 +40,25 @@ var AttendanceSchema = new Schema({
     adventID:{
         type: String,
         default: ''
+    },
+    //Class Attendance Info
+    schedAbsence:{
+        //if true absence was scheduled(check attended to see if absent first) if false unscheduled absence
+        type: Boolean
+    },
+    attended:{
+        type: Boolean
+    },
+    //Sign out data
+    timeStamp:{
+        date: Date,
+        default: date.now
+    },
+    INeedAnAdult{//Guardian or other authorized person's name who signed out the child
+        name: String
     }
+
+
 });
 
 mongoose.model('Attendance', AttendanceSchema);
