@@ -1,8 +1,40 @@
 'use strict';
 
 // Attendances controller
-angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Attendances',
-	function($scope, $stateParams, $location, Attendances) {
+angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Attendances', '$modal', '$log',
+	function($scope, $stateParams, $location, Attendances, $modal, $log) {
+
+        //Open Modal Window to Update Guardian
+        this.modalUpdate = function (size, selectedAttendance) {
+
+            var modalInstance = $modal.open({
+                templateUrl: '/modules/attendances/views/edit-attendance.client.view.html',
+                controller: function ($scope, $modalInstance, $stateParams, attendance) {
+                    $scope.attendance = attendance;
+
+
+                    $scope.ok = function () {
+                        $modalInstance.close($scope.attendance);
+                    };
+
+                    $scope.cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                    };
+                },
+                size: size,
+                resolve: {
+                    attendance: function() {
+                        return selectedAttendance;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
 
 		// Create new Attendance
 		$scope.create = function() {
@@ -22,7 +54,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     time: this.time,
                     guardian: this.guardian
                 },
-                isAdvent: false,
+                isAdvent: this.adventID,
                 adventID: this.adventID
 			});
 
@@ -95,4 +127,18 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
 
 	}
+]);
+
+angular.module('attendances').controller('AttendancesUpdateController', ['$scope', '$stateParams', '$location', 'Attendances',
+    function($scope, $stateParams, $location, Attendances) {
+        // Update existing Attendance
+        this.update = function(selectedAttendance) {
+            var attendance = selectedAttendance;
+            attendance.$update(function() {
+                $location.path('attendances/' + attendance._id);
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+    }
 ]);

@@ -1,4 +1,4 @@
-<section data-ng-controller="AttendancesController" data-ng-init="findOne()">
+<section data-ng-controller="AttendancesController as AttController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="attendance.name"></h1>
 
@@ -14,10 +14,8 @@
                     <span data-ng-show="!attendance.attended">False</span>
                 </h4>
                 <h4 name="scheduledAbsent">scheduledAbsent:
-                    <span data-ng-show="!attendance.attended">
-                        <span data-ng-show="attendance.scheduledAbsent">True</span>
-                        <span data-ng-show="!attendance.scheduledAbsent">False</span>
-                    </span>
+                    <span data-ng-show="attendance.scheduledAbsent">True</span>
+                    <span data-ng-show="!attendance.scheduledAbsent">False</span>
                 </h4>
                 <h4 name="signout.time">Signed out at:
                     <span data-ng-show="!attendance.signout.time"><i>No signout time</i></span>
@@ -42,7 +40,7 @@
         </div>
         <h3>
             <div class="pull-right" data-ng-show="true">
-                <a class="btn btn-primary" name="editAttendanceButton" data-ng-click="update()">
+                <a class="btn btn-primary" name="editAttendanceButton" data-ng-click="AttController.modalUpdate('lg', attendance)">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
                 <a class="btn btn-danger" name="deleteAttendaceButton" data-ng-click="remove(attendance);">
