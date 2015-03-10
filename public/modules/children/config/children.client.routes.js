@@ -25,6 +25,14 @@ angular.module('children').config(['$stateProvider',
 			url: '/todays-roster/:childId',
 			templateUrl: 'modules/children/views/sign-out-child.client.view.html'
 		}).
+		state('sign-out-list',{
+			url: '/sign-out-list',
+			templateUrl: 'modules/children/views/sign-out-list.client.view.html'
+		}).
+		state('signOutChildParent', {
+			url: '/sign-out-list/:childId',
+			templateUrl: 'modules/children/views/sign-out-child-Parent.client.view.html'
+		}).
 		state('editChild', {
 			url: '/children/:childId/edit',
 			templateUrl: 'modules/children/views/edit-child.client.view.html'

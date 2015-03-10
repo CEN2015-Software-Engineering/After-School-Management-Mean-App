@@ -87,7 +87,24 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 return false;
             }
         };
+        this.markedAbsent = function(childID, attendances){
+        	var i = 0;
+			  for(i; i < attendances.length; ++i)
+			  {
+			  	console.log('THIS IS YOUR ATTENDANCE!');
+			  	console.log(attendances[i].childID ===childID);
+			  	console.log(attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year);
+			  	console.log(!attendances[i].attended);
+			  	console.log(attendances[i]);
+			  	if(attendances[i].childID === childID && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].attended)
+			  	{
+			  		console.log('made it here');
+			  		return true;
+			  	}
+			  }
+			  return false;
 
+        };
         // Test
         this.aT = function(attendance){
             return true;
