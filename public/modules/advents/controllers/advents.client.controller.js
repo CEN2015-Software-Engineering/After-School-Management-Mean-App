@@ -129,8 +129,8 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
         $scope.init = function (adventID) {
             //Get the Advent
             /*$scope.advent = Advents.get({
-                adventId: $stateParams.adventIdForAttendance
-            });*/
+             adventId: $stateParams.adventIdForAttendance
+             });*/
 
             console.log($scope);
             //Get the Calendar information
@@ -138,23 +138,28 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
                 success(function (data) {
                     console.log(data);
                     $scope.attendancesForAdvent = data;
-                }).then(function() {
-                    console.log('complete');
-                    for(var i in $scope.children){
-                        for(var j in $scope.attendancesForAdvent){
-                            if($scope.children[i]._id === $scope.attendancesForAdvent[j].childID){
-                                console.log($scope.children[i].firstName + ' ' + $scope.children[i].lastName + ' is attending this event already');
-                                $scope.children[i].attending = true;
-                                $scope.children[i].attendance = $scope.attendancesForAdvent[j];
-                            }
-                        }
-                    }
 
+                    $http.get('/children/').
+                        success(function (data) {
+                            console.log(data);
+                            $scope.children = data;
+                        }).then(function () {
+                            console.log('complete');
+                            for (var i in $scope.children) {
+                                for (var j in $scope.attendancesForAdvent) {
+                                    if ($scope.children[i]._id === $scope.attendancesForAdvent[j].childID) {
+                                        console.log($scope.children[i].firstName + ' ' + $scope.children[i].lastName + ' is attending this event already');
+                                        $scope.children[i].attending = true;
+                                        $scope.children[i].attendance = $scope.attendancesForAdvent[j];
+                                    }
+                                }
+                            }
+
+                        });
                 });
         };
 
         $scope.advents = Advents.query();
-        $scope.children = Children.query();
         $scope.attendances = Attendances.query();
     }
 
