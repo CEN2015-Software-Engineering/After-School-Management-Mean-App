@@ -17,9 +17,10 @@
     </div>
         <div class="list-group">
             <h4>Regularly Scheduled Students</h4>
-            <a data-ng-repeat="child in children" data-ng-href="#!/todays-roster/{{child._id}}" class="list-group-item" data-ng-if="roster.enrolledToday(child) && child.enrolled">
+            <a data-ng-repeat="child in children | orderBy: 'lastName'" data-ng-href="#!/todays-roster/{{child._id}}" class="list-group-item" data-ng-if="roster.enrolledToday(child) && child.enrolled">
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
             </a>
+
 
         </div>
 	<div class="alert alert-warning text-center" data-ng-hide="!children.$resolved || children.length">

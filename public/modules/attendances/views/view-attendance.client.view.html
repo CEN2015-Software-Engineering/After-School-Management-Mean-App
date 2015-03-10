@@ -6,12 +6,45 @@
     <div>
         <div class="row">
             <div class="col-sm-5 col-sm-offset-1">
-                <h3><i>{{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}</i></h3>
-                <h4 name="childName">{{attendance.childName}}</h4>
+                <h4 name="childID">childID: {{attendance.childID}}</h4>
+                <h4 name="childName">childName: {{attendance.childName}}</h4>
+                <h4 name="date">date: {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}</h4>
+                <h4 name="attended">attended:
+                    <span data-ng-show="attendance.attended">True</span>
+                    <span data-ng-show="!attendance.attended">False</span>
+                </h4>
+                <h4 name="scheduledAbsent">scheduledAbsent:
+                    <span data-ng-show="!attendance.attended">
+                        <span data-ng-show="attendance.scheduledAbsent">True</span>
+                        <span data-ng-show="!attendance.scheduledAbsent">False</span>
+                    </span>
+                </h4>
+                <h4 name="signout.time">Signed out at:
+                    <span data-ng-show="!attendance.signout.time"><i>No signout time</i></span>
+                    <span data-ng-show="attendance.signout.time">{{attendance.signout.time}}</span>
+                </h4>
+                <h4 name="signout.guardian">Signed out by:
+                    <span data-ng-show="!attendance.signout.guardian"><i>No signout guardian</i></span>
+                    <span data-ng-show="attendance.signout.guardian">{{attendance.signout.guardian}}</span>
+                </h4>
+                <h4 name="isAdvent">isAdvent:
+                    <span data-ng-show="attendance.isAdvent">True</span>
+                    <span data-ng-show="!attendance.isAdvent">False</span>
+                </h4>
+                <h4 name="adventID">adventID:
+                    <span data-ng-show="attendance.attended">
+                        <span data-ng-show="attendance.adventID">{{attendance.adventID}}</span>
+                        <span data-ng-show="!attendance.adventID"><i>No adventID</i></span>
+                    </span>
+                </h4>
+
             </div>
         </div>
         <h3>
             <div class="pull-right" data-ng-show="true">
+                <a class="btn btn-primary" name="editAttendanceButton" data-ng-click="update()">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
                 <a class="btn btn-danger" name="deleteAttendaceButton" data-ng-click="remove(attendance);">
                     <i class="glyphicon glyphicon-trash"></i>
                 </a>

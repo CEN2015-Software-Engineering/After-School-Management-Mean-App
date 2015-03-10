@@ -10,14 +10,17 @@ var mongoose = require('mongoose'),
  * Attendance Schema
  */
 var AttendanceSchema = new Schema({
+    // Document ID of child this Attendance belongs to
     childID: {
         type: String,
         required: ''
     },
+    // TODO remove this, get info from associated Child document
     childName: {
         type: String,
         required: ''
     },
+    // Date this Attendance occurred
     date: {
         day: {
             type: Number,
@@ -32,31 +35,40 @@ var AttendanceSchema = new Schema({
             required: ''
         }
     },
-        /*Updated from here down so this can be used to track attendance to events as well*/
-    adventB:{
-        type: Boolean,//true means the attendance was for an event false means for class
+    // Indicates if the child attended the class (true) or was absent (false)
+    attended:{
+        type: Boolean,
+        default: true
+    },
+    // If attended is false, this indicates if the absence was scheduled (true) or unscheduled (false)
+    scheduledAbsent:{
+        type: Boolean,
         default: false
     },
+    // Information about the signout for this Attendance
+    signout: {
+        // Exact time the child was signed out
+        time:{
+            type: Date,
+            default: null
+        },
+        // Name of person who signed the child out
+        guardian:{
+            type: String,
+            default: ''
+        }
+    },
+    // Indicates if this Attendance is for an Advent (true) or a regular class (false)
+    isAdvent:{
+        type: Boolean,
+        default: false
+    },
+    // If isAdvent is true, this is the ID of the associated Advent document
     adventID:{
         type: String,
         default: ''
-    },
-    //Class Attendance Info
-    schedAbsence:{
-        //if true absence was scheduled(check attended to see if absent first) if false unscheduled absence
-        type: Boolean
-    },
-    attended:{
-        type: Boolean
-    },
-    //Sign out data
-    timeStamp:{
-        type: Date,
-        default: Date.now
-    },
-    INeedAnAdult:{//Guardian or other authorized person's name who signed out the child
-        type: String
     }
+
 
 
 });

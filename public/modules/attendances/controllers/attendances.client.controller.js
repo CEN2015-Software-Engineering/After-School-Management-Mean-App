@@ -16,7 +16,13 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     month: this.month,
                     year: this.year
                 },
-                adventB: false,
+                attended: this.attended,
+                scheduledAbsent: this.scheduledAbsent,
+                signout:{
+                    time: this.time,
+                    guardian: this.guardian
+                },
+                isAdvent: false,
                 adventID: this.adventID
 			});
 
@@ -104,11 +110,14 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 			  }
 			  return false;
 
+<<<<<<< HEAD
         };
         // Test
         this.aT = function(attendance){
             return true;
         };
 
+=======
+>>>>>>> 78cd78d5d13a757d4aec81ca90e290afc17a2a17
 	}
 ]);

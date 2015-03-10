@@ -1,9 +1,13 @@
 'use strict';
 
 // Guardians controller
-angular.module('guardians').controller('GuardiansController', ['$scope', '$window', '$stateParams', '$location', 'Guardians', '$modal', '$log',
-	function($scope, $window, $stateParams, $location, Guardians, $modal, $log) {
+angular.module('guardians').controller('GuardiansController', ['$scope', '$window', '$stateParams', '$location', 'Guardians', '$modal', '$log', 'instructorPerm',
+	function($scope, $window, $stateParams, $location, Guardians, $modal, $log, instructorPerm) {
 
+		$scope.editGuardians = instructorPerm.getEditGuardians();
+		$scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
+			if(newValue !== oldValue) $scope.editGuardians = newValue;
+		});
 
 		// Remove existing Guardian
 		this.remove = function(guardian) {
