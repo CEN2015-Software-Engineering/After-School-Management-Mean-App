@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
 
 var validateEmail = function(email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return re.test(email);
+    return (re.test(email) || email === '');
 };
 
 
@@ -40,7 +40,6 @@ var ChildSchema = new Schema({
 		email: {
 			type: String,
 			default: '',
-            required: 'Email address is required',
             validate: [validateEmail, 'Please fill a valid email address'],
             match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
 			//match: [/.+\@.+\..+/, 'Please fill a valid email address'],
@@ -72,6 +71,10 @@ var ChildSchema = new Schema({
 		type: String,
 		default: 'No School Selected'
 	},
+    grade: {
+        type: String,
+        default: ''
+    },
 	size: {
 		type: String,
 		default: 'No Size Selected'
@@ -106,15 +109,14 @@ var ChildSchema = new Schema({
 			default: false
 		}
 	},
-	signature: {
-		//For adding images later
-		data: Buffer,
-		contentType: String
-	},
+    profileLink: {
+        type: String,
+        default: '#'
+    },
 	updated: {
 		type: Date,
 		default: Date.now
-	}
+    }
 });
 
 
