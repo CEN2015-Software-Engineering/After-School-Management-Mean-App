@@ -69,7 +69,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
 		// Remove existing Attendance
 		$scope.remove = function(attendance) {
-			if ( attendance ) { 
+			if ( attendance ) {
 				attendance.$remove();
 
 				for (var i in $scope.attendances) {
