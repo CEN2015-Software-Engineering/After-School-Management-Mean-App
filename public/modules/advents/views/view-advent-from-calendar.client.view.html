@@ -9,7 +9,7 @@
     </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     Description:
                     <span class="text-muted" data-ng-bind="advent.description"></span>
                     <br/>
@@ -41,7 +41,8 @@
                 </em>
             </small>
             <br/><br/><br/>
-            <div class="input-group">
+
+            <div class="input-group input-group-lg col-sm-10 col-sm-offset-1">
                 <input type="text" class="form-control" placeholder="Search for Child" data-ng-model="searchChild">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button">Search</button>
@@ -51,12 +52,12 @@
             <div class="childInEvent">
                 <div data-ng-repeat="child in children | filter: { enrolled: true} | orderBy: 'lastName' | filter: searchChild " >
                     <div class="row">
-                        <div class="col-sm-6 col-sm-offset-2">
+                        <div class="col-sm-6 col-sm-offset-1">
                             <h3>{{child.firstName}} {{child.lastName}}</h3>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 col-sm-offset-1">
                             <h3>
-                                <button type="button" class="btn" ng-class="{'btn-primary': child.attending, 'btn-danger': !child.attending}" ng-model="child.attending" btn-checkbox
+                                <button type="button" class="btn btn-sm" ng-class="{'btn-primary': child.attending, 'btn-danger': !child.attending}" ng-model="child.attending" btn-checkbox
                                         btn-checkbox-true="true" btn-checkbox-false="false"
                                         data-ng-click="modalWindowAdvent.processEvent(child, advent); button = true" ng-disabled="button">
                                     <p data-ng-show="child.attending">Attending</p>

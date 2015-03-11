@@ -36,6 +36,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 					year: this.year
 				},
 				schoolName: this.schoolName,
+                grade: this.grade,
 				size: this.size,
 				schedule: {
 					mon: $scope.checkModel.mon,
@@ -45,7 +46,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 					fri: $scope.checkModel.fri,
 					sat: $scope.checkModel.sat,
 					sun: $scope.checkModel.sun
-				}
+				},
+                profileLink: this.profileLink
 			});
 
 			// Redirect after save
