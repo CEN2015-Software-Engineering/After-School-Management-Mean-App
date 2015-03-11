@@ -31,10 +31,32 @@ var AdventSchema = new Schema({
 			type: Number
 		}
 	},
+    time:{
+        hr: {
+            type: Number
+        },
+        min: {
+            type: Number
+        },
+        timeSuffix: {
+            type: String,
+            default: 'PM'
+        }
+    },
 	description: {
 		type: String,
 		default: ''
 	},
+    PDFDoc: {
+        iPDF: {
+            type: Boolean,
+            default: false
+        },
+        linkToPDF: {
+            type: String,
+            default: ''
+        }
+    }
 	
 });
 

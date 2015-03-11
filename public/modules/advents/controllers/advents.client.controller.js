@@ -1,8 +1,8 @@
 'use strict';
 
 // Advents controller
-angular.module('advents').controller('AdventsController', ['$scope', '$stateParams', '$location', 'Advents',
-	function($scope, $stateParams, $location, Advents) {
+angular.module('advents').controller('AdventsController', ['$scope', '$stateParams', '$location', 'Advents', '$timeout',
+	function($scope, $stateParams, $location, Advents, $timeout) {
 
 
         //MODAL TO OPEN ADVENT - USE GUARDIAN AS A TEMPLATE
@@ -11,6 +11,9 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 		// Create new Advent
 		$scope.create = function() {
 			// Create new Advent object
+            while(this.description !== this.description.replace('\n', '<br />')){
+                this.description = this.description.replace('\n', '<br />');
+            }
 			var advent = new Advents ({
 				name: this.name,
 				date:{
@@ -18,7 +21,12 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 					month: this.month,
 					year: this.year
 				},
-				description: this.description
+                time: {
+                    hr: this.hr,
+                    min: this.min,
+                    timeSuffix: this.timeSuffix
+                },
+				description: this.description.replace('\n', '<br />')
 			});
 
 			// Redirect after save
@@ -53,7 +61,13 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 		$scope.update = function() {
 			var advent = $scope.advent;
 
-			advent.$update(function() {
+            while(advent.editableDescription !== advent.editableDescription.replace('\n', '<br />')){
+                advent.editableDescription = advent.editableDescription.replace('\n', '<br />');
+                console.log(advent.editableDescription);
+            }
+            advent.description = advent.editableDescription;
+
+            advent.$update(function() {
 				$location.path('advents/' + advent._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
@@ -70,6 +84,15 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
             $scope.advent = Advents.get({
                 adventId: $stateParams.adventId
             });
+            $timeout(function(){
+                $scope.advent.editableDescription = $scope.advent.description.replace('<br />','\n');
+
+                while($scope.advent.editableDescription !== $scope.advent.editableDescription.replace('<br />','\n')){
+                    $scope.advent.editableDescription =  $scope.advent.editableDescription.replace('<br />', '\n');
+                    console.log( $scope.advent.editableDescription);
+                }
+            }, 1500);
+
         };
 	}
 ]);

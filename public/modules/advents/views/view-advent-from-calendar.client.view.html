@@ -1,74 +1,82 @@
-<section data-ng-controller="AdventsAttendModalController as modalWindowAdvent" data-ng-init="init(advent._id)">
+<section data-ng-controller="AdventsAttendModalController as modalWindowAdvent" data-ng-init="init(advent._id)"
+         data-ng-swipe-right="cancel()" data-ng-swipe-left="cancel()">
     <div class="modal-header">
-        <button type="button" class="close" ng-click="cancel()" aria-hidden="true"><i class="fa fa-times fa-2x"></i></button>
+        <button type="button" class="close" ng-click="cancel()" aria-hidden="true"><i class="fa fa-times fa-2x"></i>
+        </button>
 
         <h1>
             <p data-ng-bind="advent.name"></p>
         </h1>
+        <h4>Scheduled:
+            <b>
+                <span class="text-muted" data-ng-bind="advent.time.hr"></span>:
+                <span class="text-muted" data-ng-bind="advent.time.min"></span>
+                <span class="text-muted" data-ng-bind="advent.time.timeSuffix"></span>
+                -
+                <span class="text-muted" data-ng-bind="advent.date.month"></span>/
+                <span class="text-muted" data-ng-bind="advent.date.day"></span>/
+                <span class="text-muted" data-ng-bind="advent.date.year"></span>
+            </b>
+        </h4>
 
     </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-12">
-                    Description:
-                    <span class="text-muted" data-ng-bind="advent.description"></span>
-                    <br/>
-                    DEBUG: Advent ID {{advent._id}}
-                </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                Description:
+                <span class="text-muted" data-ng-bind-html="advent.description"></span>
+                <br/>
+                DEBUG: Advent ID {{advent._id}}
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    Date:
-                    <span class="text-muted" data-ng-bind="advent.date.month"></span>/<span class="text-muted"
-                                                                                            data-ng-bind="advent.date.day"></span>/<span
-                        class="text-muted" data-ng-bind="advent.date.year"></span>
-                </div>
-            </div>
+        <div class="pull-right">
+            <a class="btn btn-primary" href="/#!/advents/{{advent._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn btn-primary" data-ng-click="remove();">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
+        <small>
+            <em class="text-muted">
+                Posted on
+                <span data-ng-bind="advent.created | date:'mediumDate'"></span>
+            </em>
+        </small>
+        <br/><br/><br/>
 
-            <div class="pull-right">
-                <a class="btn btn-primary" href="/#!/advents/{{advent._id}}/edit">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-                <a class="btn btn-primary" data-ng-click="remove();">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </a>
-            </div>
-            <small>
-                <em class="text-muted">
-                    Posted on
-                    <span data-ng-bind="advent.created | date:'mediumDate'"></span>
-                </em>
-            </small>
-            <br/><br/><br/>
-
-            <div class="input-group input-group-lg col-sm-10 col-sm-offset-1">
-                <input type="text" class="form-control" placeholder="Search for Child" data-ng-model="searchChild">
+        <div class="input-group input-group-lg col-sm-10 col-sm-offset-1">
+            <input type="text" class="form-control" placeholder="Search for Child" data-ng-model="searchChild">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button">Search</button>
                 </span>
-            </div>
-            <br/>
-            <div class="childInEvent">
-                <div data-ng-repeat="child in children | filter: { enrolled: true} | orderBy: 'lastName' | filter: searchChild " >
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-1">
-                            <h3>{{child.firstName}} {{child.lastName}}</h3>
-                        </div>
-                        <div class="col-sm-4 col-sm-offset-1">
-                            <h3>
-                                <button type="button" class="btn btn-sm" ng-class="{'btn-primary': child.attending, 'btn-danger': !child.attending}" ng-model="child.attending" btn-checkbox
-                                        btn-checkbox-true="true" btn-checkbox-false="false"
-                                        data-ng-click="modalWindowAdvent.processEvent(child, advent); button = true" ng-disabled="button">
-                                    <p data-ng-show="child.attending">Attending</p>
+        </div>
+        <br/>
 
-                                    <p data-ng-show="!child.attending">Not Attending</p>
-                                </button>
-                            </h3>
-                        </div>
+        <div class="childInEvent">
+            <div data-ng-repeat="child in children | filter: { enrolled: true} | orderBy: 'lastName' | filter: searchChild ">
+                <div class="row">
+                    <div class="col-xs-6 col-xs-offset-1">
+                        <h3>{{child.firstName}} {{child.lastName}}</h3>
                     </div>
-                    <br/>
+                    <div class="col-xs-4 col-xs-offset-1">
+                        <h3>
+                            <button type="button" class="btn btn-sm"
+                                    ng-class="{'btn-primary': child.attending, 'btn-danger': !child.attending}"
+                                    ng-model="child.attending" btn-checkbox
+                                    btn-checkbox-true="true" btn-checkbox-false="false"
+                                    data-ng-click="modalWindowAdvent.processEvent(child, advent); button = true"
+                                    ng-disabled="button">
+                                <p data-ng-show="child.attending">Attending</p>
+
+                                <p data-ng-show="!child.attending">Not Attending</p>
+                            </button>
+                        </h3>
+                    </div>
                 </div>
+                <br/>
             </div>
         </div>
+    </div>
 </section>
