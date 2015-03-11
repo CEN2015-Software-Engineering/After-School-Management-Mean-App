@@ -23,5 +23,6 @@ angular.module('sidebars').controller('SidebarsController', ['$scope', '$statePa
 
 			}
 		});
+
 	}
 ]);
