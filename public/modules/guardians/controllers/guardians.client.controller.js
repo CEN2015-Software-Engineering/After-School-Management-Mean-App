@@ -5,8 +5,13 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 	function($scope, $window, $stateParams, $location, Guardians, $modal, $log, instructorPerm) {
 
 		$scope.editGuardians = instructorPerm.getEditGuardians();
+		$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+
 		$scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
 			if(newValue !== oldValue) $scope.editGuardians = newValue;
+		});
+		$scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
+			if(newValue !== oldValue) $scope.deleteGuardians = newValue;
 		});
 
 		// Remove existing Guardian

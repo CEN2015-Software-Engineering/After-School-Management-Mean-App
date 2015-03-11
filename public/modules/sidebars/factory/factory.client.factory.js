@@ -1,18 +1,28 @@
 'use strict';
 
 angular.module('sidebars').factory('instructorPerm', function(){
-	console.log('meow meow meow emow emwoem wow mewoe mowmoemwoe mwo wo');
+	console.log('In the factory that rules all factories');
 	
-	var data = { editGuardians: false };
+	var data = { editGuardians: false, deleteGuardians: false };
 	return {
 		getEditGuardians: function(){
-						console.log('in the factory Getting ' + data.editGuardians);
+						console.log('in the factory Getting edit' + data.editGuardians);
 
 			return data.editGuardians;
 		},
 		setEditGuardians: function( editGuardian ){
-			console.log('in the factory setting');
+			console.log('in the factory setting edit');
 			data.editGuardians = editGuardian;
+		},
+
+		getDeleteGuardians: function(){
+						console.log('in the factory Getting delete ' + data.deleteGuardians);
+
+			return data.deleteGuardians;
+		},
+		setDeleteGuardians: function( deleteGuardian ){
+			console.log('in the factory setting delete');
+			data.deleteGuardians = deleteGuardian;
 		}
 	};
 });
