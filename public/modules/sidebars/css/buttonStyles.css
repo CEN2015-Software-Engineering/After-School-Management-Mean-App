@@ -17,7 +17,7 @@ button:focus {
 	
 	margin: 3%;
 	width: 92%;
-	font-size: 4em;
+	font-size: 3vw;
 	text-align: center;
 	border: none;
 	border-top: 2px solid #506CE8;
@@ -33,7 +33,7 @@ button:focus {
 	
 	border: 2px solid #506CE8;
 	border-radius: 50%;
-	font-size: 1em;
+	font-size: 2vw;
 	text-align: center;
 	padding-top: 0%;
 	width: 4vw;
@@ -42,7 +42,7 @@ button:focus {
 	margin: 2% 4%;
 }
 .clear, .enter {
-	font-size: 1em;
+	font-size: 1vw;
 }
 .PINbutton:hover {
 	background: #fff;
