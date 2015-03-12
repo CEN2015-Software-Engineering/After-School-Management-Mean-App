@@ -57,14 +57,16 @@
 
     <div class="footer">
         <div class="footer-bar">
-            <table style="width:91%;">
+            <table style="width:100%;">
                 <tr>
                     <td>
                         <div class="round-button">
                             <div class="round-button-circle">
-                                <a data-ng-click="doTheBack()" class="round-button round-button-link">
-                                    <i class="fa fa-chevron-left fa-4x"></i><!--javascript:history.go(-1)-->
+                            <div class="round-back-button">
+                                <a data-ng-click="doTheBack()" class="round-button round-button-link round-back-button">
+                                    <i class="fa fa-caret-left "></i><!--javascript:history.go(-1)-->
                                 </a>
+                            </div>
                             </div>
                         </div>
                     </td>
@@ -72,7 +74,7 @@
                         <div class="round-button">
                             <div class="round-button-circle">
                                 <a data-ng-click="goHome()" class="round-button round-button-link">
-                                    <i class="fa fa-home fa-4x"></i>
+                                    <i class="fa fa-home "></i>
                                 </a>
                             </div>
                         </div>

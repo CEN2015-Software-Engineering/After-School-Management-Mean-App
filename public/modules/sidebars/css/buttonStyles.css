@@ -6,7 +6,7 @@ button:focus {
 }
 #PINform {
 	position: absolute;
-	width: 100%; height: 450px;
+	width: 100%; height: 5vw;
 	left: 50%;
 	margin-left: -50%;
 	top: 50%;
