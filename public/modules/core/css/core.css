@@ -78,9 +78,9 @@
 .slideout_inner {
     position: fixed;
     top: 0;
-    left: -250px;
+    left: -20vw;
     background-image: url(http://i.imgur.com/xmu90PA.jpg);
-    width: 250px;
+    width: 20vw;
     padding: 25px;
     height: 100%;
     -webkit-transition-duration: 0.3s;
@@ -103,7 +103,7 @@
     z-index: 99;
 }
 .slideout:hover {
-    left: 250px;
+    left: 15vw;
 }
 .slideout:hover .slideout_inner {
     left: 0;
