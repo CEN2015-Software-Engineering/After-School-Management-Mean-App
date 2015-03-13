@@ -20,6 +20,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			// Create new Child object
             var newHome = ('' + this.home).replace(/\D/g,'');
             var newWork = ('' + this.work).replace(/\D/g,'');
+            
             console.log(this.address);
 			var child = new Children ({
 				firstName: this.firstName,
@@ -48,6 +49,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 					sun: $scope.checkModel.sun
 				},
                 profileLink: this.profileLink
+                
 			});
 
 			// Redirect after save
@@ -106,6 +108,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			var child = $scope.child;
             //child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
             //child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
+            
+            /*child.profileLink = ;*/
 
 			child.$update(function() {
 				$location.path('children/' + child._id);
