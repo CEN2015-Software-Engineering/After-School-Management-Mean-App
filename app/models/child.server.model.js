@@ -15,7 +15,12 @@ var validateEmail = function(email) {
 
 var validateProfileLink = function(profileLink) {
     var temp = /http:\/\//;
+	var httpOnly = /http:\/\/$/;
+    if(httpOnly.test(this.profileLink) ){
+    	this.profileLink = '#';
+    }
 
+    if(profileLink === ''){ this.profileLink = '#'; profileLink = '#'; }
     if( !temp.test(profileLink) && profileLink !== '#' ) {
     	profileLink = "http://" + profileLink;
     	this.profileLink = profileLink;

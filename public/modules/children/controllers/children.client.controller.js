@@ -108,10 +108,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			var child = $scope.child;
             //child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
             //child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
-            
-            /*child.profileLink = ;*/
 
-			child.$update(function() {
+	    	child.$update(function() {
 				$location.path('children/' + child._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
