@@ -83,6 +83,7 @@
     width: 20vw;
     padding: 25px;
     height: 100%;
+
     -webkit-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;
     transition-duration: 0.3s;
@@ -238,3 +239,4 @@ fieldset[disabled] .btn-day.active {
     color: #75777A;
     background-color: #ffffff;
 }
+

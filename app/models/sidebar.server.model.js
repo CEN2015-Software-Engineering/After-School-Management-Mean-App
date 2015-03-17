@@ -10,15 +10,17 @@ var mongoose = require('mongoose'),
  * Sidebar Schema
  */
 var SidebarSchema = new Schema({
-	name: {
-		type: String,
-		default: '',
-		required: 'Please fill Sidebar name',
-		trim: true
+	isUnlocked: {
+		type: Boolean,
+		default: false
 	},
-	created: {
+	pin: {
+		type: Number,
+		default: 1234
+	},
+	timeChanged: {
 		type: Date,
-		default: Date.now
+		default: null
 	}
 });
 

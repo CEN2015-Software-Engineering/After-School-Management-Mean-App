@@ -26,22 +26,32 @@
 <header>
 
 
+<<<<<<< HEAD
   <section data-ng-controller="SidebarsController">
+    <div class="slideout" name="slideoutTab">
+=======
+  <section>
     <div class="slideout">
+>>>>>>> d6a93335f990817b0d71135238ad320dad33fe62
         <img src="http://i.imgur.com/4TIgz2h.png" alt="Instructor" height="60%" width="60%"/>
         <div class="slideout_inner">
             Instructor Menu
             <div>
 
-    <div id="PINcode">
-        <form action='' method='' name='PINform' id='PINform' autocomplete='off'><input id=PINbox type='password' value='' name='PINbox' disabled /><br/><input type='button' class='PINbutton' name='1' value='1' id='1' onClick=addNumber(this); /><input type='button' class='PINbutton' name='2' value='2' id='2' onClick=addNumber(this); /><input type='button' class='PINbutton' name='3' value='3' id='3' onClick=addNumber(this); /><br><input type='button' class='PINbutton' name='4' value='4' id='4' onClick=addNumber(this); /><input type='button' class='PINbutton' name='5' value='5' id='5' onClick=addNumber(this); /><input type='button' class='PINbutton' name='6' value='6' id='6' onClick=addNumber(this); /><br><input type='button' class='PINbutton' name='7' value='7' id='7' onClick=addNumber(this); /><input type='button' class='PINbutton' name='8' value='8' id='8' onClick=addNumber(this); /><input type='button' class='PINbutton' name='9' value='9' id='9' onClick=addNumber(this); /><br><input type='button' class='PINbutton clear' name='-' value='clear' id='-' onClick=clearForm(this); /><input type='button' class='PINbutton' name='0' value='0' id='0' onClick=addNumber(this); /><input type='button' class='PINbutton enter' name='+' value='enter' id='+' onClick=submitForm(PINbox); /></form>
+    <div id="PINcode" ng-show="!isUnlocked">
+        <form action='' method='' name='PINform' id='PINform' autocomplete='off'><input id='PINbox' type='password' value='' name='PINbox' disabled /><br/><input type='button' class='PINbutton' name='1' value='1' id='1' data-ng-click="addNumber(1)"; /><input type='button' class='PINbutton' name='2' value='2' id='2' data-ng-click="addNumber(2)"; /><input type='button' class='PINbutton' name='3' value='3' id='3' data-ng-click="addNumber(3)"; /><br><input type='button' class='PINbutton' name='4' value='4' id='4' data-ng-click="addNumber(4)"; /><input type='button' class='PINbutton' name='5' value='5' id='5' data-ng-click="addNumber(5)"; /><input type='button' class='PINbutton' name='6' value='6' id='6' data-ng-click="addNumber(6)"; /><br><input type='button' class='PINbutton' name='7' value='7' id='7' data-ng-click="addNumber(7)"; /><input type='button' class='PINbutton' name='8' value='8' id='8' data-ng-click="addNumber(8)"; /><input type='button' class='PINbutton' name='9' value='9' id='9' data-ng-click="addNumber(9)"; /><br><input type='button' class='PINbutton clear' name='-' value='clear' id='-' data-ng-click="clearForm(this)"; /><input type='button' class='PINbutton' name='0' value='0' id='0' data-ng-click="addNumber(this)"; /><input type='button' class='PINbutton enter' name='+' value='enter' id='+' data-ng-click="submitForm(PINbox)"; /></form>
     </div>
     <script src="./PINpad.js"></script>
 </body>
                 <!-- this is the div for ui routing-->
                     {{test}}
-                        <button data-ng-model="editGuardians" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Edit Guardians </button>
+<<<<<<< HEAD
+                        <button data-ng-model="editGuardians" name="editGuardianBtn" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Edit Guardians </button>
                          <button data-ng-model="deleteGuardians" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Delete Guardians </button>
+=======
+                        <button data-ng-model="editGuardians" ng-show="isUnlocked" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Edit Guardians </button>
+                         <button data-ng-model="deleteGuardians" ng-show="isUnlocked" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Delete Guardians </button>
+>>>>>>> d6a93335f990817b0d71135238ad320dad33fe62
                     editable
                     {{editGuardians}}
                     </br>

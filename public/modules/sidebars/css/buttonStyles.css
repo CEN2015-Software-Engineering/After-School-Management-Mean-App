@@ -35,13 +35,13 @@ button:focus {
 	border-radius: 50%;
 	font-size: 2vw;
 	text-align: center;
-	padding-top: 0%;
 	width: 4vw;
 	height: 4vw;
 	
-	margin: 2% 4%;
+	margin: .6vw .8vw;
 }
 .clear, .enter {
+	
 	font-size: 1vw;
 }
 .PINbutton:hover {

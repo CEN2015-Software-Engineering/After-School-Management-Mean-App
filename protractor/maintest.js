@@ -117,8 +117,6 @@ describe('After School Add Child, Edit Child,', function() {
 });
 
 
-
-/*
 describe('Add Attendance', function() {
     it('should load the new attendance page', function() {
         browser.get('http://localhost:3000/#!/attendances/create');
@@ -173,5 +171,3 @@ describe('Add Attendance', function() {
     });
 
 });
-
-    */
