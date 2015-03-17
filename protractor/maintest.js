@@ -19,7 +19,7 @@ describe('After School Add Child, Edit Child,', function() {
         element(by.name('year')).element(by.cssContainingText('option', '1988')).click();
         element(by.name('email')).sendKeys('testing@testing.com');
         element(by.name('home')).sendKeys('123-456-7890');
-        element(by.name('work')).sendKeys('123-456-7890');
+        element(by.name('work')).sendKeys('098-765-4321');
         element(by.name('address')).sendKeys('1234 Cherry Oak Drive, Gainesville Florida');
         element(by.name('schoolName')).sendKeys('Forrest Elementary School');
         element(by.name('grade')).sendKeys('6');
@@ -39,7 +39,7 @@ describe('After School Add Child, Edit Child,', function() {
         expect(element(by.name('year')).getAttribute('value')).toEqual('1988');
         expect(element(by.name('email')).getAttribute('value')).toEqual('testing@testing.com');
         expect(element(by.name('home')).getAttribute('value')).toEqual('123-456-7890');
-        expect(element(by.name('work')).getAttribute('value')).toEqual('123-456-7890');
+        expect(element(by.name('work')).getAttribute('value')).toEqual('098-765-4321');
         expect(element(by.name('address')).getAttribute('value')).toEqual('1234 Cherry Oak Drive, Gainesville Florida');
         expect(element(by.name('schoolName')).getAttribute('value')).toEqual('Forrest Elementary School');
         expect(element(by.name('grade')).getAttribute('value')).toEqual('6');
@@ -55,15 +55,22 @@ describe('After School Add Child, Edit Child,', function() {
         expect(element(by.name('fullNameField')).getText()).toEqual('Protractor Test\'s Profile');
         expect(element(by.name('birthDateField')).getText()).toEqual('1/7/1988');
         expect(element(by.name('ageField')).getText()).toEqual('27');
+        expect(element(by.name('homeNumField')).getText()).toEqual('1234567890');
+        expect(element(by.name('workNumField')).getText()).toEqual('0987654321');
+        expect(element(by.name('addressField')).getText()).toEqual('1234 Cherry Oak Drive, Gainesville Florida');
+        expect(element(by.name('emailField')).getText()).toEqual('testing@testing.com');
+        expect(element(by.name('schoolField')).getText()).toEqual('Forrest Elementary School');
+        expect(element(by.name('gradeField')).getText()).toEqual('6');
+        expect(element(by.name('sizeField')).getText()).toEqual('XXL');
     });
-/*
+
     it('Edit Child', function() {
         //open modal
         element(by.name('editChildButton')).click();
         //old values
         expect(element(by.name('firstName')).getAttribute('value')).toEqual('Protractor');
         expect(element(by.name('lastName')).getAttribute('value')).toEqual('Test');
-        expect(element(by.name('profileLink')).getText()).toEqual('http://myLink.com');
+        expect(element(by.name('profileLink')).getAttribute('value')).toEqual('http://myLink.com');
         //new values
         element(by.name('firstName')).clear();
         element(by.name('lastName')).clear();
@@ -73,18 +80,21 @@ describe('After School Add Child, Edit Child,', function() {
         element(by.name('confirmButton')).click();
         expect(element(by.name('fullNameField')).getText()).toEqual('Gregory House M.D.\'s Profile');
     });
+
     it('Open & Close Guardian Modal, Create new Sister', function() {
-        browser.sleep(1000);
         element(by.name('guardiansInfoTab')).click();
-        // browser.executeScript('window.scrollTo(0,document.body.scrollHeight);').then(function () {
-        //     element(by.name('createGuardianButton')).click();
-        // });
+        element(by.name('createGuardianButton')).click();
+        
         element(by.name('name')).sendKeys('Susan Test');
         element(by.name('relationship')).element(by.cssContainingText('option', 'Sister')).click();
         element(by.name('confirmButton')).click();
+
+        expect(element(by.name('guardianNameField')).getText()).toEqual('Susan Test');
+        expect(element(by.name('guardianRelField')).getText()).toEqual('Sister');
         //browser.executeScript('window.scrollTo(0,document.body.scrollHeight);');
-        browser.sleep(1000);
+        browser.sleep(1500);
     });
+   /* 
     it('Open Guardian Modal, Edit Sister to Mom', function() {
         // browser.executeScript('window.scrollTo(0,document.body.scrollHeight);').then(function () {
         //     element(by.name('updateParentButton')).click();
@@ -103,9 +113,10 @@ describe('After School Add Child, Edit Child,', function() {
         browser.executeScript('window.scrollTo(0,document.body.scrollHeight);');
         browser.sleep(1000);
     });
+*/
     it('Delete Child', function() {
         element(by.name('deleteChildButton')).click();
         //Click the Accept box in the Alert window
         browser.switchTo().alert().accept();
-    });*/
+    });
 });
