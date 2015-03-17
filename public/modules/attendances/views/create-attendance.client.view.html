@@ -1,6 +1,6 @@
 <section data-ng-controller="AttendancesController">
     <div class="page-header">
-        <h1>New Attendance</h1>
+        <h1 id="page-title">New Attendance</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
@@ -60,10 +60,10 @@
 
                     <label class="control-label" for="isAdvent">Is this an Event or Class?</label>
                     <div class ="controls form-inline">
-                        <select type="text" name="isAdvent" data-ng-model="isAdvent" id="isAdvent" class="form-control">
-                            <option value="true">Event</option>
-                            <option value="false">Class</option>
-                        </select>
+                        <input type="radio" name="isClass" value="false" data-ng-model="attendance.isAdvent" id="isClass"
+                               class="radio"><span>  Class</span><br/>
+                        <input type="radio" name="isAdvent" value="true" data-ng-model="attendance.isAdvent" id="isAdvent"
+                               class="radio"><span>  Advent</span>
                     </div>
 
                     <label class="control-label" for="adventID">Event ID</label>

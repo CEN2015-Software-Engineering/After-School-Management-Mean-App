@@ -135,7 +135,6 @@ describe('After School Add Child, Edit Child,', function() {
     });*/
 });
 
-/*
 describe('After School Add Attendance, Edit Attendance,', function() {
     it('Navigate to new attendance page', function() {
         browser.get('http://localhost:3000/#!/attendances/create');
@@ -175,5 +174,4 @@ describe('After School Add Attendance, Edit Attendance,', function() {
     })
 
 });
-*/
 // alex put your shit here
