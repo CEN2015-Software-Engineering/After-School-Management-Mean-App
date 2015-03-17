@@ -3,5 +3,5 @@
  */
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['maintest.js']
+    specs: ['maintest.js', 'attendance.js']
 };
