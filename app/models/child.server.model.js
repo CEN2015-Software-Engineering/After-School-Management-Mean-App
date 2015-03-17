@@ -13,6 +13,22 @@ var validateEmail = function(email) {
     return (re.test(email) || email === '');
 };
 
+var validateProfileLink = function(profileLink) {
+    var temp = /http:\/\//;
+	var httpOnly = /http:\/\/$/;
+    if(httpOnly.test(this.profileLink) ){
+    	this.profileLink = '#';
+    }
+
+    if(profileLink === ''){ this.profileLink = '#'; profileLink = '#'; }
+    if( !temp.test(profileLink) && profileLink !== '#' ) {
+    	profileLink = "http://" + profileLink;
+    	this.profileLink = profileLink;
+    }
+
+    return (temp.test(profileLink) || profileLink === '#');
+};
+
 
 /**
  * Child Schema
@@ -111,7 +127,8 @@ var ChildSchema = new Schema({
 	},
     profileLink: {
         type: String,
-        default: '#'
+        default: '#',
+        validate: [validateProfileLink, 'Please fill a valid Profile Link address']
     },
 	updated: {
 		type: Date,
