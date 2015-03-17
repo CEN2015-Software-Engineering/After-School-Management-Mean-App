@@ -101,17 +101,18 @@ describe('After School Add Child, Edit Child,', function() {
         // });
         element(by.name('guardiansInfoTab')).click();
         element(by.name('slideoutTab')).click();
+        browser.sleep(500);
         element(by.name('1')).click();
         element(by.name('1')).click();
         element(by.name('1')).click();
         element(by.name('1')).click();
         element(by.name('+')).click();
-
+        browser.sleep(500);
         element(by.name('editGuardianBtn')).click();
-        browser.sleep(1000);
+        browser.sleep(500);
+        element(by.name('updateParentButton')).click();
         element(by.model('guardian.gName')).clear();
         element(by.model('guardian.gName')).sendKeys('House\'s Mom');
-        element(by.name('updateParentButton')).click();
         browser.sleep(1000);
         element(by.model('guardian.rel')).element(by.cssContainingText('option', 'Mom')).click();
         element(by.name('confirmButton')).click();
