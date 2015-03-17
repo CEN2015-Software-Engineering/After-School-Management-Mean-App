@@ -52,6 +52,17 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 			console.log(id);
 		};
 
+		this.hasGuardian = function(id, guardians){
+			var i = 0;
+			for(i;i<guardians.length;i++)
+				{
+					if(guardians.childID == id){
+						return true;
+					}
+				}
+				return false;
+		}
+
 		//Open Modal Window to Add Guardian
 		this.modalCreate = function (size, selectedChild) {
 
