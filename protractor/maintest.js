@@ -118,3 +118,45 @@ describe('After School Add Child, Edit Child,', function() {
         browser.switchTo().alert().accept();
     });
 });
+
+describe('After School Add Attendance, Edit Attendance,', function() {
+    it('Navigate to new attendance page', function() {
+        browser.get('http://localhost:3000/#!/attendances/create');
+        browser.driver.manage().window().setSize(1280, 1024);
+        browser.sleep(2000);
+    });
+
+    it('Add Information to Boxes and Submit', function() {
+
+        element(by.name('childID')).sendKeys('5502cb9770feca48148ec769');
+        element(by.name('childName')).sendKeys('Morgan Emery');
+        element(by.name('month')).element(by.cssContainingText('option', 'May')).click();
+        element(by.name('day')).element(by.cssContainingText('option', '7')).click();
+        element(by.name('year')).element(by.cssContainingText('option', '2015')).click();
+        element(by.name('attended')).click();
+        element(by.name('scheduledAbsent')).click();
+        element(by.name('guardian')).sendKeys('Jack Bauer');
+        //element(by.name('time')).
+        element(by.name('isAdvent')).click();
+        element(by.name('adventID')).sendKeys('54fb4354327cd96f26a5c4c7');
+
+        expect(element(by.name('childID')).getAttribute('value')).toEqual('5502cb9770feca48148ec769');
+        expect(element(by.name('childName')).getAttribute('value')).toEqual('Morgan Emery');
+        expect(element(by.name('month')).getAttribute('value')).toEqual('5');
+        expect(element(by.name('day')).getAttribute('value')).toEqual('7');
+        expect(element(by.name('year')).getAttribute('value')).toEqual('2015');
+        expect(element(by.name('attended')).getAttribute('value')).toEqual('on');
+        expect(element(by.name('scheduledAbsent')).getAttribute('value')).toEqual('on');
+        expect(element(by.name('guardian')).getAttribute('value')).toEqual('Jack Bauer');
+        //expect(element(by.name('time')).
+        expect(element(by.name('isAdvent')).getAttribute('value')).toEqual('on');
+        expect(element(by.name('adventID')).getAttribute('value')).toEqual('54fb4354327cd96f26a5c4c7');
+
+        browser.sleep(2000);
+        element(by.name('submit')).click();
+
+    })
+
+});
+
+// alex put your shit here
