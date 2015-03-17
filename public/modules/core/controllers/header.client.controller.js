@@ -72,6 +72,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'Sideb
 					 
 			}else{
 				alert('Wrong Pin Code: '+ document.getElementById('PINbox').value);
+				document.getElementById('PINbox').value = '';
 		} };
 	}
 ]);

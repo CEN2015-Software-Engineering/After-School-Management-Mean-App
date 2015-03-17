@@ -94,14 +94,15 @@ describe('After School Add Child, Edit Child,', function() {
         //browser.executeScript('window.scrollTo(0,document.body.scrollHeight);');
         browser.sleep(1500);
     });
-   /* 
+   
     it('Open Guardian Modal, Edit Sister to Mom', function() {
         // browser.executeScript('window.scrollTo(0,document.body.scrollHeight);').then(function () {
         //     element(by.name('updateParentButton')).click();
         // });
         element(by.name('guardiansInfoTab')).click();
         element(by.name('slideoutTab')).click();
-        browser.sleep(1000);
+        
+        
         element(by.name('editGuardianBtn')).click();
         browser.sleep(1000);
         element(by.model('guardian.gName')).clear();
@@ -113,7 +114,7 @@ describe('After School Add Child, Edit Child,', function() {
         browser.executeScript('window.scrollTo(0,document.body.scrollHeight);');
         browser.sleep(1000);
     });
-*/
+
     it('Delete Child', function() {
         element(by.name('deleteChildButton')).click();
         //Click the Accept box in the Alert window
