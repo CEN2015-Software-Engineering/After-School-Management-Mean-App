@@ -36,10 +36,10 @@ describe('After School Add Child, Edit Child,', function() {
         element(by.name('size')).sendKeys('XXL');
         expect(element(by.name('size')).getAttribute('value')).toEqual('XXL');
         element(by.model('checkModel.mon')).click();
-        expect(element(by.name('mon')).isSelected());
-        element(by.model('checkModel.wed')).click();
+        expect(element(by.name('checkMon')).isSelected());
+        element(by.model('checkModel.checkWed')).click();
         expect(element(by.name('wed')).isSelected());
-        element(by.model('checkModel.fri')).click();
+        element(by.model('checkModel.checkFri')).click();
         expect(element(by.name('fri')).isSelected());
 
         browser.executeScript('window.scrollTo(0,document.body.scrollHeight)').then(function(){
