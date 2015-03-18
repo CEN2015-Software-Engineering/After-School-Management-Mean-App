@@ -4,7 +4,7 @@
 angular.module('medicals').controller('MedicalsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Medicals', '$window', 'Notify', '$modal', '$log',
 	function($scope, $stateParams, $location, Authentication, Medicals, $window, Notify, $modal, $log) {
 
-
+      
         // Create new Medical
         $scope.create = function(childId) {
             // Create new Medical object
@@ -50,8 +50,14 @@ angular.module('medicals').controller('MedicalsController', ['$scope', '$statePa
 
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
+                 console.log('what');
+                $scope.find();
+                // this.theNewFunc();
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
+                 console.log('it tried');
+                
+              
             });
         };
 
@@ -81,6 +87,9 @@ angular.module('medicals').controller('MedicalsController', ['$scope', '$statePa
             });
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
+                console.log('here it tries')
+                $scope.find();//read line below
+                $scope.find();//there needs to be 2 of these dont delete
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });

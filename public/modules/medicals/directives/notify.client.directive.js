@@ -8,8 +8,11 @@ angular.module('medicals').directive('medicalList', ['Medicals', 'Notify', '$roo
         link: function(scope, element, attrs, ctrl, transclude) {
             //when a customer is added, update the customer list
             Notify.getMsg('NewMedical', function(event, data) {
-                $window.location.reload();
-                angular.element('#personalInfoTab').trigger('click');
+                //$window.location.reload();
+                //$rootScope.apply();
+                
+
+                //angular.element('#personalInfoTab').trigger('click');
                 //$("#personalInfoTab").trigger("click");
 
                 /*
