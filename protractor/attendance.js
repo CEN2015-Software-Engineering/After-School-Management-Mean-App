@@ -3,7 +3,7 @@
 describe('Add Attendance', function() {
     it('should load the new attendance page', function() {
         browser.get('http://localhost:3000/#!/attendances/create');
-        browser.driver.manage().window().setSize(1920, 1080);
+        browser.driver.manage().window().setSize(1280, 1024);
         browser.sleep(2000);
         expect(element(by.id('page-title')).getText()).toEqual('New Attendance');
     });
