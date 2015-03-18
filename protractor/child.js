@@ -1,62 +1,62 @@
-describe('After School Add Child, Edit Child,', function() {
-    it('Navigate to student Records and click add student', function() {
+describe('Create and Edit child', function() {
+    it('navigates to Student Records and clicks add student', function() {
         browser.get('http://localhost:3000/');
         browser.driver.manage().window().setSize(1280, 1024);
         browser.sleep(1000);
 
         element(by.name('studentRecordsButton')).click();
         element(by.name('addChildButton')).click();
-
     });
 
-    it('Add Information to Boxes and Submit', function() {
+    it('populates and submits create form', function() {
 
         element(by.name('firstName')).sendKeys('Protractor');
-        element(by.name('lastName')).sendKeys('Test');
-        element(by.name('enrolled')).click();
-        element(by.name('month')).element(by.cssContainingText('option', 'January')).click();
-        element(by.name('day')).element(by.cssContainingText('option', '7')).click();
-        element(by.name('year')).element(by.cssContainingText('option', '1988')).click();
-        element(by.name('email')).sendKeys('testing@testing.com');
-        element(by.name('home')).sendKeys('123-456-7890');
-        element(by.name('work')).sendKeys('098-765-4321');
-        element(by.name('address')).sendKeys('1234 Cherry Oak Drive, Gainesville Florida');
-        element(by.name('schoolName')).sendKeys('Forrest Elementary School');
-        element(by.name('grade')).sendKeys('6');
-        element(by.name('size')).sendKeys('XXL');
-
-        element(by.model('checkModel.mon')).click();
-        element(by.model('checkModel.wed')).click();
-        element(by.model('checkModel.fri')).click();
-
-        element(by.name('profileLink')).sendKeys('myLink.com');
-
         expect(element(by.name('firstName')).getAttribute('value')).toEqual('Protractor');
+        element(by.name('lastName')).sendKeys('Test');
         expect(element(by.name('lastName')).getAttribute('value')).toEqual('Test');
+        element(by.name('enrolled')).click();
         expect(element(by.name('enrolled')).getAttribute('value')).toEqual('on');
+        element(by.name('month')).element(by.cssContainingText('option', 'January')).click();
         expect(element(by.name('month')).getAttribute('value')).toEqual('1');
-        expect(element(by.name('day')).getAttribute('value')).toEqual('7');
+        element(by.name('day')).element(by.cssContainingText('option', '27')).click();
+        expect(element(by.name('day')).getAttribute('value')).toEqual('27');
+        element(by.name('year')).element(by.cssContainingText('option', '1988')).click();
         expect(element(by.name('year')).getAttribute('value')).toEqual('1988');
+        element(by.name('email')).sendKeys('testing@testing.com');
         expect(element(by.name('email')).getAttribute('value')).toEqual('testing@testing.com');
+        element(by.name('home')).sendKeys('123-456-7890');
         expect(element(by.name('home')).getAttribute('value')).toEqual('123-456-7890');
+        element(by.name('work')).sendKeys('098-765-4321');
         expect(element(by.name('work')).getAttribute('value')).toEqual('098-765-4321');
+        element(by.name('address')).sendKeys('1234 Cherry Oak Drive, Gainesville Florida');
         expect(element(by.name('address')).getAttribute('value')).toEqual('1234 Cherry Oak Drive, Gainesville Florida');
+        element(by.name('schoolName')).sendKeys('Forrest Elementary School');
         expect(element(by.name('schoolName')).getAttribute('value')).toEqual('Forrest Elementary School');
+        element(by.name('grade')).sendKeys('6');
         expect(element(by.name('grade')).getAttribute('value')).toEqual('6');
+        element(by.name('size')).sendKeys('XXL');
         expect(element(by.name('size')).getAttribute('value')).toEqual('XXL');
-        expect(element(by.name('profileLink')).getAttribute('value')).toEqual('myLink.com');
 
-        browser.sleep(1000);
-        element(by.name('submit')).click();
+
+        browser.executeScript('window.scrollTo(0,document.body.scrollHeight)').then(function(){
+            element(by.model('checkModel.mon')).click();
+            element(by.model('checkModel.wed')).click();
+            element(by.model('checkModel.fri')).click();
+            element(by.name('profileLink')).sendKeys('myLink.com');
+            expect(element(by.name('profileLink')).getAttribute('value')).toEqual('carpentersata.com');
+
+            browser.sleep(1000);
+            element(by.name('submit')).click();
+        });
 
     });
 
-    it('Verify All Fields Contain Correct Information', function() {
+    it('verifies that the information tab contains correct information', function() {
         expect(element(by.name('fullNameField')).getText()).toEqual('Protractor Test\'s Profile');
-        expect(element(by.name('birthDateField')).getText()).toEqual('1/7/1988');
+        expect(element(by.name('birthDateField')).getText()).toEqual('1/27/1988');
         expect(element(by.name('ageField')).getText()).toEqual('27');
-        expect(element(by.name('homeNumField')).getText()).toEqual('1234567890');
-        expect(element(by.name('workNumField')).getText()).toEqual('0987654321');
+        expect(element(by.name('homeNumField')).getText()).toEqual('123-456-7890');
+        expect(element(by.name('workNumField')).getText()).toEqual('098-765-4321');
         expect(element(by.name('addressField')).getText()).toEqual('1234 Cherry Oak Drive, Gainesville Florida');
         expect(element(by.name('emailField')).getText()).toEqual('testing@testing.com');
         expect(element(by.name('schoolField')).getText()).toEqual('Forrest Elementary School');
@@ -64,7 +64,14 @@ describe('After School Add Child, Edit Child,', function() {
         expect(element(by.name('sizeField')).getText()).toEqual('XXL');
     });
 
-    it('Edit Child', function() {
+    it('verifies that the enrollment tab contains correct information', function() {
+        element(by.name('enrollment')).click();
+        expect(element(by.name('profileButton')).getAttribute('data-ng-href')).toEqual('http://carpentersata.com');
+        //TODO test each week day
+        //TODO test enrolled
+    });
+
+    it('edits the child', function() {
         //open modal
         element(by.name('editChildButton')).click();
         //old values
@@ -91,14 +98,12 @@ describe('After School Add Child, Edit Child,', function() {
 
         expect(element(by.name('guardianNameField')).getText()).toEqual('Susan Test');
         expect(element(by.name('guardianRelField')).getText()).toEqual('Sister');
-        //browser.executeScript('window.scrollTo(0,document.body.scrollHeight);');
+
         browser.sleep(1500);
     });
    
     it('Open Guardian Modal, Edit Sister to Mom', function() {
-        // browser.executeScript('window.scrollTo(0,document.body.scrollHeight);').then(function () {
-        //     element(by.name('updateParentButton')).click();
-        // });
+
         element(by.name('guardiansInfoTab')).click();
         element(by.name('slideoutTab')).click();
         browser.sleep(500);
@@ -119,7 +124,6 @@ describe('After School Add Child, Edit Child,', function() {
 
         expect(element(by.name('guardianNameField')).getText()).toEqual('House\'s Mom');
         expect(element(by.name('guardianRelField')).getText()).toEqual('Mom');
-        //browser.executeScript('window.scrollTo(0,document.body.scrollHeight);');
         browser.sleep(1000);
     });
 
