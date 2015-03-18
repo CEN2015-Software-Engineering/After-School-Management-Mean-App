@@ -185,5 +185,6 @@ angular.module('children').controller('ChildrenUpdateController', ['$scope', '$s
 				$scope.error = errorResponse.data.message;
 			});
 		};
+
 	}
 ]);

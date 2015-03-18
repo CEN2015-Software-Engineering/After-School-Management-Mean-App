@@ -22,7 +22,7 @@ var validateProfileLink = function(profileLink) {
 
     if(profileLink === ''){ this.profileLink = '#'; profileLink = '#'; }
     if( !temp.test(profileLink) && profileLink !== '#' ) {
-    	profileLink = "http://" + profileLink;
+    	profileLink = 'http://' + profileLink;
     	this.profileLink = profileLink;
     }
 

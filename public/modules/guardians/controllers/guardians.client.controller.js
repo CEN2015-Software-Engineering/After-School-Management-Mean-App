@@ -56,12 +56,12 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 			var i = 0;
 			for(i;i<guardians.length;i++)
 				{
-					if(guardians.childID == id){
+					if(guardians.childID === id){
 						return true;
 					}
 				}
 				return false;
-		}
+		};
 
 		//Open Modal Window to Add Guardian
 		this.modalCreate = function (size, selectedChild) {
