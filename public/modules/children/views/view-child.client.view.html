@@ -32,11 +32,11 @@
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-1">
                     <h5>Home Phone:</h5>
-                    <h4 name="homeNumField"><i>{{child.contact.home}}</i></h4>
+                    <h4 name="homeNumField"><i>{{childFullProfile.formatHome(child)}}</i></h4>
                 </div>
                 <div class="col-sm-3">
                     <h5>Work Phone:</h5>
-                    <h4 name="workNumField"><i>{{child.contact.work}}</i></h4>
+                    <h4 name="workNumField"><i>{{childFullProfile.formatWork(child)}}</i></h4>
                 </div>
                 <div class="col-sm-3">
                     <h5>Address:</h5>
@@ -98,13 +98,13 @@
                             <label class="btn btn-day btn-danger" data-ng-model="child.enrolled"
                                    btn-checkbox disabled>Status:</label>
                             <label class="btn btn-day" data-ng-model="child.enrolled"
-                                   btn-checkbox disabled><span data-ng-show="child.enrolled">Enrolled</span><span
-                                    data-ng-show="!child.enrolled">Canceled</span> </label>
+                                   btn-checkbox disabled><span id="isEnrolled" data-ng-show="child.enrolled">Enrolled</span><span
+                                    id="isCanceled" data-ng-show="!child.enrolled">Canceled</span> </label>
                         </div>
                     </h3>
                 </div>
                     <div class="col-sm-5">
-                        <h1><a class="btn btn-primary btn-lg" data-ng-href="{{child.profileLink}}"><span
+                        <h1><a name="profileButton" class="btn btn-primary btn-lg" data-ng-href="{{child.profileLink}}"><span
                                 class="">Online Profile Link</span></a></h1>
                     </div>
                 </h1>
@@ -116,19 +116,19 @@
                         Schedule:
                     </h4>
                         <div class="btn-group">
-                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sun"
+                            <label name="enrSun" class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sun"
                                    btn-checkbox disabled>Sunday</label>
-                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.mon"
+                            <label name="enrMon" class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.mon"
                                    btn-checkbox disabled>Monday</label>
-                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.tue"
+                            <label name="enrTue" class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.tue"
                                    btn-checkbox disabled>Tuesday</label>
-                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.wed"
+                            <label name="enrWed" class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.wed"
                                    btn-checkbox disabled>Wednesday</label>
-                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.thu"
+                            <label name="enrThu" class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.thu"
                                    btn-checkbox disabled>Thursday</label>
-                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.fri"
+                            <label name="enrFri" class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.fri"
                                    btn-checkbox disabled>Friday</label>
-                            <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sat"
+                            <label name="enrSat"class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sat"
                                    btn-checkbox disabled>Saturday</label>
                         </div>
                 </div>

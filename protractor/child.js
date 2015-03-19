@@ -42,7 +42,7 @@ describe('Create and Edit child', function() {
             element(by.model('checkModel.mon')).click();
             element(by.model('checkModel.wed')).click();
             element(by.model('checkModel.fri')).click();
-            element(by.name('profileLink')).sendKeys('myLink.com');
+            element(by.name('profileLink')).sendKeys('carpentersata.com');
             expect(element(by.name('profileLink')).getAttribute('value')).toEqual('carpentersata.com');
 
             browser.sleep(1000);
@@ -65,10 +65,17 @@ describe('Create and Edit child', function() {
     });
 
     it('verifies that the enrollment tab contains correct information', function() {
-        element(by.name('enrollment')).click();
+        element(by.name('enrollmentInfoTab')).click();
         expect(element(by.name('profileButton')).getAttribute('data-ng-href')).toEqual('http://carpentersata.com');
-        //TODO test each week day
-        //TODO test enrolled
+        expect(element(by.name('enrSun')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
+        expect(element(by.name('enrMon')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
+        expect(element(by.name('enrTue')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
+        expect(element(by.name('enrWed')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
+        expect(element(by.name('enrThu')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
+        expect(element(by.name('enrFri')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
+        expect(element(by.name('enrSat')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
+        expect(element(by.id('isEnrolled')).getAttribute('class')).toEqual('');
+        expect(element(by.id('isCanceled')).getAttribute('class')).toEqual('ng-hide');
     });
 
     it('edits the child', function() {
@@ -77,7 +84,6 @@ describe('Create and Edit child', function() {
         //old values
         expect(element(by.name('firstName')).getAttribute('value')).toEqual('Protractor');
         expect(element(by.name('lastName')).getAttribute('value')).toEqual('Test');
-        expect(element(by.name('profileLink')).getAttribute('value')).toEqual('http://myLink.com');
         //new values
         element(by.name('firstName')).clear();
         element(by.name('lastName')).clear();
@@ -88,7 +94,7 @@ describe('Create and Edit child', function() {
         expect(element(by.name('fullNameField')).getText()).toEqual('Gregory House M.D.\'s Profile');
     });
 
-    it('Open & Close Guardian Modal, Create new Sister', function() {
+    it('creates a new guardian', function() {
         element(by.name('guardiansInfoTab')).click();
         element(by.name('createGuardianButton')).click();
         
@@ -102,7 +108,7 @@ describe('Create and Edit child', function() {
         browser.sleep(1500);
     });
    
-    it('Open Guardian Modal, Edit Sister to Mom', function() {
+    it('edits an existing guardian', function() {
 
         element(by.name('guardiansInfoTab')).click();
         element(by.name('slideoutTab')).click();
@@ -127,7 +133,7 @@ describe('Create and Edit child', function() {
         browser.sleep(1000);
     });
 
-    it('Delete Child', function() {
+    it('deletes the child', function() {
         element(by.name('deleteChildButton')).click();
         //Click the Accept box in the Alert window
         browser.switchTo().alert().accept();

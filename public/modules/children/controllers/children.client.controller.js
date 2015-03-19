@@ -138,6 +138,16 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
             }
         };
 
+        this.formatHome = function(child){
+            var ufh = child.contact.home;
+            return ufh.substr(0,3) + '-' + ufh.substr(3,3) + '-' + ufh.substr(6);
+        };
+
+        this.formatWork = function(child){
+            var ufw = child.contact.work;
+            return ufw.substr(0,3) + '-' + ufw.substr(3,3) + '-' + ufw.substr(6);
+        };
+
 		//Open Modal Window to Update Guardian
 		this.modalUpdate = function (size, selectedChild) {
 

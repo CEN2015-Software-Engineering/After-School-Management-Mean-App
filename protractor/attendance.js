@@ -24,8 +24,8 @@ describe('Add Attendance', function() {
         expect(element(by.name('attended')).getAttribute('value')).toEqual('on');
         element(by.name('guardian')).sendKeys('Jack Bauer');
         expect(element(by.name('guardian')).getAttribute('value')).toEqual('Jack Bauer');
-        //element(by.name('time'));
-        //expect(element(by.name('time')).
+        //TODO element(by.name('time'));
+        //TODO expect(element(by.name('time')).
 
         browser.executeScript('window.scrollTo(0,document.body.scrollHeight)').then(function(){
             element(by.name('isAdvent')).click();
