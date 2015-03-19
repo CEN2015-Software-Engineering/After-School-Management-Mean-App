@@ -1,4 +1,4 @@
-describe('Calendar Test', function() {
+describe('Advent Test', function() {
     it('should load the new advent page', function() {
         browser.get('http://localhost:3000/#!/advents/create');
         browser.driver.manage().window().setSize(1280, 1024);
