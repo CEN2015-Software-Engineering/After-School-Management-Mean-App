@@ -75,19 +75,22 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 		this.setselected = function(guardian){
 			selected = guardian;
 			moreChillun = true;
-		}
+		};
+		this.getSelected = function(){
+			return selected;
+		};
 		this.gimmeMyChillun = function(){
 			return moreChillun;
-		}
+		};
 		this.setMyChillun = function(variable){
 			moreChillun = variable;
-		}
+		};
 		this.setMoChilList = function(variable){
 			moreChillunList = variable;
-		}
+		};
 		this.gimmeMoChilList = function(){
 			return moreChillunList;
-		}
+		};
 
 
 		//Open Modal Window to Add Guardian
@@ -116,7 +119,6 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 
 			modalInstance.result.then(function (selectedItem) {
 				$scope.selected = selectedItem;
-				$scope.find();
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
@@ -150,8 +152,6 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 
 			modalInstance.result.then(function (selectedItem) {
 				$scope.selected = selectedItem;
-				$scope.find();
-				$scope.find();
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
