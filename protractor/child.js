@@ -64,20 +64,6 @@ describe('Create and Edit child', function() {
         expect(element(by.name('sizeField')).getText()).toEqual('XXL');
     });
 
-    it('verifies that the enrollment tab contains correct information', function() {
-        element(by.name('enrollmentInfoTab')).click();
-        expect(element(by.name('profileButton')).getAttribute('data-ng-href')).toEqual('http://carpentersata.com');
-        expect(element(by.name('enrSun')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
-        expect(element(by.name('enrMon')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
-        expect(element(by.name('enrTue')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
-        expect(element(by.name('enrWed')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
-        expect(element(by.name('enrThu')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
-        expect(element(by.name('enrFri')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
-        expect(element(by.name('enrSat')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
-        expect(element(by.id('isEnrolled')).getAttribute('class')).toEqual('');
-        expect(element(by.id('isCanceled')).getAttribute('class')).toEqual('ng-hide');
-    });
-
     it('edits the child', function() {
         //open modal
         element(by.name('editChildButton')).click();
@@ -92,16 +78,62 @@ describe('Create and Edit child', function() {
         //exit modal
         element(by.name('confirmButton')).click();
         expect(element(by.name('fullNameField')).getText()).toEqual('Gregory House M.D.\'s Profile');
+
+        browser.sleep(1500);
+    });
+
+    it('verifies that the enrollment tab contains correct information', function() {
+        element(by.name('enrollmentInfoTab')).click();
+        expect(element(by.name('profileButton')).getAttribute('data-ng-href')).toEqual('http://carpentersata.com');
+        expect(element(by.name('enrSun')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
+        expect(element(by.name('enrMon')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
+        expect(element(by.name('enrTue')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
+        expect(element(by.name('enrWed')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
+        expect(element(by.name('enrThu')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
+        expect(element(by.name('enrFri')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid active');
+        expect(element(by.name('enrSat')).getAttribute('class')).toEqual('btn btn-day btn-lg custom-date-btn ng-pristine ng-valid');
+        expect(element(by.id('isEnrolled')).getAttribute('class')).toEqual('');
+        expect(element(by.id('isCanceled')).getAttribute('class')).toEqual('ng-hide');
+    });
+
+    it('creates a new medical', function(){
+        element(by.name('personalInfoTab')).click();
+        element(by.name('createMedicalButton')).click();
+
+        element(by.name('name')).sendKeys('Bad at Programming');
+        element(by.name('type')).element(by.cssContainingText('option', 'Disability')).click();
+        element(by.name('desc')).sendKeys(':(');
+        element(by.name('confirmButton')).click();
+        browser.sleep(500);
+        expect(element(by.name('medicalNameField')).getText()).toEqual('Bad at Programming');
+
+        browser.sleep(1500);
+    });
+
+    it('edits an existing medical', function() {
+
+        element(by.name('updateMedicalButton')).click();
+        browser.sleep(500);
+        element(by.model('medical.name')).clear();
+        element(by.model('medical.name')).sendKeys('Bad leg');
+        element(by.model('medical.desc')).clear();
+        element(by.model('medical.desc')).sendKeys('Treat with Vicodin');
+        element(by.name('confirmButton')).click();
+
+        expect(element(by.name('medicalNameField')).getText()).toEqual('Bad leg');
+
+        browser.sleep(1500);
     });
 
     it('creates a new guardian', function() {
         element(by.name('guardiansInfoTab')).click();
         element(by.name('createGuardianButton')).click();
-        
+        browser.sleep(500);
         element(by.name('name')).sendKeys('Susan Test');
         element(by.name('relationship')).element(by.cssContainingText('option', 'Sister')).click();
+        browser.sleep(500);
         element(by.name('confirmButton')).click();
-
+        browser.sleep(500);
         expect(element(by.name('guardianNameField')).getText()).toEqual('Susan Test');
         expect(element(by.name('guardianRelField')).getText()).toEqual('Sister');
 
@@ -138,4 +170,5 @@ describe('Create and Edit child', function() {
         //Click the Accept box in the Alert window
         browser.switchTo().alert().accept();
     });
+
 });

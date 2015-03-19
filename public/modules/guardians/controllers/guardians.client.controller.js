@@ -150,7 +150,7 @@ angular.module('guardians').controller('GuardiansCreateController', ['$scope', '
 			});
 		};
 
-		$scope.relationships = ['Mom', 'Dad', 'Sister', 'Brother', 'Aunt', 'Uncle', 'Grandma', 'Grandpa', 'Other'];
+		$scope.relationships = ['Mom', 'Dad', 'Sister', 'Brother', 'Aunt', 'Uncle', 'Grandmother', 'Grandfather', 'Other'];
 
 	}
 ]);
@@ -169,7 +169,7 @@ angular.module('guardians').controller('GuardiansUpdateController', ['$scope', '
 			});
 		};
 
-		$scope.relationships = ['Mom', 'Dad', 'Sister', 'Brother', 'Aunt', 'Uncle', 'Grandma', 'Grandpa', 'Other'];
+		$scope.relationships = ['Mom', 'Dad', 'Sister', 'Brother', 'Aunt', 'Uncle', 'Grandmother', 'Grandfather', 'Other'];
 
 		$scope.guardians = Guardians.query();
 
