@@ -5,7 +5,7 @@
 			<h1>Calendar Demo</h1>
 		</div>
 		<div class="col-sm-5 col-sm-offset-2">
-			<br /><br /><span>Selected date: <b>{{day.format('dddd MMMM D YYYY')}}</b></span>
+			<br /><br /><span>Events on: <b>{{day.format('dddd MMMM D YYYY')}}</b></span>
 		</div>
 	</div>
 	<div class = "row">
@@ -22,17 +22,3 @@
 		</div>
 	</div>
 </section>
-<!-- data-ng-if="guardian.childID == child._id" 
-
-	<div class="list-group">
-				<a data-ng-repeat="advent in advents" data-ng-href="#!/advents/{{advent._id}}" class="list-group-item">
-					<small class="list-group-item-text">
-						Posted on
-						<span data-ng-bind="advent.created | date:'medium'"></span>
-						by
-						<span data-ng-bind="advent.user.displayName"></span>
-					</small>
-					<h4 class="list-group-item-heading" data-ng-bind="advent.name"></h4>
-				</a>
-			</div>
--->

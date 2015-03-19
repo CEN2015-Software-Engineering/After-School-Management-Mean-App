@@ -1,40 +1,42 @@
 <section data-ng-controller="AdventsController" data-ng-init="findOne()">
     <div class="page-header">
-        {{advent}}
-        <h1 data-ng-bind="advent.name"></h1>
+        <h1 id="adventName"  data-ng-bind="advent.name"></h1>
         <div class="modal-body">
             <div class="row">
+                <div id="adventDesc" class="col-md-6">
+                    <b>Description:</b>
+                    <span data-ng-bind-html="advent.description"></span>
+                </div>
+            </div>
+            <div id="adventDate" class="row">
                 <div class="col-md-6">
-                    Description
-                    <span class="text-muted" data-ng-bind-html="advent.description"></span>
+                    <b>Date:</b>
+                    <span data-ng-bind="advent.date.month"></span>/<span
+                     data-ng-bind="advent.date.day"></span>/<span
+                     data-ng-bind="advent.date.year"></span>
+                </div>
+            </div>
+            <div id="adventTime" class="row">
+                <div class="col-md-6">
+                    <b>Time:</b>
+                    <span data-ng-bind="advent.time.hr"></span>:<span
+                        data-ng-bind="advent.time.min"></span> <span
+                        data-ng-bind="advent.time.timeSuffix"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="pull-right">
+                    <a name="updateAdventButton" class="btn btn-primary" href="/#!/advents/{{advent._id}}/edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-primary" data-ng-click="remove();">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    Date:
-                    <span class="text-muted" data-ng-bind="advent.date.month"></span>/<span class="text-muted"
-                                                                                            data-ng-bind="advent.date.day"></span>/<span
-                        class="text-muted" data-ng-bind="advent.date.year"></span>
-                </div>
-            </div>
         </div>
+
     </div>
-    <a href="/#!/calendar/{{advent._id}}">View Children Attending this Event(Advent)</a>
-    <div class="pull-right">
-        <a class="btn btn-primary" href="/#!/advents/{{advent._id}}/edit">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn btn-primary" data-ng-click="remove();">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
-    </div>
-    <small>
-        <em class="text-muted">
-            Posted on
-            <span data-ng-bind="advent.created | date:'mediumDate'"></span>
-        </em>
-    </small>
+    <a href="/#!/calendar/{{advent._id}}">View Children Attending this Event</a><br />
 </section>
-<label class="btn btn-day btn-lg custom-date-btn " ng-click="">Add Child Attendance</label>
-	
