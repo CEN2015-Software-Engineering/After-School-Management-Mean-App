@@ -116,6 +116,7 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 
 			modalInstance.result.then(function (selectedItem) {
 				$scope.selected = selectedItem;
+				$scope.find();
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
@@ -149,6 +150,8 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 
 			modalInstance.result.then(function (selectedItem) {
 				$scope.selected = selectedItem;
+				$scope.find();
+				$scope.find();
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
