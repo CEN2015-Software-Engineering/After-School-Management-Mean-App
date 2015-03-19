@@ -17,5 +17,5 @@
     <span class="day">Sat</span>
 </div>
 <div class="week" ng-repeat="week in weeks" data-ng-swipe-right="previous()" data-ng-swipe-left="next()">
-    <span class="day" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days">{{day.number}}<div class="grad" ng-class="{eventExist: hasEvent(day), hidden: !hasEvent(day)}"></div></span>
+    <span class="day" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days" name="testing">{{day.number}}<div class="grad" ng-class="{eventExist: hasEvent(day), hidden: !hasEvent(day)}"></div></span>
 </div>

@@ -8,8 +8,19 @@ describe('Calendar Test', function() {
 
     it('tests the today button', function() {
         element(by.name('next')).click();
+        browser.sleep(500);
         element(by.name('next')).click();
+        browser.sleep(500);
         element(by.name('today')).click();
-        browser.sleep(3000);
+        browser.sleep(1000);
+    });
+
+    it('selects a day with an event', function() {
+        element.all(by.name('testing')).get(22).click();
+        browser.sleep(500);
+        element(by.binding('name')).click();
+        browser.sleep(500);
+        element(by.name('close')).click();
+        browser.sleep(500);
     });
 });
