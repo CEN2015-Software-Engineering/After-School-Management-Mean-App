@@ -52,6 +52,7 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 			console.log(id);
 		};
 
+		//checks to see if a child for a given id has a guardian
 		this.hasGuardian = function(id, guardians){
 			var i = 0;
 			for(i;i<guardians.length;i++)
@@ -62,6 +63,35 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 				}
 				return false;
 		};
+
+	//The following is control for the child-sign-out page
+		//for when you select a guardian they are stored here
+		var selected;
+		//this is to control adding more children button
+		var moreChillun;
+		//controls showing more children
+		var moreChillunList = false;
+		//sets selected
+		this.setselected = function(guardian){
+			selected = guardian;
+			moreChillun = true;
+		};
+		this.getSelected = function(){
+			return selected;
+		};
+		this.gimmeMyChillun = function(){
+			return moreChillun;
+		};
+		this.setMyChillun = function(variable){
+			moreChillun = variable;
+		};
+		this.setMoChilList = function(variable){
+			moreChillunList = variable;
+		};
+		this.gimmeMoChilList = function(){
+			return moreChillunList;
+		};
+
 
 		//Open Modal Window to Add Guardian
 		this.modalCreate = function (size, selectedChild) {
@@ -89,7 +119,6 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 
 			modalInstance.result.then(function (selectedItem) {
 				$scope.selected = selectedItem;
-				$scope.find();
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
@@ -123,8 +152,6 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 
 			modalInstance.result.then(function (selectedItem) {
 				$scope.selected = selectedItem;
-				$scope.find();
-				$scope.find();
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
