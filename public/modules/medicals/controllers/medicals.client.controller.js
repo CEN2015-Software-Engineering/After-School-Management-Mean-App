@@ -87,8 +87,8 @@ angular.module('medicals').controller('MedicalsController', ['$scope', '$statePa
             });
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-                console.log('here it tries')
-                $scope.find();//read line below
+              //  console.log('here it tries');
+               $scope.find();//read line below
                 $scope.find();//there needs to be 2 of these dont delete
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());

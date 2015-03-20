@@ -2,8 +2,8 @@
 
 // Sidebars controller
 angular.module('sidebars').controller('SidebarsController', ['$scope', '$stateParams',
- '$location', 'Authentication', 'Sidebars', 'instructorPerm',
-	function($scope, $stateParams, $location, Authentication, Sidebars, instructorPerm) {
+ '$location', 'Authentication', 'instructorPerm',
+	function($scope, $stateParams, $location, Authentication, instructorPerm) {
 		
 		
 		$scope.editGuardians = instructorPerm.getEditGuardians();

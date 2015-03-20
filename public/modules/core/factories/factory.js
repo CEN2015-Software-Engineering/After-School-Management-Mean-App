@@ -1,6 +1,6 @@
 'use strict';
-/*
-angular.module('sidebars').factory('instructorPerm', function(){
+
+angular.module('core').factory('instructorPerm', function(){
 	console.log('In the factory that rules all factories');
 	
 	var data = { editGuardians: false, deleteGuardians: false };
@@ -25,4 +25,4 @@ angular.module('sidebars').factory('instructorPerm', function(){
 			data.deleteGuardians = deleteGuardian;
 		}
 	};
-});*/
+});
