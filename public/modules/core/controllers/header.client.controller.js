@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'Sidebars', 'instructorPerm',
-	function($scope, Menus, Sidebars, instructorPerm) {
+angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instructorPerm',
+	function($scope, Menus,  instructorPerm) {
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 		$scope.isUnlocked = false;
