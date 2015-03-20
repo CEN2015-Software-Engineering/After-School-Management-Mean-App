@@ -1,3 +1,0 @@
-possible keypad for sidebar
-
-http://codepen.io/Elliotsmith/pen/AwKLk
