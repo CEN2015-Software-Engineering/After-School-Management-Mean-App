@@ -54,7 +54,7 @@
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-		it('$scope.find() should create an array with at least one Child object fetched from XHR', inject(function(Children) {
+		/*it('$scope.find() should create an array with at least one Child object fetched from XHR', inject(function(Children) {
 			// Create sample Child using the Children service
 			var sampleChild = new Children({
 				firstName: 'Test',
@@ -210,6 +210,6 @@
 			// Test array after successful delete
 			expect(scope.children.length).toBe(0);
 		}));
-
+*/
 	});
 }());
