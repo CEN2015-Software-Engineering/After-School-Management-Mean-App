@@ -98,10 +98,10 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 ]);
 
 // Advents controller
-angular.module('advents').controller('AdventsAttendModalController', ['$scope', '$http', '$stateParams', '$location', 'Advents', 'Children', 'Attendances',
+angular.module('advents').controller('AdventsAttendModalController', ['$scope', '$window', '$http', '$stateParams', '$location', 'Advents', 'Children', 'Attendances',
     //CREATE ATTENDANCE ENTRY WHEN THIS FUNCTION IS CALLED
     //PASS IN - EVENT ID, CHILD ID
-    function($scope, $http, $stateParams, $location, Advents, Children, Attendances) {
+    function($scope, $window, $http, $stateParams, $location, Advents, Children, Attendances) {
 
         this.processEvent = function (child, advent) {
             console.log(advent);
@@ -178,6 +178,28 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
 
         $scope.advents = Advents.query();
         $scope.attendances = Attendances.query();
+
+        // Remove existing Advent
+        $scope.remove = function(advent) {
+            if ( advent ) { 
+                advent.$remove();
+
+                //TO-DO
+                //FIGURE OUT HOW TO REMOVE THIS REFRESH
+                $window.location.reload();
+
+                for (var i in $scope.advents) {
+                    if ($scope.advents [i] === advent) {
+                        $scope.advents.splice(i, 1);
+                    }
+                }
+            } else {
+                $scope.advent.$remove(function() {
+                    $location.path('calendar');
+                    $window.location.reload();
+                });
+            }
+        };
     }
 
 

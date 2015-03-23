@@ -53,8 +53,4 @@ describe('Advent Test', function() {
         browser.sleep(1500);
     });
 
-    it('deletes the advent', function() {
-        element(by.name('updateAdventButton')).click();
-    });
-
 });

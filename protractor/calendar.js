@@ -23,4 +23,13 @@ describe('Calendar Test', function() {
         element(by.name('close')).click();
         browser.sleep(500);
     });
+
+    it('deletes the advent', function() {
+        element.all(by.name('testing')).get(22).click();
+        browser.sleep(500);
+        element(by.binding('name')).click();
+        browser.sleep(500);
+        element(by.name('deleteAdventButton')).click();
+        browser.sleep(500);
+    });
 });

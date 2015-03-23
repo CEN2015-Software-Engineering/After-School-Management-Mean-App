@@ -31,10 +31,10 @@
         </div>
 
         <div class="pull-right">
-            <a class="btn btn-primary" href="/#!/advents/{{advent._id}}/edit">
+            <a class="btn btn-primary" data-ng-click="ok()" href="/#!/advents/{{advent._id}}/edit" name="updateAdventButton">
                 <i class="glyphicon glyphicon-edit"></i>
             </a>
-            <a class="btn btn-primary" data-ng-click="remove();">
+            <a class="btn btn-danger" data-ng-click="remove(advent); ok()" name="deleteAdventButton">
                 <i class="glyphicon glyphicon-trash"></i>
             </a>
         </div>
