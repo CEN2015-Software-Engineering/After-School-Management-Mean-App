@@ -16,7 +16,7 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 
 		// Remove existing Guardian
 		this.remove = function(guardian) {
-			if($window.confirm('Are you sure you want to delete ' + guardian.gName + ' ?')) {
+			// if($window.confirm('Are you sure you want to delete ' + guardian.gName + ' ?')) {
 				if ( guardian ) {
 					guardian.$remove();
 
@@ -30,7 +30,7 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 						$location.path('guardians');
 					});
 				}
-			}
+			// }
 		};
 
 		// Find a list of Guardians
