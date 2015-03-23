@@ -206,5 +206,6 @@
 			// Test array after successful delete
 			expect(scope.children.length).toBe(0);
 		}));
+
 	});
 }());
