@@ -125,19 +125,75 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 return false;
             }
         };
-
-        this.markedAbsent = function(child, attendances){
+        //returns todays attendance for the given child returns false if the child doesnt have one
+        this.selectTodaysAttend = function(child,attendances)
+        {
         	var i = 0;
-        	console.log('THIS IS YOUR CHILD');
+			  for(i; i < attendances.length; ++i)
+			  {
+			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year)
+			  	{
+			  		return attendances[i];
+			  	}
+			  }
+			  return false;
+        };
+        //signs out the given child by either editing its attendance or creating one
+        this.signOut = function(child,attendances,guardian){
+        	var attend;
+        	var attendance;
+        	var mypoopoo = this.hasAttend(child,attendances);
+        	attend = this.selectTodaysAttend(child,attendances);
+        	if(attend !== false){
+        		//attend.signOut.time = Date.now();
+        		attend.signout.guardian = guardian;
+        		attend.signedOut = true;
+        	}else{
+        		var name = child.firstName + ' ' + child.lastName;
+        		attendance = new Attendances({
+        			childID: child._id,
+                childName: name,
+                date:{
+                    day: $scope.day,
+                    month: $scope.month+1,
+                    year: $scope.year
+                },
+                attended: true,
+                scheduledAbsent: false,
+                signout:{
+                    time: Date.now(),
+                    guardian: guardian
+                },
+                isAdvent: false,
+                signedOut: true
+        		});
+        		attendance.$save(function(response) {
+				$location.path('attendances/' + response._id);
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+        	}
+        };
+        this.signedOut = function(child,attendances){
+        	var i = 0;
         	console.log(child.firstName);
 			  for(i; i < attendances.length; ++i)
 			  {
-			  	console.log('THIS IS YOUR ATTENDANCE!');
-			  	console.log(attendances[i].childID ===child._id);
-			  	console.log(attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year);
-			  	console.log(!attendances[i].attended);
-			  	console.log(attendances[i]);
-			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].attended)
+			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].signedOut)
+			  	{
+			  		return true;
+			  	}
+			  }
+			  return false;
+        };
+        //edited this function so now it doesn't just check if they are marked absent it if that or they were signed out
+        //this allows me to not have to run the above function while creating the child sign out list
+        this.markedAbsent = function(child, attendances){
+        	var i = 0;
+			  for(i; i < attendances.length; ++i)
+			  {
+			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].attended && !attendances[i].signedOut)
 			  	{
 			  		console.log('made it here');
 			  		return true;
@@ -150,12 +206,8 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 			var i = 0;
 			  for(i; i < attendances.length; ++i)
 			  {
-			  	if(attendances[i].childName === 'Harriet Balls'){
-			  	console.log('CHECK DIS SHIEETTT');
-			  	console.log(attendances[i].childID ===child._id);}
 			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year)
 			  	{
-			  		console.log('made it here');
 			  		return true;
 			  	}
 			  }
