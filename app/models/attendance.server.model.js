@@ -45,6 +45,11 @@ var AttendanceSchema = new Schema({
         type: Boolean,
         default: false
     },
+    //so i can filter if the kid has been signed out. Ya dig?
+    signedOut:{
+        type: Boolean,
+        default: false
+    },
     // Information about the signout for this Attendance
     signout: {
         // Exact time the child was signed out
