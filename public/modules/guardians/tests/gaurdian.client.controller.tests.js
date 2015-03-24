@@ -45,7 +45,7 @@
 			$location = _$location_;
 
 			// Initialize the Gaurdian controller.
-			GaurdiansController = $controller('GuardiansController', {
+			GuardiansController = $controller('GuardiansController', {
 				$scope: scope
 			});
 		}));
