@@ -2,9 +2,9 @@
     <i name="prev" class="fa fa-angle-left" ng-click="previous()" ></i>
         <span>
             {{month.format("MMMM, YYYY")}}
-            <label name="today" class="btn btn-sm" ng-click="goToday()">Today
-            </label>
+            <label name="today" class="btn btn-sm btn-info" ng-click="goToday()">Today</label>
         </span>
+        
     <i name="next" class="fa fa-angle-right" ng-click="next()"></i>
 </div>
 <div class="week names" data-ng-swipe-right="previous()" data-ng-swipe-left="next()">

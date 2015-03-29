@@ -118,4 +118,9 @@ calendar > div.week.names > span {
     color: #2875c7;
     font-weight: bold;
 }
-
+.calendarAddAdventBtn{
+      margin-left: 2vw;
+}
+.calendarTodayBtn{
+    text-align: right;
+}
