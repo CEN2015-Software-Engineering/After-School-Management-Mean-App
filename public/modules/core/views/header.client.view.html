@@ -43,6 +43,12 @@
                         {{test}}
                         <button data-ng-model="editGuardians" name="editGuardianBtn" ng-show="isUnlocked" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Edit Guardians </button>
                         <button data-ng-model="deleteGuardians" name="deleteGuardianBtn" ng-show="isUnlocked" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Delete Guardians </button>
+                        
+                        
+
+                        <button ng-show="isUnlocked" href="/#!/todays-roster"> Today's Roster </button>
+                        
+
                         editable
                         {{editGuardians}}
                         </br>
