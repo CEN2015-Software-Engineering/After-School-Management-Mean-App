@@ -1,30 +1,25 @@
 <section data-ng-controller="TodaysRosterController as roster" data-ng-init="find()">
     <section data-ng-controller="AttendancesController as att" data-ng-init="find()">
-	<div class="page-header">
-		<h1>{{roster.theDate()}} Roster</h1>
-	</div>
-    <div class="list-group">
-        <h4>Extra Students</h4>
-        <h1>
-            <!-- TODO link button to a new today attendance -->
-            <a class="btn btn-warning btn-sm" name="createAttendanceButton" data-ng-click="">
-                <i class="glyphicon glyphicon-user"></i> Add Student
-            </a>
-        </h1>
-        <a data-ng-repeat="attendance in attendances" data-ng-href="#!/todays-roster/{{attendance.childID}}" class="list-group-item" data-ng-if="att.attendingToday(attendance)">
-            <h1 class="list-group-item-heading text-center" data-ng-bind="attendance.childName"></h1>
-        </a>
-    </div>
-        <div class="list-group">
-            <h4>Regularly Scheduled Students</h4>
-            <a data-ng-repeat="child in children | orderBy: 'lastName'" data-ng-href="#!/todays-roster/{{child._id}}" class="list-group-item" data-ng-if="roster.enrolledToday(child) && child.enrolled">
-                <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
-            </a>
 
-
+        <div class="page-header">
+            <h1>{{roster.theDate()}} Roster</h1>
         </div>
-	<div class="alert alert-warning text-center" data-ng-hide="!children.$resolved || children.length">
-		No Children yet, why don't you <a href="/#!/children/create">create one</a>?
-	</div>
+
+            <div class="list-group">
+                <a data-ng-repeat="child in children | orderBy: 'lastName'" data-ng-href="#" class="list-group-item" data-ng-if="att.selectTodaysAttend(child, attendances) || roster.enrolledToday(child)">
+                    <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
+                </a>
+            </div>
+
+            <div class="pull-right">
+                <a class="btn btn-warning btn-sm" name="createAttendanceButton" data-ng-click="">
+                    <i class="glyphicon glyphicon-user"></i> Add Student
+                </a>
+            </div>
+
+        <div class="alert alert-warning text-center" data-ng-hide="!children.$resolved || children.length">
+            No students are scheduled to attend today.
+        </div>
+
     </section>
 </section>
