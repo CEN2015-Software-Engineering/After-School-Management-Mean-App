@@ -31,8 +31,8 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 
 			// Redirect after save
 			advent.$save(function(response) {
-				$location.path('advents/' + response._id);
-
+				// $location.path('advents/' + response._id);
+                $location.path('calendar');
 				// Clear form fields
 				$scope.name = '';
 			}, function(errorResponse) {

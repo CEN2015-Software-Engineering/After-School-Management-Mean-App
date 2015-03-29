@@ -3,5 +3,5 @@
  */
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['child.js', 'attendance.js', 'advent.js', 'calendar.js']
+    specs: ['child.js'/*, 'attendance.js', 'advent.js', 'calendar.js'*/]
 };

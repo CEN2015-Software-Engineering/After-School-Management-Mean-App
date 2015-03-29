@@ -180,20 +180,19 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         	console.log(child.firstName);
 			  for(i; i < attendances.length; ++i)
 			  {
-			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].signedOut)
+			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && attendances[i].signedOut)
 			  	{
 			  		return true;
 			  	}
 			  }
 			  return false;
         };
-        //edited this function so now it doesn't just check if they are marked absent it if that or they were signed out
-        //this allows me to not have to run the above function while creating the child sign out list
+        
         this.markedAbsent = function(child, attendances){
         	var i = 0;
 			  for(i; i < attendances.length; ++i)
 			  {
-			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].attended && !attendances[i].signedOut)
+			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].attended && attendances[i].signedOut)
 			  	{
 			  		console.log('made it here');
 			  		return true;

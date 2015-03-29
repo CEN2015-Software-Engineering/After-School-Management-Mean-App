@@ -133,7 +133,7 @@ describe('Create and Edit child', function() {
         element(by.name('relationship')).element(by.cssContainingText('option', 'Sister')).click();
         browser.sleep(500);
         element(by.name('confirmButton')).click();
-        browser.sleep(500);
+
         expect(element(by.name('guardianNameField')).getText()).toEqual('Susan Test');
         expect(element(by.name('guardianRelField')).getText()).toEqual('Sister');
 
@@ -159,7 +159,7 @@ describe('Create and Edit child', function() {
         browser.sleep(1000);
         element(by.model('guardian.rel')).element(by.cssContainingText('option', 'Mom')).click();
         element(by.name('confirmButton')).click();
-
+        
         expect(element(by.name('guardianNameField')).getText()).toEqual('House\'s Mom');
         expect(element(by.name('guardianRelField')).getText()).toEqual('Mom');
         browser.sleep(1000);
