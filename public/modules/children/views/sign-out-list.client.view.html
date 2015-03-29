@@ -4,7 +4,7 @@
         <h1>{{roster.theDate()}} </br>Student Sign-Out</h1>
     </div>
         <div class="list-group">
-            <a data-ng-repeat="child in children" data-ng-href="#!/sign-out-list/{{child._id}}" class="list-group-item" data-ng-if="(roster.enrolledToday(child) && child.enrolled && !att.markedAbsent(child, attendances))||(att.hasAttend(child,attendances) && !att.markedAbsent(child,attendances))">
+            <a data-ng-repeat="child in children" data-ng-href="#!/sign-out-list/{{child._id}}" class="list-group-item" data-ng-if="(roster.enrolledToday(child) && child.enrolled && !att.markedAbsent(child, attendances) && !att.signedOut(child, attendances))||(att.hasAttend(child,attendances) && !att.markedAbsent(child,attendances) && !att.signedOut(child,attendances))">
                 <!--need to take out children who are marked absent by the instructor-->
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
             </a>
