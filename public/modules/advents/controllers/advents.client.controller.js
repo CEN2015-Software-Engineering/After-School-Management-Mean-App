@@ -186,7 +186,9 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
 
                 //TO-DO
                 //FIGURE OUT HOW TO REMOVE THIS REFRESH
-                $scope.find();
+                
+                $scope.advents = Advents.query();
+                $scope.attendances = Attendances.query();
 
                 for (var i in $scope.advents) {
                     if ($scope.advents [i] === advent) {
@@ -194,9 +196,11 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
                     }
                 }
             } else {
+
                 $scope.advent.$remove(function() {
                     $location.path('calendar');
-                    $window.location.reload();
+                    $scope.advents = Advents.query();
+                    $scope.attendances = Attendances.query();
                 });
             }
         };
