@@ -1,7 +1,7 @@
 'use strict';
 
 
-// Children controller
+// Roster controller
 angular.module('children').controller('TodaysRosterController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Attendances',
     function($scope, $window, $stateParams, $location, Children, Attendances) {
         // Find a list of Children
@@ -13,6 +13,7 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
             $scope.day = moment().format('ddd').toLowerCase();
             console.log($scope.day);
         };
+
         this.theDate = function() {
             return moment().format('dddd, MMMM Do YYYY');
         };
