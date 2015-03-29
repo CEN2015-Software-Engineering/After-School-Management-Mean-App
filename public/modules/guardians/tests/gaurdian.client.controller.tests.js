@@ -2,7 +2,7 @@
 
 (function() {
 	// Gaurdian Controller Spec
-	describe('Gaurdians Controller Tests', function() {
+	describe('Guardians Controller Tests', function() {
 		// Initialize global variables
 		var GuardiansController,
 		scope,
@@ -44,13 +44,13 @@
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
-			// Initialize the Gaurdian controller.
+			// Initialize the Guardian controller.
 			GuardiansController = $controller('GuardiansController', {
 				$scope: scope
 			});
 		}));
 
-		//To-Do: replace the below child tests with gaurdian tests
+		//To-Do: replace the below child tests with guardian tests
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
