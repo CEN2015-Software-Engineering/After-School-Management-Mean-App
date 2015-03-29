@@ -2,12 +2,14 @@
 
 
 // Children controller
-angular.module('children').controller('TodaysRosterController', ['$scope', '$window', '$stateParams', '$location', 'Children',
-    function($scope, $window, $stateParams, $location, Children) {
+angular.module('children').controller('TodaysRosterController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Attendances',
+    function($scope, $window, $stateParams, $location, Children, Attendances) {
         // Find a list of Children
         $scope.find = function() {
             $scope.children = Children.query();
             console.log($scope.children);
+            $scope.attendances = Attendances.query();
+            console.log($scope.attendances);
             $scope.day = moment().format('ddd').toLowerCase();
             console.log($scope.day);
         };
@@ -34,6 +36,27 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                 return false;
             }
         };
+
+        this.addedToday = function( attendance ){
+            console.log(attendance.childID);
+            if( (attendance.date.day === $scope.day) && (attendance.date.month === $scope.month+1) && (attendance.date.year === $scope.year) ){
+                return true;
+            }
+            else{
+                return false;
+            }
+        };
+
+        this.childAddedToday = function( attendance ){
+            console.log(attendance.childID);
+            if( (attendance.date.day === $scope.day) && (attendance.date.month === $scope.month+1) && (attendance.date.year === $scope.year) ){
+                return true;
+            }
+            else{
+                return false;
+            }
+        };
+
 
         //Is the kid in checkout yet? Function here
     }

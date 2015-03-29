@@ -21,10 +21,6 @@ angular.module('children').config(['$stateProvider',
 			url: '/children/:childId',
 			templateUrl: 'modules/children/views/view-child.client.view.html'
 		}).
-		state('signOutChild', {
-			url: '/todays-roster/:childId',
-			templateUrl: 'modules/children/views/sign-out-child.client.view.html'
-		}).
 		state('sign-out-list',{
 			url: '/sign-out-list',
 			templateUrl: 'modules/children/views/sign-out-list.client.view.html'
