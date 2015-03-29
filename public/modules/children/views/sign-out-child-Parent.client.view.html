@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     </br></br></br>
-                    <div class = "btn btn-warning btn-sm" ng-show = "guardianCtrl.gimmeMyChillun()" ng-click="guardianCtrl.setMoChilList(true); guardianCtrl.setMyChillun(false);attendCtrl.signOut(child,attendances,selected)">
+                    <div class = "btn btn-warning btn-sm" ng-show = "guardianCtrl.gimmeMyChillun()" ng-click="guardianCtrl.setMyChillun(false);attendCtrl.signOut(child,attendances,guardianCtrl.getSelected().gName)">
                             <i class="glyphicon glyphicon-user"></i></br>{{guardianCtrl.getSelected().gName}}: Confirm Child Sign out
                     </div>
                     <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || !guardianCtrl.hasGuardian(child._id,guardians)">
