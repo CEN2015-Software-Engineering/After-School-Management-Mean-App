@@ -186,7 +186,7 @@ angular.module('advents').controller('AdventsAttendModalController', ['$scope', 
 
                 //TO-DO
                 //FIGURE OUT HOW TO REMOVE THIS REFRESH
-                $window.location.reload();
+                $scope.find();
 
                 for (var i in $scope.advents) {
                     if ($scope.advents [i] === advent) {
