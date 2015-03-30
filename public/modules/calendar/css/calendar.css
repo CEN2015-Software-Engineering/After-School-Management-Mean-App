@@ -11,7 +11,7 @@ calendar {
     box-sizing: border-box;
     background: white;
     width: 100%;
-    border: solid 1px #cccccc;
+    
     margin-bottom: 10px;
 }
 calendar > div.header {
@@ -20,6 +20,7 @@ calendar > div.header {
     background: #666699;
     height: 60px;
     color: white;
+    border: solid 1px #cccccc;
 }
 calendar > div.header > * {
     height: 40px;
@@ -63,7 +64,9 @@ calendar > div.header > span {
 calendar > div.week {
     float: left;
     width: 100%;
-    border-top: solid 1px #cccccc;
+    border-bottom: solid 1px #cccccc;
+    border-left: solid 1px #cccccc;
+    border-right: solid 1px #cccccc;
 }
 calendar > div.week:first-child {
     border-top: none;
@@ -118,9 +121,9 @@ calendar > div.week.names > span {
     color: #2875c7;
     font-weight: bold;
 }
-.calendarAddAdventBtn{
-      margin-left: 2vw;
+.calendarAboveHeader{
+    border: 0px;
 }
-.calendarTodayBtn{
-    text-align: right;
+.calendarAddAdventBtn{
+    margin-left: 2vw;
 }

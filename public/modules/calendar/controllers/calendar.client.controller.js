@@ -37,6 +37,7 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Advents'
 
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
+                $scope.find();
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
