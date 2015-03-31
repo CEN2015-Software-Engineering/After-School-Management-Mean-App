@@ -34,14 +34,14 @@
                         <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || !guardianCtrl.hasGuardian(child._id,guardians)">
                             No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
                         </div>
-                        
-                        <signatureDir></signatureDir>
-
                         <div class = "ApprovedChildList" data-ng-repeat="child in children" data-ng-if="child._id == guardianCtrl.getSeleted().childID" data-ng-hide="!guardianCtrl.gimmeMoChilList()">
                             <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
                         </div>
                         <div class="page-break"></div>
                     </div>
+                </div>
+                <div>
+                    <ngSignaturePad></ngSignaturePad>
                 </div>
         </section>
     </section>
