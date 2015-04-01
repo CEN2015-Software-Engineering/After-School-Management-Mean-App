@@ -1,8 +1,18 @@
 'use strict';
 
 // Attendances controller
-angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Attendances', '$modal', '$log',
-	function($scope, $stateParams, $location, Attendances, $modal, $log) {
+angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Attendances', '$modal', '$log', 'instructorPerm',
+	function($scope, $stateParams, $location, Attendances, $modal, $log, instructorPerm) {
+
+        $scope.editGuardians = instructorPerm.getEditGuardians();
+        $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+
+        $scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.editGuardians = newValue;
+        });
+        $scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.deleteGuardians = newValue;
+        });
 
         //Open Modal Window to Update Guardian
         this.modalUpdate = function (size, selectedAttendance) {

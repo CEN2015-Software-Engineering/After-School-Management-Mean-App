@@ -1,9 +1,19 @@
 'use strict';
 
 // Advents controller
-angular.module('advents').controller('AdventsController', ['$scope', '$stateParams', '$location', 'Advents', '$timeout',
-	function($scope, $stateParams, $location, Advents, $timeout) {
+angular.module('advents').controller('AdventsController', ['$scope', '$stateParams', '$location', 'Advents', '$timeout', 'instructorPerm',
+	function($scope, $stateParams, $location, Advents, $timeout, instructorPerm) {
 
+
+        $scope.editGuardians = instructorPerm.getEditGuardians();
+        $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+
+        $scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.editGuardians = newValue;
+        });
+        $scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.deleteGuardians = newValue;
+        });
 
         //MODAL TO OPEN ADVENT - USE GUARDIAN AS A TEMPLATE
 

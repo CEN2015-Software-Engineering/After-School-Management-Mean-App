@@ -1,8 +1,18 @@
 'use strict';
 
 // Children controller
-angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Guardians', '$modal', '$log', '$timeout',
-	function($scope, $window, $stateParams, $location, Children, Guardians, $modal, $log, $timeout) {
+angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Guardians', '$modal', '$log', '$timeout', 'instructorPerm',
+	function($scope, $window, $stateParams, $location, Children, Guardians, $modal, $log, $timeout, instructorPerm) {
+
+		$scope.editGuardians = instructorPerm.getEditGuardians();
+		$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+
+		$scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
+			if(newValue !== oldValue) $scope.editGuardians = newValue;
+		});
+		$scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
+			if(newValue !== oldValue) $scope.deleteGuardians = newValue;
+		});
 
 		$scope.checkModel = {
 			mon: false,

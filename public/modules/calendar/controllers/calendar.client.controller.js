@@ -1,8 +1,19 @@
 'use strict';
 
-angular.module('calendar').controller('CalendarController', ['$scope', 'Advents', '$modal', '$log',
-	function($scope, Advents, $modal, $log) {
-		// Controller Logic
+angular.module('calendar').controller('CalendarController', ['$scope', 'Advents', '$modal', '$log', 'instructorPerm'
+	function($scope, Advents, $modal, $log, instructorPerm) {
+		
+        $scope.editGuardians = instructorPerm.getEditGuardians();
+        $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+
+        $scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.editGuardians = newValue;
+        });
+        $scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.deleteGuardians = newValue;
+        });
+
+        // Controller Logic
 		// ...
 		$scope.day = moment();
 
@@ -37,7 +48,7 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Advents'
 
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-                $scope.find();
+                
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });

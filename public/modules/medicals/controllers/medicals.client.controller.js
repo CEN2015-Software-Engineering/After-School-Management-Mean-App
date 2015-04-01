@@ -1,10 +1,19 @@
 'use strict';
 
 // Medicals controller
-angular.module('medicals').controller('MedicalsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Medicals', '$window', 'Notify', '$modal', '$log',
-	function($scope, $stateParams, $location, Authentication, Medicals, $window, Notify, $modal, $log) {
+angular.module('medicals').controller('MedicalsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Medicals', '$window', 'Notify', '$modal', '$log', 'instructorPerm',
+	function($scope, $stateParams, $location, Authentication, Medicals, $window, Notify, $modal, $log, instructorPerm) {
 
-      
+        $scope.editGuardians = instructorPerm.getEditGuardians();
+        $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+
+        $scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.editGuardians = newValue;
+        });
+        $scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.deleteGuardians = newValue;
+        });
+
         // Create new Medical
         $scope.create = function(childId) {
             // Create new Medical object

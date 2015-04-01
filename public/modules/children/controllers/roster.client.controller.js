@@ -2,8 +2,19 @@
 
 
 // Children controller
-angular.module('children').controller('TodaysRosterController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Attendances',
-    function($scope, $window, $stateParams, $location, Children, Attendances) {
+angular.module('children').controller('TodaysRosterController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Attendances', 'instructorPerm',
+    function($scope, $window, $stateParams, $location, Children, Attendances, instructorPerm) {
+
+        $scope.editGuardians = instructorPerm.getEditGuardians();
+        $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+
+        $scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.editGuardians = newValue;
+        });
+        $scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.deleteGuardians = newValue;
+        });
+
         // Find a list of Children
         $scope.find = function() {
             $scope.children = Children.query();
