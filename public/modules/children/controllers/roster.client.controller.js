@@ -15,6 +15,7 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
             if(newValue !== oldValue) $scope.deleteGuardians = newValue;
         });
 
+
         // Find a list of Children
         $scope.find = function() {
             $scope.children = Children.query();
@@ -24,6 +25,7 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
             $scope.day = moment().format('ddd').toLowerCase();
             console.log($scope.day);
         };
+
         this.theDate = function() {
             return moment().format('dddd, MMMM Do YYYY');
         };
