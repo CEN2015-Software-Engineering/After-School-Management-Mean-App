@@ -94,7 +94,24 @@ exports.attendanceByID = function(req, res, next, id) {
 		next();
 	});
 };
-
+/**
+ * More Attendance middleware
+ */
+ exports.attendanceByDate = function(req,res,next){
+ 	var d = new Date().getDate();
+ 	var m = new Date().getMonth();
+ 	m = m+1;
+ 	var y = new Date().getFullYear();
+ 	Attendance.find().where({date: {day: d, month: m, year: y}}).exec(function(err,attendances){
+ 		if(err){
+ 			return res.status(400).send({
+ 				message: errorHandler.getErrorMessage(err)
+ 			});
+ 		} else {
+ 			res.jsonp(attendances);
+ 		}
+ 	});
+ };
 /**
  * Attendance authorization middleware
  */
