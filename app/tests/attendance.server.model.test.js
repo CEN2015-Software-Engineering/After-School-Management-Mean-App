@@ -19,24 +19,24 @@ describe('Attendance Model Unit Tests:', function() {
 	beforeEach(function(done) {
             this.timeout(0);
             attendance = new Attendance({
-			    name: 'Well Named Event',
-                date: {
+			    childID: '525a8422f6d0f87f0e407a33',
+			    childName: 'Chi L. Dee',
+			    date: {
                     day: 1,
                     month: 4,
                     year: 2015
                 },
-                time: {
-                    hr: '6',
-                    mine: '0',
-                    timeSuffix: 'PM'
+                attended: true,
+                scheduledAbsent: false,
+                signedOUt: false,
+                signout: {
+                	time: null,
+                	guardian: 'Guardy Ian'
                 },
-                description: 'This is very descriptive',
-                PDFDoc: {
-                    iPDF: false,
-                    linkToPDF: ''
-                }
+                isAdvent: false,
+                adventID: ''
             });
-            attendance.signout.created = new Date();
+            attendance.signout.time = new Date();
 	        done();
     });
 
@@ -50,7 +50,7 @@ describe('Attendance Model Unit Tests:', function() {
 		});
 
 		it('should be able to show an error when try to save without fname', function(done) {
-			attendance.name = '';
+			attendance.childName = '';
             this.timeout(0);
 
 			return attendance.save(function(err) {
