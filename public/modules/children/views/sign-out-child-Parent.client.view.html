@@ -34,9 +34,18 @@
                         <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || !guardianCtrl.hasGuardian(child._id,guardians)">
                             No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
                         </div>
-                        <div class="page-break"></div>
+
+                        <canvas width="800" height="250" id="signature-pad" class="signaturepad" ng-signature-pad="signature"></canvas>
+                        <br />
+                        <button class="button clear" id="signature-clear" data-ng-click="signature.clear()">Clear</button>
+                        {{signature.isEmpty()}}
+                        <br /><br />
+
                     </div>
                 </div>
+
+
+
         </section>
     </section>
 </section>
