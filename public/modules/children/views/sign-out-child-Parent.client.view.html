@@ -37,9 +37,16 @@
                         <div class = "ApprovedChildList" data-ng-repeat="child in children" data-ng-if="child._id == guardianCtrl.getSeleted().childID" data-ng-hide="!guardianCtrl.gimmeMoChilList()">
                             <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
                         </div>
-                        <div class="page-break"></div>
+                        <canvas width="800" height="250" id="signature-pad" class="signaturepad" ng-signature-pad="signature"></canvas>
+                        <br />
+                        <button class="button clear" id="signature-clear" data-ng-click="signature.clear()">Clear</button>
+                        {{signature.isEmpty()}}
+                        <br /><br />
                     </div>
                 </div>
+
+
+
         </section>
     </section>
 </section>
