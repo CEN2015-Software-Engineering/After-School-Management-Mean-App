@@ -34,14 +34,13 @@
                         <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || !guardianCtrl.hasGuardian(child._id,guardians)">
                             No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
                         </div>
-                        <div class = "ApprovedChildList" data-ng-repeat="child in children" data-ng-if="child._id == guardianCtrl.getSeleted().childID" data-ng-hide="!guardianCtrl.gimmeMoChilList()">
-                            <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
-                        </div>
+
                         <canvas width="800" height="250" id="signature-pad" class="signaturepad" ng-signature-pad="signature"></canvas>
                         <br />
                         <button class="button clear" id="signature-clear" data-ng-click="signature.clear()">Clear</button>
                         {{signature.isEmpty()}}
                         <br /><br />
+
                     </div>
                 </div>
 
