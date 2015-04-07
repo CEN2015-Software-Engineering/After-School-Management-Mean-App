@@ -1,8 +1,8 @@
 'use strict';
 
 // Children controller
-angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Guardians', '$modal', '$log', '$timeout',
-	function($scope, $window, $stateParams, $location, Children, Guardians, $modal, $log, $timeout) {
+angular.module('children').controller('ChildrenController', ['$scope', '$window', '$http', '$stateParams', '$location', 'Children', 'Guardians', '$modal', '$log', '$timeout',
+	function($scope, $window, $http, $stateParams, $location, Children, Guardians, $modal, $log, $timeout) {
 
 		$scope.checkModel = {
 			mon: false,
@@ -71,16 +71,22 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
             if( sure || child._id === '525a8422f6d0f87f0e407a33') {
                 console.log(guardians);
                 console.log('BLAH');
-                var lookForGuardians = Guardians.query();
-                console.log(lookForGuardians);
-                for(var g in lookForGuardians) {
-                    if (lookForGuardians.hasOwnProperty(g)) {
-                        if(lookForGuardians[g].childID === child._id) {
-                            console.log(lookForGuardians[g].gName);
-                            lookForGuardians[g].$remove();
+                $http.get('/guardians/').success(function(data){
+                    var lookForGuardians = data;
+                    for(var g in lookForGuardians) {
+                        if (lookForGuardians.hasOwnProperty(g)) {
+                            if(lookForGuardians[g].childID === child._id) {
+                                console.log(lookForGuardians[g].gName);
+                                $http.delete('/guardians/' + lookForGuardians[g]._id).
+                                    success(function (data) {
+                                        console.log(data);
+                                });
+                            }
                         }
                     }
-                }
+                });
+
+
 
 
 				if (child) {
@@ -125,28 +131,26 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 
 		// Find existing Child
 		$scope.findOne = function() {
-			$scope.child = Children.get({ 
+			/*$scope.child = Children.get({
 				childId: $stateParams.childId
-			});
+			});*/
+            $http.get('/children/' + $stateParams.childId).success(function(data){
+                $scope.child = data;
+                var ageDifMs  = Date.now() - new Date($scope.child.dob.year, $scope.child.dob.month, $scope.child.dob.day, 0, 0, 0, 0);
+                var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                console.log(Math.abs(ageDate.getUTCFullYear() - 1970));
+                $scope.child.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+                var ufh = $scope.child.contact.home;
+                $scope.child.contact.home = ufh.substr(0,3) + '-' + ufh.substr(3,3) + '-' + ufh.substr(6);
+                var ufw = $scope.child.contact.work;
+                $scope.child.contact.work = ufw.substr(0,3) + '-' + ufw.substr(3,3) + '-' + ufw.substr(6);
+                console.log($scope.child);
+
+            });
+
+
 		};
 
-        this.age = function(child) {
-            if(child.hasOwnProperty('dob')) {
-                var ageDifMs  = Date.now() - new Date(child.dob.year, child.dob.month, child.dob.day, 0, 0, 0, 0);
-                var ageDate = new Date(ageDifMs); // miliseconds from epoch
-                return Math.abs(ageDate.getUTCFullYear() - 1970);
-            }
-        };
-
-        this.formatHome = function(child){
-            var ufh = child.contact.home;
-            return ufh.substr(0,3) + '-' + ufh.substr(3,3) + '-' + ufh.substr(6);
-        };
-
-        this.formatWork = function(child){
-            var ufw = child.contact.work;
-            return ufw.substr(0,3) + '-' + ufw.substr(3,3) + '-' + ufw.substr(6);
-        };
 
 		//Open Modal Window to Update Guardian
 		this.modalUpdate = function (size, selectedChild) {
@@ -182,18 +186,16 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 	}
 ]);
 
-angular.module('children').controller('ChildrenUpdateController', ['$scope', '$stateParams', '$location', 'Children',
-	function($scope, $stateParams, $location, Children) {
+angular.module('children').controller('ChildrenUpdateController', ['$scope', '$stateParams', '$location', 'Children','$http',
+	function($scope, $stateParams, $location, Children, $http) {
 		// Update existing Child
 		this.update = function(selectedChild) {
 			var child = selectedChild;
             child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
             child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
-			child.$update(function() {
-				$location.path('children/' + child._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+            $http.put('/children/' + child._id, child).success(function(data){
+
+            });
 		};
 
 	}
