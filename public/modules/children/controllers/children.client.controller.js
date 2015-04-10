@@ -2,8 +2,8 @@
 
 // Children controller
 
-angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Guardians', '$modal', '$log', '$timeout', 'instructorPerm',
-	function($scope, $window, $stateParams, $location, Children, Guardians, $modal, $log, $timeout, instructorPerm) {
+angular.module('children').controller('ChildrenController', ['$scope', '$window', '$stateParams', '$location', 'Children', 'Guardians', '$modal', '$log', '$timeout', 'instructorPerm','$http',
+	function($scope, $window, $stateParams, $location, Children, Guardians, $modal, $log, $timeout, instructorPerm, $http) {
 
 		$scope.editGuardians = instructorPerm.getEditGuardians();
 		$scope.deleteGuardians = instructorPerm.getDeleteGuardians();

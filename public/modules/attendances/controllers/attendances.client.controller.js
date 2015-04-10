@@ -2,8 +2,8 @@
 
 // Attendances controller
 
-angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Attendances', '$modal', '$log', 'instructorPerm',
-	function($scope, $stateParams, $location, Attendances, $modal, $log, instructorPerm) {
+angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Attendances', '$modal', '$log', 'instructorPerm','$http',
+	function($scope, $stateParams, $location, Attendances, $modal, $log, instructorPerm,$http) {
 
         $scope.editGuardians = instructorPerm.getEditGuardians();
         $scope.deleteGuardians = instructorPerm.getDeleteGuardians();

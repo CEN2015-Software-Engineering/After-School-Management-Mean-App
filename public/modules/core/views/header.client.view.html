@@ -41,19 +41,27 @@
                         </body>
                         <!-- this is the div for ui routing-->
                         {{test}}
-                        <button data-ng-model="editGuardians" name="editGuardianBtn" ng-show="isUnlocked" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Edit Guardians </button>
-                        <button data-ng-model="deleteGuardians" name="deleteGuardianBtn" ng-show="isUnlocked" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Delete Guardians </button>
-                        
-                        
+                        <button data-ng-model="editGuardians" name="editGuardianBtn" ng-show="false" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Edit Guardians </button>
 
-                        <button ng-show="isUnlocked" href="/#!/todays-roster"> Today's Roster </button>
-                        
+                        <div class="hideSidebar" ng-show="isUnlocked">
+                            
+                            ROSTER
+                            <div class="sidebarSection" >
+                            <a href="/#!/todays-roster"> <button class="sidebarBtn" href="/#!/todays-roster"> Today's Roster </button></a>
+                            </div>
 
-                        editable
-                        {{editGuardians}}
-                        </br>
-                        deletable
-                        {{deleteGuardians}}
+                            EVENTS
+                            <div class="sidebarSection" >
+                            <a href="/#!/advents/create"> <button class="sidebarBtn" href="/#!/todays-roster"> Add Event </button></a>
+                            
+                            <a href="/#!/advents"> <button class="sidebarBtn" href="/#!/todays-roster"> List Events </button></a>
+                            </div>
+
+                             DELETE PERMISSION
+                            <div class="sidebarSection" >
+                            <button class="sidebarBtn" data-ng-model="deleteGuardians" name="deleteGuardianBtn" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Allow Deleting </button>
+                            </div>
+                        </div>
 
 
                     </div>
