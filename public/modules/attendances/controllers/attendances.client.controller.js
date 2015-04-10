@@ -14,6 +14,10 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         $scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
             if(newValue !== oldValue) $scope.deleteGuardians = newValue;
         });
+        $scope.addGuardians = instructorPerm.getAddGuardians();
+        $scope.$watch(function (){ return instructorPerm.getAddGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.addGuardians = newValue;
+        });
 
 
         //Open Modal Window to Update Guardian

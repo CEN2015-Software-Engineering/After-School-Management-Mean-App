@@ -66,13 +66,13 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 			} else if (document.getElementById('PINbox').value === '1111'){
 				document.getElementById('PINbox').value = ''; 
 				$scope.isUnlocked = true;
-				$instructorPerm.setEditGuardians(true);
-				$instructorPerm.setAddGuardians(true);
+				instructorPerm.setEditGuardians(true);
+				instructorPerm.setAddGuardians(true);
 				setTimeout(function() {
 					 $scope.$apply(function () {
             
 						$scope.isUnlocked = false;
-						alert('timout popped '+ $scope.isUnlocked);
+						//alert('timout popped '+ $scope.isUnlocked);
 						instructorPerm.setEditGuardians(false);
 						instructorPerm.setDeleteGuardians(false);
 						$scope.editGuardians = instructorPerm.getEditGuardians();

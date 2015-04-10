@@ -9,10 +9,10 @@
             <div class="col-sm-3">
                 <h4>
                     <div class="pull-right" data-ng-show="true">
-                        <a class="btn btn-primary" name="editChildButton" data-ng-click="childFullProfile.modalUpdate('lg', child)">
+                        <a class="btn btn-primary" data-ng-show = "editGuardians" name="editChildButton" data-ng-click="childFullProfile.modalUpdate('lg', child)">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        <a class="btn btn-danger" name="deleteChildButton" data-ng-click="remove(child, guardians);">
+                        <a class="btn btn-danger" name="deleteChildButton" data-ng-show = "deleteGuardians" data-ng-click="remove(child, guardians);">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </div>

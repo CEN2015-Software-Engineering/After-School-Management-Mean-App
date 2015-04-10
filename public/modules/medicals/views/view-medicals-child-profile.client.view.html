@@ -10,7 +10,7 @@
     </div>
     <div class="col-sm-4">
         <h1>
-            <a class="btn btn-warning btn-sm" name="createMedicalButton" data-ng-click="medicalCtrl.modalCreate('lg', child)">
+            <a class="btn btn-warning btn-sm" data-ng-show = "addGuardians" name="createMedicalButton" data-ng-click="medicalCtrl.modalCreate('lg', child)">
                 <i class="glyphicon glyphicon-user"></i> Add Information
             </a>
         </h1>
@@ -25,10 +25,10 @@
 			<small class="list-group-item-text">
                 <div class="pull-right">
 
-                    <a class="btn btn-primary btn-sm" name="updateMedicalButton" data-ng-click="medicalCtrl.modalUpdate('lg', medical)">
+                    <a class="btn btn-primary btn-sm" name="updateMedicalButton"  data-ng-show = "editGuardians" data-ng-click="medicalCtrl.modalUpdate('lg', medical)">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <a class="btn btn-danger btn-sm" name="deleteMedicalButton" data-ng-click="medicalCtrl.remove(medical);">
+                    <a class="btn btn-danger btn-sm" name="deleteMedicalButton"  data-ng-show = "deleteGuardians" data-ng-click="medicalCtrl.remove(medical);">
                         <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </div>
@@ -48,10 +48,10 @@
 			<small class="list-group-item-text">
                 <div class="pull-right">
 
-                    <a class="btn btn-primary btn-sm" name="updateMedicalButton" data-ng-click="medicalCtrl.modalUpdate('lg', medical)">
+                    <a class="btn btn-primary btn-sm" name="updateMedicalButton" data-ng-show = "editGuardians" data-ng-click="medicalCtrl.modalUpdate('lg', medical)">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <a class="btn btn-danger btn-sm" name="deleteMedicalButton" data-ng-click="medicalCtrl.remove(medical);">
+                    <a class="btn btn-danger btn-sm" name="deleteMedicalButton" data-ng-show = "deleteGuardians" data-ng-click="medicalCtrl.remove(medical);">
                         <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </div>
@@ -72,10 +72,10 @@
 			<small class="list-group-item-text">
                 <div class="pull-right">
 
-                    <a class="btn btn-primary btn-sm" name="updateMedicalButton" data-ng-click="medicalCtrl.modalUpdate('lg', medical)">
+                    <a class="btn btn-primary btn-sm" name="updateMedicalButton" data-ng-show = "editGuardians" data-ng-click="medicalCtrl.modalUpdate('lg', medical)">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <a class="btn btn-danger btn-sm" name="deleteMedicalButton" data-ng-click="medicalCtrl.remove(medical);">
+                    <a class="btn btn-danger btn-sm" name="deleteMedicalButton" data-ng-show = "deleteGuardians" data-ng-click="medicalCtrl.remove(medical);">
                         <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </div>

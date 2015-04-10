@@ -7,12 +7,16 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 
 		$scope.editGuardians = instructorPerm.getEditGuardians();
 		$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+		$scope.addGuardians = instructorPerm.getAddGuardians();
 
 		$scope.$watch(function (){ return instructorPerm.getEditGuardians(); }, function(newValue, oldValue){
 			if(newValue !== oldValue) $scope.editGuardians = newValue;
 		});
 		$scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
 			if(newValue !== oldValue) $scope.deleteGuardians = newValue;
+		});
+		$scope.$watch(function (){ return instructorPerm.getAddGuardians(); }, function(newValue, oldValue){
+			if(newValue !== oldValue) $scope.addGuardians = newValue;
 		});
 
 

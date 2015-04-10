@@ -14,6 +14,10 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
         $scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
             if(newValue !== oldValue) $scope.deleteGuardians = newValue;
         });
+        $scope.addGuardians = instructorPerm.getAddGuardians();
+        $scope.$watch(function (){ return instructorPerm.getAddGuardians(); }, function(newValue, oldValue){
+            if(newValue !== oldValue) $scope.addGuardians = newValue;
+        });
 
         // Find a list of Children
         $scope.find = function() {
