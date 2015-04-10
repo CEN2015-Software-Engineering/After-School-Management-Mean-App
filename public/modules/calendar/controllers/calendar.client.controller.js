@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('calendar').controller('CalendarController', ['$scope', 'Advents', '$modal', '$log', 'instructorPerm'
+angular.module('calendar').controller('CalendarController', ['$scope', 'Advents', '$modal', '$log', 'instructorPerm',
 	function($scope, Advents, $modal, $log, instructorPerm) {
 		
         $scope.editGuardians = instructorPerm.getEditGuardians();

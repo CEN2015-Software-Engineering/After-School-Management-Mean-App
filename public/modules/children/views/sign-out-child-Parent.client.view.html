@@ -1,4 +1,4 @@
-<section data-ng-controller="ChildrenController as childFullProfile" data-ng-init="findOne()">
+<section data-ng-controller="ChildrenController as childFullProfile" data-ng-init="findOne()" resize>
     <section data-ng-controller="GuardiansController as guardianCtrl" data-ng-init="find()">
         <section data-ng-controller="AttendancesController as attendCtrl" data-ng-init="find()">
                 <div class="row">
@@ -21,25 +21,30 @@
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
                         <div class="guardiansCheckOutButtons" data-ng-repeat="guardian in guardians" data-ng-if="guardian.childID == child._id">
-                            <div class="btn checkout-btn col-sm-4 col-sm-offset-1" data-ng-href="#!/guardians/{{guardian._id}}" ng-click = "guardianCtrl.setselected(guardian); setMychillun(true)">
+                            <div class="btn checkout-btn col-sm-3 col-sm-offset-1" data-ng-href="#!/guardians/{{guardian._id}}" ng-click = "guardianCtrl.selected = true; guardianCtrl.setselected(guardian); setMychillun(true)">
                                 <span data-ng-bind="guardian.gName"></span>
                                 <br />
                                 <span data-ng-bind="guardian.rel"></span>
                             </div>
                         </div>
                         </br></br></br>
-                        <div class = "btn btn-warning btn-sm" ng-show = "guardianCtrl.gimmeMyChillun()" ng-click="guardianCtrl.setMyChillun(false);attendCtrl.signOut(child,attendances,guardianCtrl.getSelected().gName)">
-                                <i class="glyphicon glyphicon-user"></i></br>{{guardianCtrl.getSelected().gName}}: Confirm Child Sign out
-                        </div>
+
                         <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || !guardianCtrl.hasGuardian(child._id,guardians)">
-                            No Guardians yet, why don't you <a href="/#!/guardians/create">create one</a>?
+                            No Guardians yet.
                         </div>
-                        <div class = "ApprovedChildList" data-ng-repeat="child in children" data-ng-if="child._id == guardianCtrl.getSeleted().childID" data-ng-hide="!guardianCtrl.gimmeMoChilList()">
-                            <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
+                        <canvas width="800" height="250" id="signature-pad" class="signaturepad" ng-signature-pad="signature"></canvas>
+                        <br />
+                        <button class="btn btn-day clear" id="signature-clear" data-ng-click="signature.clear()">Clear</button>
+                        {{signature.isEmpty()}}
+                        <br /><br />
+                        <div class = "btn btn-warning btn-sm" ng-show = "!signature.isEmpty() && guardianCtrl.selected" ng-click="guardianCtrl.setMyChillun(false);attendCtrl.signOut(child,attendances,guardianCtrl.getSelected().gName)">
+                            <i class="glyphicon glyphicon-user"></i></br>{{guardianCtrl.getSelected().gName}}: Confirm Child Sign out
                         </div>
-                        <div class="page-break"></div>
                     </div>
                 </div>
+
+
+
         </section>
     </section>
 </section>

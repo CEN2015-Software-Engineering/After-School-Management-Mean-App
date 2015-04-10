@@ -1,6 +1,7 @@
 'use strict';
 
 // Attendances controller
+
 angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Attendances', '$modal', '$log', 'instructorPerm',
 	function($scope, $stateParams, $location, Attendances, $modal, $log, instructorPerm) {
 
@@ -13,6 +14,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         $scope.$watch(function (){ return instructorPerm.getDeleteGuardians(); }, function(newValue, oldValue){
             if(newValue !== oldValue) $scope.deleteGuardians = newValue;
         });
+
 
         //Open Modal Window to Update Guardian
         this.modalUpdate = function (size, selectedAttendance) {
@@ -125,16 +127,51 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 			});
 		};
 
-        // Find an Attendance that occurs today
-        this.attendingToday = function(attendance){
-            console.log(attendance.childID);
-            if( (attendance.date.day === $scope.day) && (attendance.date.month === $scope.month+1) && (attendance.date.year === $scope.year) ){
-                return true;
-            }
-            else{
-                return false;
-            }
+        //initialize attendances routed to sign-out-list
+        $scope.initAttend = function(){
+            $http.get('/sign-out-list').success(function(data){
+                $scope.attendances = data;
+
+                $http.get('/children/').success(function(data){
+                    $scope.childrenTemp = data;
+                }).then(function(){
+                    $scope.children = [];
+                    for(var i in $scope.childrenTemp){
+                        var childHasAtt = false;
+                        for(var j in $scope.attendances){
+                            if($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ($scope.attendances[j].attended || $scope.attendances[j].signedOut))
+                            {
+                                childHasAtt = true;
+                            }
+                        } 
+                        if(!childHasAtt){
+                            $scope.day = moment().format('ddd').toLowerCase();
+                            var enrolled = false;
+                            if($scope.day === 'sun' && $scope.childrenTemp[i].schedule.sun){
+                                enrolled =  true;
+                            }else if($scope.day === 'mon' && $scope.childrenTemp[i].schedule.mon) {
+                                enrolled =  true;
+                            }else if($scope.day === 'tue' && $scope.childrenTemp[i].schedule.tue){
+                                enrolled =  true;
+                            }else if($scope.day === 'wed' && $scope.childrenTemp[i].schedule.wed){
+                                enrolled =  true;
+                            }else if($scope.day === 'thu' && $scope.childrenTemp[i].schedule.thu){
+                                enrolled =  true;
+                            }else if($scope.day === 'fri' && $scope.childrenTemp[i].schedule.fri){
+                                enrolled =  true;
+                            }else if($scope.day === 'sat' && $scope.childrenTemp[i].schedule.sat){
+                                enrolled =  true;
+                            }
+                            if(enrolled)
+                            {
+                                $scope.children.push($scope.childrenTemp[i]);
+                            }
+                        }
+                    }
+                });
+            });
         };
+
         //returns todays attendance for the given child returns false if the child doesnt have one
         this.selectTodaysAttend = function(child,attendances)
         {
@@ -152,7 +189,6 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         this.signOut = function(child,attendances,guardian){
         	var attend;
         	var attendance;
-        	var mypoopoo = this.hasAttend(child,attendances);
         	attend = this.selectTodaysAttend(child,attendances);
         	if(attend !== false){
         		//attend.signOut.time = Date.now();
@@ -185,43 +221,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 			});
         	}
         };
-        this.signedOut = function(child,attendances){
-        	var i = 0;
-        	console.log(child.firstName);
-			  for(i; i < attendances.length; ++i)
-			  {
-			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && attendances[i].signedOut)
-			  	{
-			  		return true;
-			  	}
-			  }
-			  return false;
-        };
-        
-        this.markedAbsent = function(child, attendances){
-        	var i = 0;
-			  for(i; i < attendances.length; ++i)
-			  {
-			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year && !attendances[i].attended && attendances[i].signedOut)
-			  	{
-			  		console.log('made it here');
-			  		return true;
-			  	}
-			  }
-			  return false;
-		};
-		this.hasAttend = function(child, attendances)
-		{
-			var i = 0;
-			  for(i; i < attendances.length; ++i)
-			  {
-			  	if(attendances[i].childID === child._id && attendances[i].date.day === $scope.day && attendances[i].date.month === $scope.month+1 && attendances[i].date.year === $scope.year)
-			  	{
-			  		return true;
-			  	}
-			  }
-			  return false;
-		};
+
 }]);
 
 

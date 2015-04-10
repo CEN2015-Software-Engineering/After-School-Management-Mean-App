@@ -15,6 +15,9 @@ module.exports = function(app) {
 
     app.route('/todays-roster/:childID')
         .get(attendances.read);
+        
+    app.route('/sign-out-list')
+    	.get(attendances.attendanceByDate);
 
 	// Finish by binding the Attendance middleware
 	app.param('attendanceId', attendances.attendanceByID);

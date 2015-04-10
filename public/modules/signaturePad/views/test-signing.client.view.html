@@ -1,0 +1,14 @@
+<section data-ng-controller="SignatureController" data-ng-init="" resize>
+    <div class="page-header">
+        <h1>Signature Pad</h1>
+    </div>
+        <canvas width="1000" height="250" id="signature-pad" class="signaturepad" ng-signature-pad="signature"></canvas>
+        <br />
+        <button class="button clear" id="signature-clear" data-ng-click="signature.clear()">Clear</button>
+        {{signature.isEmpty()}}
+
+
+    <br /><br >
+    {{windowHeight}}
+    {{windowWidth}}
+</section>

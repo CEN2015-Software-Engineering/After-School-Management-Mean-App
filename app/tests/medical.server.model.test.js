@@ -1,4 +1,4 @@
-//to be changed to test medical.server.model.js
+
 
 'use strict';
 

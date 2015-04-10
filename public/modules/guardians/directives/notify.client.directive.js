@@ -11,7 +11,6 @@ angular.module('guardians').directive('guardianList', ['Guardians', 'Notify', fu
 			Notify.getMsg('NewGuardian', function(event, data) {
 				scope.$$childHead.guardians = Guardians.query();
                 scope.$$childTail.guardians = scope.$$childHead.guardians;
-                console.log(scope);
 			});
 		}
 	};

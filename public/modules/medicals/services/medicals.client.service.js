@@ -18,12 +18,10 @@ angular.module('medicals').factory('Medicals', ['$resource',
         notify.sendMsg = function(msg, data) {
             data = data || {};
             $rootScope.$emit(msg, data);
-            console.log('message sent');
         };
 
         notify.getMsg = function(msg, func, scope){
             var unbind = $rootScope.$on(msg, func);
-            console.log('message received');
             if( scope ) {
                 scope.$on('destroy', unbind);
             }
