@@ -8,6 +8,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 
 		$scope.editGuardians = instructorPerm.getEditGuardians();
 		$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+		$scope.addGuardians = instructorPerm.getAddGuardians();
 
 		$scope.$watch('editGuardians', function (newValue, oldValue){
 			if(newValue !== oldValue){
@@ -20,6 +21,13 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 			if(newValue !== oldValue){
 				console.log('sidebar controller newvalue delete');
 			 instructorPerm.setDeleteGuardians(newValue);
+
+			}
+		});
+		$scope.$watch('addGuardians', function (newValue, oldValue){
+			if(newValue !== oldValue){
+				console.log('sidebar controller newvalue add');
+			 instructorPerm.setAddGuardians(newValue);
 
 			}
 		});
@@ -58,6 +66,8 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 			} else if (document.getElementById('PINbox').value === '1111'){
 				document.getElementById('PINbox').value = ''; 
 				$scope.isUnlocked = true;
+				$instructorPerm.setEditGuardians(true);
+				$instructorPerm.setAddGuardians(true);
 				setTimeout(function() {
 					 $scope.$apply(function () {
             
