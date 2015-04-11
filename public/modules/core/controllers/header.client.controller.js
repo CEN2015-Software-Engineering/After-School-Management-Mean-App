@@ -75,8 +75,10 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 						//alert('timout popped '+ $scope.isUnlocked);
 						instructorPerm.setEditGuardians(false);
 						instructorPerm.setDeleteGuardians(false);
+						instructorPerm.setAddGuardians(false);
 						$scope.editGuardians = instructorPerm.getEditGuardians();
 						$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+						$scope.addGuardians = instructorPerm.getAddGuardians();
 					});
 			}, 60000);
 					 
