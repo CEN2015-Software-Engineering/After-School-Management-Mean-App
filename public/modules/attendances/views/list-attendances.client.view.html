@@ -3,10 +3,14 @@
         <h1>Attendances</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="attendance in attendances | orderBy: ['date.year', 'date.month', 'date.day']" data-ng-href="#!/attendances/{{attendance._id}}" class="list-group-item">
+        <div data-ng-repeat="attendance in attendances | orderBy: ['date.year', 'date.month', 'date.day']" data-ng-href="#!/attendances/{{attendance._id}}" class="list-group-item">
             <h1 class="list-group-item-heading text-center" data-ng-bind="attendance.childName"></h1>
             <h3 class="text-center"><i>{{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}</i></h3>
-        </a>
+            <a class="btn btn-danger btn-sm" data-ng-click="remove(attendance);">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
+
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!attendances.$resolved || attendances.length">
     	No Attendances yet, why don't you <a href="/#!/attendances/create">create one</a>?

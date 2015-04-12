@@ -21,24 +21,26 @@
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
                         <div class="guardiansCheckOutButtons" data-ng-repeat="guardian in guardians" data-ng-if="guardian.childID == child._id">
-                            <div class="btn checkout-btn col-sm-3 col-sm-offset-1" data-ng-href="#!/guardians/{{guardian._id}}" ng-click = "guardianCtrl.selected = true; guardianCtrl.setselected(guardian); setMychillun(true)">
+                            <!--btn checkout-btn-->
+                            <input type="checkbox" id="{{guardian.gName}}" class="checkout-btn-radio" ng-disabled="guardianCtrl.selected"  id="checkoutBtn" ng-click = "guardianCtrl.selected = !guardianCtrl.selected; guardianCtrl.setselected(guardian); setMychillun(true)" />
+                            <label for="{{guardian.gName}}" class="btn checkout-btn  col-sm-3 col-sm-offset-1">
                                 <span data-ng-bind="guardian.gName"></span>
                                 <br />
                                 <span data-ng-bind="guardian.rel"></span>
-                            </div>
+                            </label>
                         </div>
                         </br></br></br>
 
                         <div class="alert alert-warning text-center" data-ng-hide="!guardians.$resolved || !guardianCtrl.hasGuardian(child._id,guardians)">
                             No Guardians yet.
                         </div>
+                        <h4>Sign Here: </h4>
                         <canvas width="800" height="250" id="signature-pad" class="signaturepad" ng-signature-pad="signature"></canvas>
                         <br />
-                        <button class="btn btn-day clear" id="signature-clear" data-ng-click="signature.clear()">Clear</button>
-                        {{signature.isEmpty()}}
+                        <button class="btn btn-day clear" id="signature-clear" data-ng-click="signature.clear(); guardianCtrl.selected = false; guardianCtrl.deselectParent(guardianCtrl.getSelected().gName)">Clear</button>
                         <br /><br />
-                        <div class = "btn btn-warning btn-sm" ng-show = "!signature.isEmpty() && guardianCtrl.selected" ng-click="guardianCtrl.setMyChillun(false);attendCtrl.signOut(child,attendances,guardianCtrl.getSelected().gName)">
-                            <i class="glyphicon glyphicon-user"></i></br>{{guardianCtrl.getSelected().gName}}: Confirm Child Sign out
+                        <div class = "btn btn-sm today-button" ng-disabled = "signature.isEmpty() || !guardianCtrl.selected" ng-click="guardianCtrl.setMyChillun(false);attendCtrl.signOut(child,attendances,guardianCtrl.getSelected().gName)">
+                            <i class="glyphicon glyphicon-user"></i></br>Confirm Child Sign out
                         </div>
                     </div>
                 </div>

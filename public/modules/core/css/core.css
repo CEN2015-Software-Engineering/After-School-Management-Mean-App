@@ -208,6 +208,15 @@
     color: white;
 }
 
+.checkout-btn-radio:checked+label {
+    background-color: #666699;
+    color: white;
+}
+
+.checkout-btn-radio {
+    display:none;
+}
+
 /*CUSTOM BUTTON FOR DAY PICKER, FOR SCHEDULING STUDENTS ATTENDANCE*/
 .btn-day {
     border: none;

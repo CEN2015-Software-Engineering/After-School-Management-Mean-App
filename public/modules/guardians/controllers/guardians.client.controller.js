@@ -1,8 +1,8 @@
 'use strict';
 
 // Guardians controller
-angular.module('guardians').controller('GuardiansController', ['$scope', '$window', '$stateParams', '$location', 'Guardians', '$modal', '$log', 'instructorPerm',
-	function($scope, $window, $stateParams, $location, Guardians, $modal, $log, instructorPerm) {
+angular.module('guardians').controller('GuardiansController', ['$scope','$state', '$window', '$stateParams', '$location', 'Guardians', '$modal', '$log', 'instructorPerm',
+	function($scope, $state, $window, $stateParams, $location, Guardians, $modal, $log, instructorPerm) {
 
 		$scope.editGuardians = instructorPerm.getEditGuardians();
 		$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
@@ -56,6 +56,10 @@ angular.module('guardians').controller('GuardiansController', ['$scope', '$windo
 			console.log(id);
 		};
 
+
+		this.deselectParent = function(guardianName) {
+            $state.go($state.current, {}, {reload: true});
+        };
 		//checks to see if a child for a given id has a guardian
 		this.hasGuardian = function(id, guardians){
 			var i = 0;

@@ -72,6 +72,7 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
             }
         };
 
+        console.log($scope.children);
 
         //Is the kid in checkout yet? Function here
     }

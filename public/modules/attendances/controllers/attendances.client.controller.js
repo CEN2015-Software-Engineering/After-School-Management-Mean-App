@@ -140,6 +140,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     $scope.childrenTemp = data;
                 }).then(function(){
                     $scope.children = [];
+                    $scope.kids = 0;
                     for(var i in $scope.childrenTemp){
                         var childHasAtt = false;
                         for(var j in $scope.attendances){
@@ -148,32 +149,35 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                                 childHasAtt = true;
                             }
                         } 
-                        if(!childHasAtt){
+                        if(!childHasAtt) {
                             $scope.day = moment().format('ddd').toLowerCase();
                             var enrolled = false;
-                            if($scope.day === 'sun' && $scope.childrenTemp[i].schedule.sun){
-                                enrolled =  true;
-                            }else if($scope.day === 'mon' && $scope.childrenTemp[i].schedule.mon) {
-                                enrolled =  true;
-                            }else if($scope.day === 'tue' && $scope.childrenTemp[i].schedule.tue){
-                                enrolled =  true;
-                            }else if($scope.day === 'wed' && $scope.childrenTemp[i].schedule.wed){
-                                enrolled =  true;
-                            }else if($scope.day === 'thu' && $scope.childrenTemp[i].schedule.thu){
-                                enrolled =  true;
-                            }else if($scope.day === 'fri' && $scope.childrenTemp[i].schedule.fri){
-                                enrolled =  true;
-                            }else if($scope.day === 'sat' && $scope.childrenTemp[i].schedule.sat){
-                                enrolled =  true;
+                            if ($scope.day === 'sun' && $scope.childrenTemp[i].schedule.sun) {
+                                enrolled = true;
+                            } else if ($scope.day === 'mon' && $scope.childrenTemp[i].schedule.mon) {
+                                enrolled = true;
+                            } else if ($scope.day === 'tue' && $scope.childrenTemp[i].schedule.tue) {
+                                enrolled = true;
+                            } else if ($scope.day === 'wed' && $scope.childrenTemp[i].schedule.wed) {
+                                enrolled = true;
+                            } else if ($scope.day === 'thu' && $scope.childrenTemp[i].schedule.thu) {
+                                enrolled = true;
+                            } else if ($scope.day === 'fri' && $scope.childrenTemp[i].schedule.fri) {
+                                enrolled = true;
+                            } else if ($scope.day === 'sat' && $scope.childrenTemp[i].schedule.sat) {
+                                enrolled = true;
                             }
-                            if(enrolled)
-                            {
+                            if (enrolled) {
                                 $scope.children.push($scope.childrenTemp[i]);
+                                ++$scope.kids;
                             }
                         }
                     }
+                    console.log($scope.children);
+                    console.log($scope.kids);
                 });
             });
+
         };
 
         //returns todays attendance for the given child returns false if the child doesnt have one
@@ -218,7 +222,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 signedOut: true
         		});
         		attendance.$save(function(response) {
-				$location.path('attendances/' + response._id);
+				$location.path('/#!/');
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;

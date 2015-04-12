@@ -97,22 +97,45 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
                                 $http.delete('/guardians/' + lookForGuardians[g]._id).
                                     success(function (data) {
                                         console.log(data);
+
                                 });
+
                             }
                         }
                     }
                 });
+                $http.get('/attendances/').success(function(findAttendances){
+                    for(var a in findAttendances){
+                        if(findAttendances[a].childID === child._id){
+                            $http.delete('/attendances/' + findAttendances[a]._id).
+                                success(function (data) {
+                                    console.log(data);
 
+                                });
+                        }
+                    }
 
+                });
+
+                $http.get('/medicals/').success(function(findMedicals){
+                    for(var b in findMedicals){
+                        if(findMedicals[b].childID === child._id){
+                            $http.delete('/medicals/' + findMedicals[b]._id).
+                                success(function (data) {
+                                    console.log(data);
+
+                                });
+                        }
+                    }
+
+                });
 
 
 				if (child) {
-					child.$remove();
-					for (var i in $scope.children) {
-						if ($scope.children [i] === child) {
-							$scope.children.splice(i, 1);
-						}
-					}
+                    $http.delete('/children/' + child._id).
+                        success(function (data) {
+                            console.log(data);
+                        });
                     $timeout(function(){
                         $location.path('children');
                     }, 2000);
