@@ -45,7 +45,7 @@ var SignaturePad = (function (document) {
         this.dotSize = opts.dotSize || function () {
             return (this.minWidth + this.maxWidth);
         };
-        this.penColor = opts.penColor || 'purple';
+        this.penColor = opts.penColor || 'rgb(235, 64, 51)';
         this.backgroundColor = opts.backgroundColor || 'rgba(0,0,234,0)';
         this.onEnd = opts.onEnd;
         this.onBegin = opts.onBegin;

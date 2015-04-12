@@ -48,7 +48,7 @@
 }
 
 .home-buttons:hover {
-    background-color: #666699 !important;
+    background-color: rgb(235, 64, 51) !important;
     color: white;
 }
 
@@ -66,10 +66,10 @@
     padding-right: 0;
 }
 .list-group-item:nth-child(odd){
-    background-color: rgba(102,102,153,.6); !important;
+    background-color: rgba(235, 64, 51,.6); !important;
 }
 .list-group-item:nth-child(odd):hover{
-    background-color: rgba(102,102,153,.5); !important;
+    background-color: rgba(235, 64, 51, .5); !important;
 }
 /* johns stuff */
 .header {
@@ -84,7 +84,7 @@
     width: 4.5vw;
     padding: 12px 0;
     text-align: center;
-    background: #666699;
+    background: rgb(235, 64, 51);
     -webkit-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;
     transition-duration: 0.3s;
@@ -110,13 +110,13 @@
     -webkit-border-radius: 0 0 5px 0;
     -moz-border-radius: 0 0 5px 0;
     border-radius: 0 0 5px 0;
-    color: #666699;
+    color:rgb(235, 64, 51);
     text-align: center;
     font-family: sans-serif;
     font-size: 20;
     font-weight: 900;
     border-style: solid;
-    border-right: solid #666699;
+    border-right: solid rgb(235, 64, 51);
     border-left: none;
     border-top: none;
     border-bottom: none;
@@ -163,12 +163,12 @@
     height:3.5vw;
     border-radius: 50%;
     overflow:hidden;
-    background: #666699;
+    background: rgb(235, 64, 51);
     text-align: center;
 
 }
 .round-button-circle:hover {
-    background:#30588e;
+    background:rgb(235, 64, 51);
 }
 .round-button .round-button-link {
     /*padding-top:.25vw;*/
@@ -204,12 +204,12 @@
 }
 
 .checkout-btn:hover {
-    background-color: #666699;
+    background-color: rgb(235, 64, 51);
     color: white;
 }
 
 .checkout-btn-radio:checked+label {
-    background-color: #666699;
+    background-color: rgb(235, 64, 51);
     color: white;
 }
 
@@ -293,17 +293,17 @@ button:focus {
     font-size: 3vw;
     text-align: center;
     border: none;
-    border: 2px solid #506CE8;
+    border: 2px solid rgb(235, 64, 51);
     background: #fff;
 }
 
 
 .PINbutton {
     background: #fff;
-    color: #506CE8;
+    color: rgb(235, 64, 51);
 
     
-    border: 2px solid #506CE8;
+    border: 2px solid rgb(235, 64, 51);
     border-radius: 50%;
     font-size: 2vw;
     text-align: center;

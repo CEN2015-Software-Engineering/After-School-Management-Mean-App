@@ -17,7 +17,7 @@ calendar {
 calendar > div.header {
     float: left;
     width: 100%;
-    background: #666699;
+    background: rgb(235, 64, 51);
     height: 60px;
     color: white;
     border: solid 1px #cccccc;
@@ -97,7 +97,7 @@ calendar > div.week > span.day.today {
 
 calendar > div.week > span.eventExist {
 
-    background-color: rgb(153, 86, 117);
+    background-color: rgb(235, 64, 51);
 }
 .grad{
     position: absolute;
@@ -106,7 +106,7 @@ calendar > div.week > span.eventExist {
     height:15px;
     border-radius:50px;
     margin-left: 42%;
-    background:linear-gradient(to bottom, #995675, #666699)
+    background:linear-gradient(to bottom, #995675, rgb(235, 64, 51))
 }
 
 calendar > div.week > span.day.different-month {
@@ -114,7 +114,7 @@ calendar > div.week > span.day.different-month {
     color: lightgrey;
 }
 calendar > div.week > span.day.selected {
-    background: #666699;
+    background: rgb(235, 64, 51);
     color: white;
 }
 calendar > div.week.names > span {
@@ -129,7 +129,7 @@ calendar > div.week.names > span {
 }
 .today-button {
     color: white;
-    background-color: #666699;
+    background-color: rgb(235, 64, 51);
 }
 
 .today-button:hover {
