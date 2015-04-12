@@ -9,7 +9,7 @@ calendar {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background: white;
+    background: transparent;
     width: 100%;
     
     margin-bottom: 10px;

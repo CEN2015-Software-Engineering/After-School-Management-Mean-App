@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <div class="list-group col-sm-offset-1">
+    <div class="list-group col-sm-10 col-sm-offset-1">
         <a data-ng-repeat="child in children | orderBy: 'lastName'" data-ng-href="#!/schedule-absence/{{child._id}}" class="list-group-item">
             <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
         </a>
