@@ -4,7 +4,6 @@
 angular.module('advents').controller('AdventsController', ['$scope', '$stateParams', '$location', 'Advents', '$timeout', 'instructorPerm',
 	function($scope, $stateParams, $location, Advents, $timeout, instructorPerm) {
 
-
         $scope.editGuardians = instructorPerm.getEditGuardians();
         $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
 
@@ -18,6 +17,31 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
         $scope.$watch(function (){ return instructorPerm.getAddGuardians(); }, function(newValue, oldValue){
             if(newValue !== oldValue) $scope.addGuardians = newValue;
         });
+
+
+        $scope.pastDate = function(advent, when){
+            console.log(advent);
+            var today = new Date();
+            var adventDay = new Date(advent.date.year, advent.date.month - 1, advent.date.day);
+            console.log(today.getDate() + ' ' + today.getMonth() + ' ' + today.getFullYear());
+            console.log(adventDay.getTime() + ' ' + today.getTime());
+            if(when === 'upcoming'){
+                if(adventDay.getTime() >= today.getTime()){
+                    console.log('true');
+                    return true;
+                }
+                console.log('false');
+                return false;
+            }else {
+                if(adventDay.getTime() < today.getTime()){
+                    console.log('true');
+                    return true;
+                }
+                console.log('false');
+                return false;
+            }
+
+        };
 
         //MODAL TO OPEN ADVENT - USE GUARDIAN AS A TEMPLATE
 

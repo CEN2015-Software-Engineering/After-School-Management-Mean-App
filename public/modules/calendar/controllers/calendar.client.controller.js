@@ -20,11 +20,9 @@ angular.module('calendar').controller('CalendarController', ['$scope', 'Advents'
         // Controller Logic
 		// ...
 		$scope.day = moment();
-
         $scope.find = function() {
             $scope.advents = Advents.query();
         };
-
 
         //Open Modal Window to Add Guardian
         this.openModal = function (size, selectedEvent) {

@@ -37,11 +37,11 @@ var AdventSchema = new Schema({
     time:{
         hr: {
         	required: 'Please add hour',
-            type: Number
+            type: String
         },
         min: {
         	required: 'Please add minute',
-            type: Number
+            type: String
         },
         timeSuffix: {
         	required: 'Please add AM/PM',

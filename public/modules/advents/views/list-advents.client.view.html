@@ -1,14 +1,30 @@
 <section data-ng-controller="AdventsController" data-ng-init="find()">
     <div class="page-header">
-        <h1>Advents</h1>
+        <h1>Upcoming Events</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="advent in advents | orderBy: 'name'" data-ng-href="#!/advents/{{advent._id}}" class="list-group-item">
-            <h1 class="list-group-item-heading text-center" data-ng-bind="advent.name"></h1>
+        <a data-ng-repeat="advent in advents | orderBy:['date.year', 'date.month','date.day']" data-ng-href="#!/advents/{{advent._id}}" class="list-group-item" data-ng-show="pastDate(advent, 'upcoming')">
+            <h2 class="list-group-item-heading" data-ng-bind="advent.name"></h2>
+            <div>
+                <h4>
+                    <p class="list-group-item-text"> {{advent.date.month}}/{{advent.date.day}}/{{advent.date.year}} at {{advent.time.hr}}:{{advent.time.min}} {{advent.time.timeSuffix}}</p>
+                </h4>
+            </div>
         </a>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!advents.$resolved || advents.length">
-      No Children yet, why don't you <a href="/#!/advent/create">create one</a>?
+    <br /><br />
+    <div class="page-header">
+        <h1>Past Events</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="advent in advents | orderBy:['date.year', 'date.month','date.day']" data-ng-href="#!/advents/{{advent._id}}" class="list-group-item" data-ng-show="pastDate(advent, 'past')">
+            <h2 class="list-group-item-heading" data-ng-bind="advent.name"></h2>
+            <div>
+                <h4>
+                    <p class="list-group-item-text"> {{advent.date.month}}/{{advent.date.day}}/{{advent.date.year}} at {{advent.time.hr}}:{{advent.time.min}} {{advent.time.timeSuffix}}</p>
+                </h4>
+            </div>
+        </a>
     </div>
 </section>
 <!--

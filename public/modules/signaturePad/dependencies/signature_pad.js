@@ -1,9 +1,10 @@
 'use strict';
 (function (root, factory) {
+    /*jshint validthis:true */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module unless amdModuleId is set
     define([], function () {
-      return (root['SignaturePad'] = factory());
+      return (root.SignaturePad = factory());
     });
   } else if (typeof exports === 'object') {
     // Node. Does not work with strict CommonJS, but
@@ -11,10 +12,10 @@
     // like Node.
     module.exports = factory();
   } else {
-    root['SignaturePad'] = factory();
+    root.SignaturePad = factory();
   }
-}(this, function () {
 
+}(this, function () {
 /*!
  * Signature Pad v1.3.6
  * https://github.com/szimek/signature_pad

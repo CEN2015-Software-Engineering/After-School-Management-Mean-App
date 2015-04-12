@@ -127,3 +127,12 @@ calendar > div.week.names > span {
 .calendarAddAdventBtn{
     margin-left: 2vw;
 }
+.today-button {
+    color: white;
+    background-color: #666699;
+}
+
+.today-button:hover {
+    color: white;
+    background-color: #666680;
+}

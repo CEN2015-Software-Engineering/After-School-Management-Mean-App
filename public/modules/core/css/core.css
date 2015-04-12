@@ -3,11 +3,15 @@
 }
 .body {
     min-height: 100%;
-    background-color: #000088;
+    background-color: #454588 !important;
 
 
 }
+.actualBody{
+    background-color: rgba(224,224,224,.6) !important;
 
+
+}
 .content {
     margin-top: 50px;
 
@@ -39,6 +43,15 @@
     min-height: 105px;
     vertical-align: middle;
 }
+.home-buttons {
+    background-color: white !important;
+}
+
+.home-buttons:hover {
+    background-color: #666699 !important;
+    color: white;
+}
+
 
 .line-height {
     padding-top: 29px;
@@ -51,6 +64,12 @@
 
 .list-group {
     padding-right: 0;
+}
+.list-group-item:nth-child(odd){
+    background-color: rgba(102,102,153,.6); !important;
+}
+.list-group-item:nth-child(odd):hover{
+    background-color: rgba(102,102,153,.5); !important;
 }
 /* johns stuff */
 .header {

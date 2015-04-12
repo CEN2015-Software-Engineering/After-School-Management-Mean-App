@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('children').directive('resize', function ($window) {
     return function (scope, element) {
         var w = angular.element($window);
@@ -12,10 +14,10 @@ angular.module('children').directive('resize', function ($window) {
             scope.windowHeight = newValue.h;
             scope.windowWidth = newValue.w;
             scope.canvas = angular.element(document.getElementById('signature-pad'))[0];
-            if(newValue.w * .8 > 850) {
+            if(newValue.w * 0.8 > 850) {
                 scope.canvas.width = newValue.w = 850;
             }else {
-                scope.canvas.width = newValue.w * .8;
+                scope.canvas.width = newValue.w * 0.8;
             }
             scope.style = function () {
                 return {
@@ -29,7 +31,7 @@ angular.module('children').directive('resize', function ($window) {
         w.bind('resize', function () {
             scope.$apply();
         });
-    }
-})/**
+    };
+});/**
  * Created by Joshua on 4/6/2015.
  */

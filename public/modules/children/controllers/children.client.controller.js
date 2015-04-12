@@ -80,6 +80,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 		};
 
 		// Remove existing Child
+        /*jshint loopfunc:true */
 		$scope.remove = function(child, guardians) {
 			console.log(child);
 			//Confirm childs deletion or if Karma Test, delete child. Karma Child ID = 525a8422f6d0f87f0e407a33
