@@ -2,8 +2,8 @@
 
 // Attendances controller
 
-angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Attendances', '$modal', '$log', 'instructorPerm','$http',
-	function($scope, $stateParams, $location, Attendances, $modal, $log, instructorPerm,$http) {
+angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Children', 'Attendances', '$modal', '$log', 'instructorPerm','$http',
+	function($scope, $stateParams, $location, Children, Attendances, $modal, $log, instructorPerm,$http) {
 
         $scope.editGuardians = instructorPerm.getEditGuardians();
         $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
@@ -144,9 +144,10 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     for(var i in $scope.childrenTemp){
                         var childHasAtt = false;
                         for(var j in $scope.attendances){
-                            if($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ($scope.attendances[j].attended || $scope.attendances[j].signedOut))
+                            if($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ($scope.attendances[j].attended || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent))
                             {
                                 childHasAtt = true;
+                                console.log($scope.childrenTemp[i]);
                             }
                         } 
                         if(!childHasAtt) {
@@ -228,6 +229,55 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 				$scope.error = errorResponse.data.message;
 			});
         	}
+        };
+
+        $scope.findChild = function() {
+            $scope.child = Children.get({
+                childId: $stateParams.childId
+            });
+            $http.get('/guardians').success(function(data){
+                console.log(data);
+                $scope.guardians = [];
+                var tempG = data;
+                for(var a in tempG){
+                    console.log('here');
+                    console.log(tempG);
+                    if(tempG[a].childID === $scope.child._id){
+                        console.log(tempG[a].gName);
+                        $scope.guardians.push(tempG[a].gName);
+                    }
+                }
+            });
+        };
+        $scope.createAbsence = function() {
+            // Create new Attendance object
+            console.log(this.adventID);
+            var attendance = new Attendances ({
+                childID: $scope.child._id,
+                childName: $scope.child.firstName + ' ' + $scope.child.lastName,
+                date:{
+                    day: this.day,
+                    month: this.month,
+                    year: this.year
+                },
+                attended: false,
+                scheduledAbsent: true,
+                signout:{
+                    time: this.time,
+                    guardian: this.guardian
+                },
+                isAdvent: false,
+                adventID: this.adventID
+            });
+
+            // Redirect after save
+            attendance.$save(function(response) {
+                $location.path('attendances/' + response._id);
+
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+
         };
 
 }]);

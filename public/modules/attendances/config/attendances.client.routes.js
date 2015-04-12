@@ -20,6 +20,14 @@ angular.module('attendances').config(['$stateProvider',
 		state('editAttendance', {
 			url: '/attendances/:attendanceId/edit',
 			templateUrl: 'modules/attendances/views/edit-attendance.client.view.html'
-		});
+		}).
+        state('listScheduleAbsence', {
+            url: '/schedule-absence',
+            templateUrl: 'modules/attendances/views/list-children-schedule-absence.client.view.html'
+        }).
+        state('listScheduleAbsenceForChild', {
+            url: '/schedule-absence/:childId',
+            templateUrl: 'modules/attendances/views/schedule-absence.client.view.html'
+        });
 	}
 ]);
