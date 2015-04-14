@@ -5,7 +5,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 		$scope.isUnlocked = false;
-
+		$scope.passcode = "1111";
 		$scope.editGuardians = instructorPerm.getEditGuardians();
 		$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
 		$scope.addGuardians = instructorPerm.getAddGuardians();
@@ -49,6 +49,21 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 			window.history.back();
 		};
 
+		$scope.relock = function(){
+			$scope.isUnlocked = false;
+			instructorPerm.setEditGuardians(false);
+			instructorPerm.setDeleteGuardians(false);
+			instructorPerm.setAddGuardians(false);
+			$scope.editGuardians = instructorPerm.getEditGuardians();
+			$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
+			$scope.addGuardians = instructorPerm.getAddGuardians();
+		};
+
+		$scope.changePasscode = function(){
+			$scope.passcode = document.getElementById('PINchange').value;
+			alert('Pin Changed');
+		};
+
 		$scope.goHome = function() {
 			window.location.href = '/#!/';
 		};
@@ -63,7 +78,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 
 			if (document.getElementById('PINbox').value === '') { 
 				alert('Enter a PIN'); 
-			} else if (document.getElementById('PINbox').value === '1111'){
+			} else if (document.getElementById('PINbox').value === $scope.passcode){
 				document.getElementById('PINbox').value = ''; 
 				$scope.isUnlocked = true;
 				instructorPerm.setEditGuardians(true);
