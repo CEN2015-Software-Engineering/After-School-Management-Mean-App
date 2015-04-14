@@ -154,31 +154,31 @@
 }
 .round-button {
    /* width:25%;*/
-    padding-top: .25vw;
-    padding-left: 4vw;
+
+
 }
 .round-button-circle {
-    width: 5.5vw;
-    height: 5.5vw;
-    border-radius: 50%;
+    width: 6vw;
+    height: 100%;
+
     overflow:hidden;
     background: rgb(235, 64, 51);
     text-align: center;
 
 }
 .round-button-circle:hover {
-    background:rgb(235, 64, 51);
+    background:rgb(250, 70, 55);
 }
 .round-button .round-button-link {
     padding-bottom:75%;
-    margin-left: -4vw;
+
     text-align: center;
     font-size: 4.5vw;
     color:#e2eaf3;
 }
 
 .round-back-button{
-     padding-top: .125vw;
+
 
 }
 
