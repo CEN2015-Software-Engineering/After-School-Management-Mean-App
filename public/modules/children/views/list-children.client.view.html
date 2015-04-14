@@ -15,11 +15,25 @@
     </div>
 
     <div class="list-group col-sm-10 col-sm-offset-1">
-        <a data-ng-repeat="child in children | orderBy: 'lastName'" data-ng-href="#!/children/{{child._id}}" class="list-group-item">
+        <a data-ng-repeat="child in children | filter: {enrolled: true} | orderBy: 'lastName'" data-ng-href="#!/children/{{child._id}}" class="list-group-item">
             <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
         </a>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!children.$resolved || children.length">
-    	No Children yet, why don't you <a href="/#!/children/create">create one</a>?
+    <div data-ng-show="addGuardians">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-1">
+                <div class="page-header">
+                    <h1>Children Not Enrolled:</h1>
+                </div>
+            </div>
+        </div>
+        <div class="list-group col-sm-10 col-sm-offset-1" data-ng-show="addGuardians">
+            <a data-ng-repeat="child in children | filter: {enrolled: false} |orderBy: 'lastName'" data-ng-href="#!/children/{{child._id}}" class="list-group-item">
+                <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
+            </a>
+        </div>
+        <div class="alert alert-warning text-center" data-ng-hide="!children.$resolved || children.length">
+            No Children yet, why don't you <a href="/#!/children/create">create one</a>?
+        </div>
     </div>
 </section>
