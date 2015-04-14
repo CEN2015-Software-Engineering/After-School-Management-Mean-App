@@ -240,21 +240,24 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
 
         $scope.findChild = function() {
-            $scope.child = Children.get({
-                childId: $stateParams.childId
-            });
-            $http.get('/guardians').success(function(data){
-                console.log(data);
-                $scope.guardians = [];
-                var tempG = data;
-                for(var a in tempG){
-                    console.log('here');
-                    console.log(tempG);
-                    if(tempG[a].childID === $scope.child._id){
-                        console.log(tempG[a].gName);
-                        $scope.guardians.push(tempG[a].gName);
+            //$scope.child = Children.get({
+               // childId: $stateParams.childId
+           // });
+            $http.get('/children/' + $stateParams.childId).success(function(child) {
+                $scope.child = child;
+                $http.get('/guardians').success(function (data) {
+                    console.log(data);
+                    $scope.guardians = [];
+                    var tempG = data;
+                    for (var a in tempG) {
+                        console.log('here');
+                        console.log(tempG);
+                        if (tempG[a].childID === $scope.child._id) {
+                            console.log(tempG[a].gName);
+                            $scope.guardians.push(tempG[a].gName);
+                        }
                     }
-                }
+                });
             });
         };
         $scope.createAbsence = function() {
