@@ -5,7 +5,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 		$scope.isUnlocked = false;
-		$scope.passcode = "1111";
+		$scope.passcode = '1111';
 		$scope.editGuardians = instructorPerm.getEditGuardians();
 		$scope.deleteGuardians = instructorPerm.getDeleteGuardians();
 		$scope.addGuardians = instructorPerm.getAddGuardians();

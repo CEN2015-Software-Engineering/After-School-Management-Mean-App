@@ -182,7 +182,6 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
         this.getProperTime = function(fulltime) {
             $scope.time = moment(fulltime).format('HH:MM A');
-            console.log("Redirecting");
             $timeout(function(){
                 $location.path('/#!');
             }, 2000);

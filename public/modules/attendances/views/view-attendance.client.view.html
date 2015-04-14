@@ -6,8 +6,8 @@
     <div>
         <div class="row">
             <div class="col-sm-5 col-sm-offset-3">
-                <h1 name="childName">Successfully Signed Out {{attendance.childName}}</h1>
-                <h2 name="date">On: {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}} @ <span data-ng-show="!attendance.signout.time"><i>No signout time</i></span>
+                <h1 name="childName"><span data-ng-hide="attendance.scheduleAbsent">Successfully Signed Out</span><span data-ng-show="attendance.scheduleAbsent">Schedule Absent for: </span> {{attendance.childName}}</h1>
+                <h2 name="date">On: {{attendance.signout.date.month}}/{{attendance.signout.date.day}}/{{attendance.signout.date.year}} @ <span data-ng-show="!attendance.signout.time" data-ng-hide="attendance.scheduleAbsent"><i>No signout time</i></span>
                 <span data-ng-show="attendance.signout.time" data-ng-init="AttController.getProperTime(attendance.signout.time)">{{time}}</span></h2>
                 <!--
                 <h4 name="childID">childID: {{attendance.childID}}</h4>

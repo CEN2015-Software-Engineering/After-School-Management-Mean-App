@@ -191,27 +191,21 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
                 $scope.child.contact.home = ufh.substr(0,3) + '-' + ufh.substr(3,3) + '-' + ufh.substr(6);
                 var ufw = $scope.child.contact.work;
                 $scope.child.contact.work = ufw.substr(0,3) + '-' + ufw.substr(3,3) + '-' + ufw.substr(6);
-                console.log($scope.child);
-                console.log($scope.child._id);
                 $scope.attendances = [];
                 $scope.upCommingAttendances = [];
                 $scope.today = (new Date()).valueOf() + 86400;
-                console.log("Today: " + $scope.today);
                 $http.get('/attendances/').
                     success(function (attendances) {
                         for(var attend in attendances){
                             if(attendances[attend].childID === $scope.child._id){
 
                                 if(attendances[attend].signedOut){
-                                    console.log('Child Signed Out \n');
                                     attendances[attend].date.fullDate = (new Date(attendances[attend].signout.time)).valueOf();
                                     attendances[attend].date.dayOfWeek = moment(attendances[attend].signout.time).format('ddd');
                                     attendances[attend].date.theTime = moment((new Date(attendances[attend].signout.time))).format('HH:MM A');
-                                    console.log(attendances[attend].signout.time + '    ' + attendances[attend].date.fullDate + '   ' + new Date(attendances[attend].signout.time));
 
                                 }else{
                                     attendances[attend].date.fullDate = (new Date(attendances[attend].date.year, attendances[attend].date.month - 1, attendances[attend].date.day)).valueOf();
-                                    console.log(attendances[attend].date.day + ' ' +  attendances[attend].date.month + ' ' + attendances[attend].date.year + '    ' + attendances[attend].date.fullDate);
                                     attendances[attend].date.dayOfWeek = moment({day:attendances[attend].date.day ,month:attendances[attend].date.month - 1, year: attendances[attend].date.year}).format('ddd');
 
                                 }
