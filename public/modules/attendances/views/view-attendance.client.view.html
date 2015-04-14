@@ -5,7 +5,11 @@
 	</div>
     <div>
         <div class="row">
-            <div class="col-sm-5 col-sm-offset-1">
+            <div class="col-sm-5 col-sm-offset-3">
+                <h1 name="childName">Successfully Signed Out {{attendance.childName}}</h1>
+                <h2 name="date">On: {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}} @ <span data-ng-show="!attendance.signout.time"><i>No signout time</i></span>
+                <span data-ng-show="attendance.signout.time" data-ng-init="AttController.getProperTime(attendance.signout.time)">{{time}}</span></h2>
+                <!--
                 <h4 name="childID">childID: {{attendance.childID}}</h4>
                 <h4 name="childName">childName: {{attendance.childName}}</h4>
                 <h4 name="date">date: {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}</h4>
@@ -35,7 +39,7 @@
                         <span data-ng-show="!attendance.adventID"><i>No adventID</i></span>
                     </span>
                 </h4>
-
+                -->
             </div>
         </div>
         <h3>
