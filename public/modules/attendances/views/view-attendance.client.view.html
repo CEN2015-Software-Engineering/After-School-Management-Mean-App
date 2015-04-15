@@ -10,7 +10,7 @@
                 <h1 name="childName">
                     <span >Successfully Signed Out</span> {{attendance.childName}}
                 </h1>
-                <h2 name="date">On: {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}} at
+                <h2 name="date">On {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}} at
                     <span data-ng-show="!attendance.signout.time" data-ng-hide="attendance.scheduleAbsent"><i>{{time}}</i></span>
                     <span data-ng-show="attendance.signout.time" data-ng-init="AttController.getProperTime(attendance.signout.time)">{{time}}</span>
                 </h2>
@@ -24,7 +24,7 @@
                     <span>Successfully Scheduled Absence for</span> {{attendance.childName}}
                 </h1>
                 <h2 name="date">
-                    On: {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}
+                    On {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}
                 </h2>
             </div>
         </div>
