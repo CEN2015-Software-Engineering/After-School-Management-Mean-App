@@ -13,7 +13,7 @@
             <div class="form-group">
 
                 <div class="row">
-                    <div class="col-sm-5 col-sm-offset-1">
+                    <div class="col-sm-5 col-sm-offset-3">
                         <label class="control-label" for="attended">Is {{attendance.childName}} present?</label>
                         <span data-ng-hide="!attendance.attended">Yes</span>
                         <span data-ng-hide="attendance.attended">No</span>
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="row" data-ng-hide="attendance.attended">
-                    <div class="col-sm-5 col-sm-offset-1">
+                    <div class="col-sm-5 col-sm-offset-3">
                         <label class="control-label" for="scheduled">Is the absence scheduled?</label>
                         <span data-ng-hide="!attendance.scheduledAbsent">Yes</span>
                         <span data-ng-hide="attendance.scheduledAbsent">No</span>
