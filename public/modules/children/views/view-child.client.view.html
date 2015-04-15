@@ -174,8 +174,11 @@
                                 <td><span data-ng-show="attend.scheduledAbsent"> Scheduled Absent</span><span
                                         data-ng-show="attend.signedOut"> Signed Out</span><span
                                         data-ng-show="attend.isAdvent"> {{attend.adventName}}</span>
+                                    <span
+                                            data-ng-show="attend.extraClass"> Extra Class</span>
                                 <span
-                                        data-ng-show="!attend.attended && !attend.scheduledAbsent"> Unscheduled Absence</span></td>
+                                        data-ng-show="!attend.attended && !attend.scheduledAbsent"> Unscheduled Absence</span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -197,7 +200,7 @@
                             </tr>
                             </thead>
                             <tbody data-ng-repeat="attend in upCommingAttendances | orderBy: '-attend.date.fullDate'">
-                            <tr ng-class="{'info': attend.scheduledAbsent, 'success': attend.isAdvent, 'danger': !attend.attended && (!attend.scheduledAbsent || attend.past)}">
+                            <tr ng-class="{'warning': attend.extraClass, 'info': attend.scheduledAbsent, 'success': attend.isAdvent, 'danger': !attend.attended && (!attend.scheduledAbsent || attend.past)}">
                                 <th scope="row">{{attend.date.dayOfWeek}}</th>
                                 <td><span data-ng-show="attend.isAdvent && !attend.scheduleAbsent"
                                           data-ng-hide="!attend.signedOut || !attend.scheduleAbsent"> - </span>{{attend.signout.guardian}}
@@ -206,7 +209,9 @@
                                 <td>{{attend.date.month}}/{{attend.date.day}}/{{attend.date.year}}</td>
                                 <td><span data-ng-show="attend.scheduledAbsent"> Scheduled Absent</span><span
                                         data-ng-show="attend.signedOut"> Signed Out</span><span
-                                        data-ng-show="attend.isAdvent"> {{attend.adventName}}</span></td>
+                                        data-ng-show="attend.isAdvent"> {{attend.adventName}}</span><span
+                                        data-ng-show="attend.extraClass"> Extra Class</span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

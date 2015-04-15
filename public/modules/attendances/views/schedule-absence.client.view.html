@@ -34,24 +34,37 @@
                         </div>
 
 
-                        <div class="col-sm-5">
-                            <div class="controls">
-                                <input type="hidden" name="scheduledAbsent" data-ng-model="attendance.scheduledAbsent"
-                                       id="scheduledAbsent"
-                                       class="checkbox" value="true">
-                            </div>
-                        </div>
-                        <div class=" col-sm-6">
+
+                        <div class=" col-sm-6" data-ng-hide="addClassBoolean">
                             <label class="control-label" for="guardian">Sign-Out Guardian</label>
 
                             <div class="controls">
                                 <select type="text" name="guardian" data-ng-model="guardian" id="guardian"
-                                        class="form-control" required>
-                                    <option data-ng-repeat="guardian in guardians">{{guardian}}</option>
+                                        class="form-control" >
+                                    <option  data-ng-repeat="guardian in guardians" >{{guardian}}</option>
                                 </select>
                             </div>
                         </div>
+                        <div class=" col-sm-6" data-ng-show="addClassBoolean">
+                            <label class="control-label" for="guardian">Adding Extra Class</label>
 
+                            <div class="controls">
+                                <select type="text" name="guardian" data-ng-model="guardian" id="guardian"
+                                        ng-disabled="addClassBoolean" class="form-control" >
+                                    <option selected>Extra Class</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-5" data-ng-show="editGuardians" >
+                            <div class="controls">
+                                <div class="controls">
+                                    <label class="control-label" for="addClassBoolean">Adding Child to an Extra Class?</label>
+
+                                    <input data-ng-show="editGuardians"  type="checkbox" name="addClassBoolean" data-ng-model="addClassBoolean" id="addClassBoolean"
+                                           class="checkbox">
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     <div class=" col-sm-6">

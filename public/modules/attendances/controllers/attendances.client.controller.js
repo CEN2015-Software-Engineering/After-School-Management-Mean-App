@@ -288,6 +288,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 });
             });
         };
+        $scope.addClassBoolean = false;
         $scope.createAbsence = function() {
             // Create new Attendance object
             console.log($scope.dt.getMonth() + 1);
@@ -299,14 +300,15 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     month: $scope.dt.getMonth() + 1,
                     year: $scope.dt.getFullYear()
                 },
-                attended: false,
-                scheduledAbsent: true,
+                attended: $scope.addClassBoolean ? true : false,
+                scheduledAbsent: $scope.addClassBoolean ? false : true,
                 signout:{
                     time: this.time,
                     guardian: this.guardian
                 },
                 isAdvent: false,
-                adventID: this.adventID
+                adventID: this.adventID,
+                extraClass: $scope.addClassBoolean ? true : false
             });
 
             // Redirect after save

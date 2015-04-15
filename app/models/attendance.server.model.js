@@ -72,6 +72,10 @@ var AttendanceSchema = new Schema({
     adventID:{
         type: String,
         default: ''
+    },
+    extraClass: {
+        type: Boolean,
+        default: false
     }
 
 
