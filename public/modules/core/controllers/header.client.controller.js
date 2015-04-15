@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instructorPerm',
-	function($scope, Menus,  instructorPerm) {
+angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instructorPerm', '$http',
+	function($scope, Menus,  instructorPerm, $http) {
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 		$scope.isUnlocked = false;
@@ -43,6 +43,11 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 
 		$scope.getPin = function(){
 			//ask josh for help getting from the db
+
+            $http.get('/modules/core/controllers/passcode.json').success(function(data) {
+                $scope.passcode = data.passcode;
+                console.log(data.passcode);
+            });
 		};
 
 		$scope.doTheBack = function() {
@@ -61,6 +66,13 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 
 		$scope.changePasscode = function(){
 			$scope.passcode = document.getElementById('PINchange').value;
+            $scope.passcodeJSON = {
+                passcode: $scope.passcode
+            }
+            $http.post('/modules/core/controllers/passcode.json', $scope.passcodeJSON, {headers: {'Content-Type': 'application/json'}} ).success(function(data) {
+                $scope.passcode = data.passcode;
+                console.log(data.passcode);
+            });
 			alert('Pin Changed');
 		};
 
