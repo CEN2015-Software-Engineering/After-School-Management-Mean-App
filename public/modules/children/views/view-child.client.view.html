@@ -162,7 +162,7 @@
                             </tr>
                             </thead>
                             <tbody data-ng-repeat="attend in attendances | orderBy: 'attend.date.fullDate'">
-                            <tr ng-class="{'info': attend.scheduledAbsent, 'success': attend.isAdvent, 'danger': (!attend.attended && !attend.scheduledAbsent && attend.past) || !attend.signedOut && attend.past && !attend.scheduledAbsent}">
+                            <tr ng-class="{'info': attend.scheduledAbsent, 'success': attend.isAdvent, 'danger': (!attend.attended && !attend.scheduledAbsent && attend.past) || (!attend.signedOut && attend.past && !attend.scheduledAbsent), 'danger': attend.late}">
                                 <th scope="row">{{attend.date.dayOfWeek}}</th>
                                 <td><span data-ng-show="attend.isAdvent"
                                           data-ng-hide="(attend.past && !attend.signedOut )|| attend.scheduledAbsent || attend.signedOut"> - </span>{{attend.signout.guardian}}
@@ -172,7 +172,7 @@
                                 <td>{{attend.date.month}}/{{attend.date.day}}/{{attend.date.year}}<br/>{{attend.date.theTime}}
                                 </td>
                                 <td><span data-ng-show="attend.scheduledAbsent"> Scheduled Absent</span><span
-                                        data-ng-show="attend.signedOut"> Signed Out</span><span
+                                        data-ng-show="attend.signedOut"> Signed Out <i data-ng-show="attend.late" class="fa fa-exclamation late fa-2x pull-right"></i></span><span
                                         data-ng-show="attend.isAdvent"> {{attend.adventName}}</span>
                                     <span
                                             data-ng-show="attend.extraClass"> Extra Class</span>
