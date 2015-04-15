@@ -16,18 +16,21 @@
             <a data-ng-repeat="child in rosterChildren | orderBy: 'lastName'"
                data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances))"
                class="list-group-item list-group-item-roster"
-               ng-class="{'list-group-item-unsched-ab' :
+               ng-class="{'list-group-item-unsched-ab' : att.selectTodaysAttend(child, attendances) &&
                !att.selectTodaysAttend(child, attendances).attended
                && !att.selectTodaysAttend(child, attendances).scheduledAbsent,
-               'list-group-item-sched-ab' :
+               'list-group-item-sched-ab' : att.selectTodaysAttend(child, attendances) &&
                !att.selectTodaysAttend(child, attendances).attended
                && att.selectTodaysAttend(child, attendances).scheduledAbsent }">
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
-                <p data-ng-show="att.selectTodaysAttend(child, attendances).attended" class="text-center">Present</p>
-                <p data-ng-show="!att.selectTodaysAttend(child, attendances).attended
+                <p data-ng-show="att.selectTodaysAttend(child, attendances) &&
+                !att.selectTodaysAttend(child, attendances).attended
                && att.selectTodaysAttend(child, attendances).scheduledAbsent" class="text-center">Absent: Scheduled</p>
-                <p data-ng-show="!att.selectTodaysAttend(child, attendances).attended
+                <p data-ng-show="att.selectTodaysAttend(child, attendances) &&
+                !att.selectTodaysAttend(child, attendances).attended
                && !att.selectTodaysAttend(child, attendances).scheduledAbsent" class="text-center">Absent: Uncheduled</p>
+                <p data-ng-show="!att.selectTodaysAttend(child, attendances) ||
+                att.selectTodaysAttend(child, attendances).attended" class="text-center">Present</p>
             </a>
         </div>
 
