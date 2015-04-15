@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-sm-8 col-sm-offset-1">
                 <h2 name="fullNameField">{{child.firstName}} {{child.lastName}}'s Profile</h2>
+
                 <div data-ng-show="true">
                     <a class="btn btn-primary" data-ng-show="editGuardians" name="editChildButton"
                        data-ng-href="/#!/children/{{child._id}}/edit">
@@ -19,6 +20,7 @@
                 <h4>
 
                 </h4>
+
                 <div class="col-sm-5">
                     <h2><a name="profileButton" class="btn btn-primary btn-lg"
                            data-ng-href="{{child.profileLink}}"><span
@@ -95,25 +97,24 @@
                     <i class="fa fa-check-square-o fa-2x"></i><h4> Enrollment </h4>
                 </tab-heading>
                 <div class="row">
-                    <h1>
-                        <div class="col-sm-4 col-sm-offset-2">
-                            <h3>
-                                <div class="btn-group">
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <h4>
+                            Enrollment:
+                        </h4>
 
-                                    <label class="btn btn-day btn-danger" data-ng-model="child.enrolled"
-                                           btn-checkbox disabled>Status:</label>
-                                    <label class="btn btn-day" data-ng-model="child.enrolled"
-                                           btn-checkbox disabled><span id="isEnrolled" data-ng-show="child.enrolled">Enrolled</span><span
-                                            id="isCanceled" data-ng-show="!child.enrolled">Canceled</span> </label>
-                                </div>
-                            </h3>
+                        <div class="btn-group">
+
+                            <label class="btn btn-day btn-danger" data-ng-model="child.enrolled"
+                                   btn-checkbox disabled>Status:</label>
+                            <label class="btn btn-day" data-ng-model="child.enrolled"
+                                   btn-checkbox disabled><span id="isEnrolled"
+                                                               data-ng-show="child.enrolled">Enrolled</span><span
+                                    id="isCanceled" data-ng-show="!child.enrolled">Canceled</span> </label>
                         </div>
+                    </div>
 
-                    </h1>
-                </div>
-                <div class="row">
 
-                    <div class="col-sm-10 col-sm-offset-2">
+                    <div class="col-sm-8">
                         <h4>
                             Schedule:
                         </h4>
@@ -143,32 +144,39 @@
                         </div>
                     </div>
                 </div>
-                <br />
-                <div class=" col-sm-5 col-sm-offset-1">
-                <div class="panel panel-primary">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">Past Records</div>
+                <br/>
 
-                    <!-- Table -->
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>Authorizer</th>
-                            <th>Time</th>
-                            <th>Reason</th>
-                        </tr>
-                        </thead>
-                        <tbody data-ng-repeat="attend in attendances | orderBy: 'attend.date.fullDate'">
-                        <tr ng-class="{'info': attend.scheduledAbsent, 'success': attend.isAdvent, 'danger': (!attend.attended && !attend.scheduledAbsent && attend.past) || !attend.signedOut && attend.past && !attend.scheduledAbsent}">
-                            <th scope="row">{{attend.date.dayOfWeek}}</th>
-                            <td><span data-ng-show="attend.isAdvent" data-ng-hide="(attend.past && !attend.signedOut )|| attend.scheduledAbsent || attend.signedOut"> - </span>{{attend.signout.guardian}} <span data-ng-show="attend.past && !attend.signedOut">Child Not Signed Out!</span> </td>
-                            <td>{{attend.date.month}}/{{attend.date.day}}/{{attend.date.year}}<br/>{{attend.date.theTime}}</td>
-                            <td><span data-ng-show="attend.scheduledAbsent"> Scheduled Absent</span><span data-ng-show="attend.signedOut"> Signed Out</span><span data-ng-show="attend.isAdvent"> {{attend.adventName}}</span> </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <div class=" col-sm-5 col-sm-offset-1">
+                    <div class="panel panel-primary">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Past Records</div>
+
+                        <!-- Table -->
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Authorizer</th>
+                                <th>Time</th>
+                                <th>Reason</th>
+                            </tr>
+                            </thead>
+                            <tbody data-ng-repeat="attend in attendances | orderBy: 'attend.date.fullDate'">
+                            <tr ng-class="{'info': attend.scheduledAbsent, 'success': attend.isAdvent, 'danger': (!attend.attended && !attend.scheduledAbsent && attend.past) || !attend.signedOut && attend.past && !attend.scheduledAbsent}">
+                                <th scope="row">{{attend.date.dayOfWeek}}</th>
+                                <td><span data-ng-show="attend.isAdvent"
+                                          data-ng-hide="(attend.past && !attend.signedOut )|| attend.scheduledAbsent || attend.signedOut"> - </span>{{attend.signout.guardian}}
+                                    <span data-ng-show="attend.past && !attend.signedOut"
+                                          data-ng-hide="attend.scheduledAbsent || attend.signedOut">Child Not Signed Out!</span></td>
+                                <td>{{attend.date.month}}/{{attend.date.day}}/{{attend.date.year}}<br/>{{attend.date.theTime}}
+                                </td>
+                                <td><span data-ng-show="attend.scheduledAbsent"> Scheduled Absent</span><span
+                                        data-ng-show="attend.signedOut"> Signed Out</span><span
+                                        data-ng-show="attend.isAdvent"> {{attend.adventName}}</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class=" col-sm-5 ">
                     <div class="panel panel-primary">
@@ -188,9 +196,14 @@
                             <tbody data-ng-repeat="attend in upCommingAttendances | orderBy: '-attend.date.fullDate'">
                             <tr ng-class="{'info': attend.scheduledAbsent, 'success': attend.isAdvent, 'danger': !attend.attended && (!attend.scheduledAbsent || attend.past)}">
                                 <th scope="row">{{attend.date.dayOfWeek}}</th>
-                                <td><span data-ng-show="attend.isAdvent && !attend.scheduleAbsent" data-ng-hide="!attend.signedOut || !attend.scheduleAbsent"> - </span>{{attend.signout.guardian}} <span data-ng-show="attend.past && !attend.signedOut">Child Not Signed Out!</span> </td>
-                                <td>{{attend.date.month}}/{{attend.date.day}}/{{attend.date.year}} </td>
-                                <td><span data-ng-show="attend.scheduledAbsent"> Scheduled Absent</span><span data-ng-show="attend.signedOut"> Signed Out</span><span data-ng-show="attend.isAdvent"> {{attend.adventName}}</span> </td>
+                                <td><span data-ng-show="attend.isAdvent && !attend.scheduleAbsent"
+                                          data-ng-hide="!attend.signedOut || !attend.scheduleAbsent"> - </span>{{attend.signout.guardian}}
+                                    <span data-ng-show="attend.past && !attend.signedOut">Child Not Signed Out!</span>
+                                </td>
+                                <td>{{attend.date.month}}/{{attend.date.day}}/{{attend.date.year}}</td>
+                                <td><span data-ng-show="attend.scheduledAbsent"> Scheduled Absent</span><span
+                                        data-ng-show="attend.signedOut"> Signed Out</span><span
+                                        data-ng-show="attend.isAdvent"> {{attend.adventName}}</span></td>
                             </tr>
                             </tbody>
                         </table>

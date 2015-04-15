@@ -11,6 +11,10 @@
 
 
 }
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    background-color: rgba(224,224,224,1) !important;
+}
+
 .content {
     margin-top: 40px;
 
@@ -65,7 +69,7 @@
     padding-right: 0;
 }
 .list-group-item:nth-child(odd){
-    background-color: rgba(235, 64, 51,.6); !important;
+    background-color: rgba(224,224,224,1); !important;
 }
 .list-group-item:nth-child(odd):hover{
     background-color: rgba(235, 64, 51, .5); !important;
