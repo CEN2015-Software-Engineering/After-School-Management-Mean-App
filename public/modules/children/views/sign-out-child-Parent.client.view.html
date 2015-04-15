@@ -2,8 +2,8 @@
     <section data-ng-controller="GuardiansController as guardianCtrl" data-ng-init="find()">
         <section data-ng-controller="AttendancesController as attendCtrl" data-ng-init="find()">
                 <div class="row">
-                    <div class="col-sm-7 col-sm-offset-3">
-                        <h1>Checkout: {{child.firstName}} {{child.lastName}}</h1>
+                    <div class="col-sm-7 col-sm-offset-1">
+                        <h1>Sign Out {{child.firstName}} {{child.lastName}}</h1>
                     </div>
                 </div>
                 <div class="row">
@@ -38,7 +38,7 @@
                         <canvas width="800" height="250" id="signature-pad" class="signaturepad" ng-signature-pad="signature"></canvas>
                         <br />
                         <button class = "btn btn-sm today-button" ng-disabled = "signature.isEmpty() || !guardianCtrl.selected" ng-click="guardianCtrl.setMyChillun(false);attendCtrl.signOut(child,attendances,guardianCtrl.getSelected().gName)">
-                            <i class="glyphicon glyphicon-user"></i><br/>Confirm Child Sign out
+                            <i class="glyphicon glyphicon-user"></i><br/>Confirm Student Sign-out
                         </button>
                         <button class="btn btn-sm today-button" id="signature-clear" data-ng-click="signature.clear(); guardianCtrl.selected = false; guardianCtrl.deselectParent(guardianCtrl.getSelected().gName)">
                             <i class="fa fa-refresh"></i><br/>Clear
