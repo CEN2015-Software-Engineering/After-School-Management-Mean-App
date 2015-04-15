@@ -42,8 +42,9 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                 }).then(function(){
                     $scope.rosterChildren = [];
                     $scope.signedOutChildren = [];
-
+                    $scope.addableChildren = [];
                     for(var i in $scope.allChildren){
+                        var pushed = false;
                         var childHasAttToday = false;
                         for(var j in $scope.attendances){
                             if( $scope.allChildren[i]._id === $scope.attendances[j].childID ) {
@@ -58,10 +59,12 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                                             if( $scope.attendances[j].signedOut ){
                                                 //this child was already signed out today, add to signed out children
                                                 $scope.signedOutChildren.push($scope.allChildren[i]);
+                                                pushed = true;
                                             }
                                             else{
                                                 //this child has an open attendance for today, add to roster children
                                                 $scope.rosterChildren.push($scope.allChildren[i]);
+                                                pushed = true;
                                             }
                                         }
                                     }
@@ -95,6 +98,11 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                                     // this child is expected to attend today, add to roster children
                                     console.log($scope.allChildren[i].firstName + " is enrolled today with no attendance");
                                     $scope.rosterChildren.push($scope.allChildren[i]);
+                                    pushed = true;
+                                }
+                                if( !pushed ){
+                                    // shouldn't show up on today's roster, eligible for add student button
+                                    $scope.addableChildren.push($scope.allChildren[i]);
                                 }
                             }
                         }
@@ -103,8 +111,14 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                     console.log($scope.rosterChildren);
                     console.log("Signed Out");
                     console.log($scope.signedOutChildren);
+                    console.log("Addable");
+                    console.log($scope.addableChildren);
                 });
             })
+        };
+
+        this.toggleAdd = function(add){
+            add = !add;
         };
 
         this.theDate = function() {

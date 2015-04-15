@@ -236,6 +236,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         	attend = this.selectTodaysAttend(child,attendances);
         	if(attend !== false){
                 var date = new Date;
+                console.log(date.toString());
         		attend.signout.time = date.toString();
         		attend.signout.guardian = guardian;
         		attend.signedOut = true;
