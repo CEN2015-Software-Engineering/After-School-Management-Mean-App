@@ -5,7 +5,7 @@
 	</div>
     <div>
         <!-- Shown on signout -->
-        <div class="row" data-ng-show="attendance.attended">
+        <div class="row" data-ng-show="attendance.attended && !attendance.extraClass">
             <div class="col-sm-5 col-sm-offset-3">
                 <h1 name="childName">
                     <span >Successfully Signed Out</span> {{attendance.childName}}
@@ -13,6 +13,17 @@
                 <h2 name="date">On {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}} at
                     <span data-ng-show="!attendance.signout.time" data-ng-hide="attendance.scheduleAbsent"><i>{{time}}</i></span>
                     <span data-ng-show="attendance.signout.time" data-ng-init="AttController.getProperTime(attendance.signout.time)">{{time}}</span>
+                </h2>
+            </div>
+        </div>
+        <!-- Shown on Extra Class -->
+        <div class="row" data-ng-show="attendance.extraClass">
+            <div class="col-sm-5 col-sm-offset-3">
+                <h1 name="childName">
+                    <span>Successfully Scheduled Extra Class for</span> {{attendance.childName}}
+                </h1>
+                <h2 name="date">
+                    On {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}
                 </h2>
             </div>
         </div>
