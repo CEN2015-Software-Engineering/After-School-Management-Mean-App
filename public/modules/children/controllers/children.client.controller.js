@@ -203,6 +203,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
                                     attendances[attend].date.fullDate = (new Date(attendances[attend].signout.time)).valueOf();
                                     attendances[attend].date.dayOfWeek = moment(attendances[attend].signout.time).format('ddd');
                                     attendances[attend].date.theTime = moment((new Date(attendances[attend].signout.time))).format('hh:mm A');
+                                    if((moment((new Date(attendances[attend].signout.time))).format('hh')) >= 6 &&(moment((new Date(attendances[attend].signout.time))).format('mm')) >= 1 && (moment((new Date(attendances[attend].signout.time))).format('A')) === 'PM'){
+                                        console.log(attendances[attend].date.theTime);
+                                        console.log('Checked Out after 6');
+                                    }
 
                                 }else{
                                     attendances[attend].date.fullDate = (new Date(attendances[attend].date.year, attendances[attend].date.month - 1, attendances[attend].date.day)).valueOf();
