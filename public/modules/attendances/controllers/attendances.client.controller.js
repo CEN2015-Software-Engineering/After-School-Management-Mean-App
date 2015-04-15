@@ -167,16 +167,27 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 }).then(function(){
                     $scope.children = [];
                     $scope.kids = 0;
+                    // iterate through all children, add if they are able to be signed out
                     for(var i in $scope.childrenTemp){
+                        // only check currently enrolled children
                         if( $scope.childrenTemp[i].enrolled) {
                             var childHasAtt = false;
                             for (var j in $scope.attendances) {
-                                if ($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ((!$scope.attendances[j].attended && !$scope.attendances[j].scheduledAbsent ) || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent)) {
+                                if ($scope.childrenTemp[i]._id === $scope.attendances[j].childID ) {
                                     childHasAtt = true;
-                                    console.log($scope.childrenTemp[i]);
+                                    if( $scope.attendances[j].attended && !$scope.attendances[j].signedOut ){
+                                        // has existing attendance and should display
+                                        $scope.children.push($scope.childrenTemp[i]);
+                                        ++$scope.kids;
+                                    }
+                                    else if( ((!$scope.attendances[j].attended && !$scope.attendances[j].scheduledAbsent ) || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent) ){
+                                        // has existing attendance but shouldn't display
+                                        // can probably comment this if statement out
+                                    }
                                 }
                             }
                             if (!childHasAtt) {
+                                // display children who are expected today
                                 $scope.day = moment().format('ddd').toLowerCase();
                                 var enrolled = false;
                                 if ($scope.day === 'sun' && $scope.childrenTemp[i].schedule.sun) {
@@ -201,6 +212,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                             }
                         }
                     }
+                    //these children are eligible to be signed out
                     console.log($scope.children);
                     console.log("kids" + $scope.kids);
                 });
