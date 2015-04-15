@@ -5,14 +5,13 @@
     </div>
         <div class="list-group col-sm-10 col-sm-offset-1">
             <a data-ng-repeat="child in children |filter:{enrolled:true}| orderBy:'lastName'" data-ng-href="#!/sign-out-list/{{child._id}}" class="list-group-item">
-                <!--need to take out children who are marked absent by the instructor-->
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
             </a>
 
         </div>
         <div class="page-header col-sm-10 col-sm-offset-1">
             <div class="alert alert-warning text-center" data-ng-show="kids == 0">
-                All the children have been checkout today.
+                All students have been signed out.
             </div>
         </div>
     </section>

@@ -172,40 +172,41 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     $scope.children = [];
                     $scope.kids = 0;
                     for(var i in $scope.childrenTemp){
-                        var childHasAtt = false;
-                        for(var j in $scope.attendances){
-                            if($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ((!$scope.attendances[j].attended && !$scope.attendances[j].scheduledAbsent ) || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent))
-                            {
-                                childHasAtt = true;
-                                console.log($scope.childrenTemp[i]);
+                        if( $scope.childrenTemp[i].enrolled) {
+                            var childHasAtt = false;
+                            for (var j in $scope.attendances) {
+                                if ($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ((!$scope.attendances[j].attended && !$scope.attendances[j].scheduledAbsent ) || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent)) {
+                                    childHasAtt = true;
+                                    console.log($scope.childrenTemp[i]);
+                                }
                             }
-                        } 
-                        if(!childHasAtt) {
-                            $scope.day = moment().format('ddd').toLowerCase();
-                            var enrolled = false;
-                            if ($scope.day === 'sun' && $scope.childrenTemp[i].schedule.sun) {
-                                enrolled = true;
-                            } else if ($scope.day === 'mon' && $scope.childrenTemp[i].schedule.mon) {
-                                enrolled = true;
-                            } else if ($scope.day === 'tue' && $scope.childrenTemp[i].schedule.tue) {
-                                enrolled = true;
-                            } else if ($scope.day === 'wed' && $scope.childrenTemp[i].schedule.wed) {
-                                enrolled = true;
-                            } else if ($scope.day === 'thu' && $scope.childrenTemp[i].schedule.thu) {
-                                enrolled = true;
-                            } else if ($scope.day === 'fri' && $scope.childrenTemp[i].schedule.fri) {
-                                enrolled = true;
-                            } else if ($scope.day === 'sat' && $scope.childrenTemp[i].schedule.sat) {
-                                enrolled = true;
-                            }
-                            if (enrolled) {
-                                $scope.children.push($scope.childrenTemp[i]);
-                                ++$scope.kids;
+                            if (!childHasAtt) {
+                                $scope.day = moment().format('ddd').toLowerCase();
+                                var enrolled = false;
+                                if ($scope.day === 'sun' && $scope.childrenTemp[i].schedule.sun) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'mon' && $scope.childrenTemp[i].schedule.mon) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'tue' && $scope.childrenTemp[i].schedule.tue) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'wed' && $scope.childrenTemp[i].schedule.wed) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'thu' && $scope.childrenTemp[i].schedule.thu) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'fri' && $scope.childrenTemp[i].schedule.fri) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'sat' && $scope.childrenTemp[i].schedule.sat) {
+                                    enrolled = true;
+                                }
+                                if (enrolled) {
+                                    $scope.children.push($scope.childrenTemp[i]);
+                                    ++$scope.kids;
+                                }
                             }
                         }
                     }
                     console.log($scope.children);
-                    console.log($scope.kids);
+                    console.log("kids" + $scope.kids);
                 });
             });
 
