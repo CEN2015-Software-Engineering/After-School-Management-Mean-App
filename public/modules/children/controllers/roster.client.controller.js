@@ -101,6 +101,7 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                                 if( !pushed ){
                                     // shouldn't show up on today's roster, eligible for add student button
                                     $scope.addableChildren.push($scope.allChildren[i]);
+                                    //lol
                                 }
                             }
                         }
