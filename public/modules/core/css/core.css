@@ -69,11 +69,70 @@
     padding-right: 0;
 }
 .list-group-item:nth-child(odd){
-    background-color: rgba(224,224,224,1); !important;
+    background-color: rgba(224,224,224,1) !important;
 }
 .list-group-item:nth-child(odd):hover{
-    background-color: rgba(235, 64, 51, .5); !important;
+    background-color: rgba(235, 64, 51, .5) !important;
 }
+
+.list-group-item-roster:nth-child(odd){
+    background-color: rgba(255,255,255,1) !important;
+}
+.list-group-item-roster:nth-child(even){
+    background-color: rgba(255,255,255,1) !important;
+}
+.list-group-item-roster:nth-child(odd):hover{
+    background-color: rgba(255,255,255,1) !important;
+}
+.list-group-item-roster:nth-child(even):hover{
+    background-color: rgba(255,255,255,1) !important;
+}
+
+.list-group-item-gone:nth-child(even){
+    color: rgba(150, 150, 150, 1) !important;
+    background-color: rgba(212,212,212,.8) !important;
+}
+.list-group-item-gone:nth-child(odd){
+    color: rgba(150, 150, 150, 1) !important;
+    background-color: rgba(212,212,212,.8) !important;
+}
+.list-group-item-gone:nth-child(odd):hover{
+    background-color: rgba(212, 212, 212, .8) !important;
+}
+.list-group-item-gone:nth-child(even):hover{
+    background-color: rgba(212, 212, 212, .8) !important;
+}
+
+.list-group-item-sched-ab:nth-child(odd){
+    background-color: rgba(217, 237, 247, 1) !important;
+}
+.list-group-item-sched-ab:nth-child(even){
+    background-color: rgba(217, 237, 247, 1) !important;
+}
+.list-group-item-sched-ab:nth-child(odd):hover{
+    background-color: rgba(217, 237, 247, 1) !important;
+}
+.list-group-item-sched-ab:nth-child(even):hover{
+    background-color: rgba(217, 237, 247, 1) !important;
+}
+
+.list-group-item-unsched-ab:nth-child(odd){
+    background-color: rgba(242, 222, 222, 1) !important;
+}
+.list-group-item-unsched-ab:nth-child(even){
+    background-color: rgba(242, 222, 222, 1) !important;
+}
+.list-group-item-unsched-ab:nth-child(odd):hover{
+    background-color: rgba(242, 222, 222, 1) !important;
+}
+.list-group-item-unsched-ab:nth-child(even):hover{
+    background-color: rgba(242, 222, 222, 1) !important;
+}
+
+.text-gone {
+    color: rgba(100, 100, 100, 1) !important;
+}
+
 /* johns stuff */
 .header {
     overflow: hidden;

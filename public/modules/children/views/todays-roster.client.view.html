@@ -12,24 +12,30 @@
 
         <br />
 
-        <div class="list-group">
-            <a data-ng-repeat="child in rosterChildren | orderBy: 'lastName'" data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances))" class="list-group-item">
+        <div class="list-group roster-list">
+            <a data-ng-repeat="child in rosterChildren | orderBy: 'lastName'"
+               data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances))"
+               class="list-group-item list-group-item-roster"
+               ng-class="{'list-group-item-unsched-ab' :
+               !att.selectTodaysAttend(child, attendances).attended
+               && !att.selectTodaysAttend(child, attendances).scheduledAbsent,
+               'list-group-item-sched-ab' :
+               !att.selectTodaysAttend(child, attendances).attended
+               && att.selectTodaysAttend(child, attendances).scheduledAbsent }">
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
-                <p data-ng-if="att.selectTodaysAttend(child, attendances)">This child has an attendance.</p>
-                <p data-ng-if="att.selectTodaysAttend(child, attendances)">This child has an attendance.</p>
-                <p data-ng-if="!att.selectTodaysAttend(child, attendances)">This child doesn't have anb attendance.</p>
-                <p data-ng-if="!att.selectTodaysAttend(child, attendances).scheduledAbsent && !att.selectTodaysAttend(child, attendances).attended">This child is unscheduled absent.</p>
-                <p data-ng-if="att.selectTodaysAttend(child, attendances).scheduledAbsent && !att.selectTodaysAttend(child, attendances).attended">This child is scheduled absent.</p>
-                <p data-ng-if="att.selectTodaysAttend(child, attendances).attended && !att.selectTodaysAttend(child, attendances).signedOut">This child attended and is still here.</p>
-                <p data-ng-if="att.selectTodaysAttend(child, attendances).attended && att.selectTodaysAttend(child, attendances).signedOut">This child attended and was signed out.</p>
+                <p data-ng-show="att.selectTodaysAttend(child, attendances).attended" class="text-center">Present</p>
+                <p data-ng-show="!att.selectTodaysAttend(child, attendances).attended
+               && att.selectTodaysAttend(child, attendances).scheduledAbsent" class="text-center">Absent: Scheduled</p>
+                <p data-ng-show="!att.selectTodaysAttend(child, attendances).attended
+               && !att.selectTodaysAttend(child, attendances).scheduledAbsent" class="text-center">Absent: Uncheduled</p>
             </a>
         </div>
 
         <br />
 
-        <div class="list-group">
-            <a data-ng-repeat="child in signedOutChildren | orderBy: 'lastName'" class="list-group-item">
-                <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
+        <div class="list-group gone-list">
+            <a data-ng-repeat="child in signedOutChildren | orderBy: 'lastName'" class="list-group-item list-group-item-gone">
+                <h1 class="list-group-item-heading text-center text-gone" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
                 <i><p class="text-center">Signed Out</p></i>
             </a>
         </div>
