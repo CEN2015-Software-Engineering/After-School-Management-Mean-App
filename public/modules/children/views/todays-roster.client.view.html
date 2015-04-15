@@ -11,7 +11,7 @@
         </div>
 
         <br />
-
+        <p class="text-center" data-ng-if="add">Select a student to add to today's roster.</p>
         <div class="list-group roster-list" data-ng-if="add">
             <a data-ng-repeat="child in addableChildren | orderBy: 'lastName'" class="list-group-item list-group-item-roster"
                data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances), true)">
