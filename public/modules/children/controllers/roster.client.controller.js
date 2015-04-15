@@ -36,8 +36,7 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
 
                 $http.get('/children/').success(function(data){
                     $scope.allChildren = data;
-                    console.log("All");
-                    console.log($scope.allChildren);
+
 
                 }).then(function(){
                     $scope.rosterChildren = [];
@@ -96,7 +95,6 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                                 }
                                 if ( enrolledToday ) {
                                     // this child is expected to attend today, add to roster children
-                                    console.log($scope.allChildren[i].firstName + " is enrolled today with no attendance");
                                     $scope.rosterChildren.push($scope.allChildren[i]);
                                     pushed = true;
                                 }
@@ -107,14 +105,8 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                             }
                         }
                     }
-                    console.log("Roster");
-                    console.log($scope.rosterChildren);
-                    console.log("Signed Out");
-                    console.log($scope.signedOutChildren);
-                    console.log("Addable");
-                    console.log($scope.addableChildren);
                 });
-            })
+            });
         };
 
         this.toggleAdd = function(add){

@@ -20,24 +20,17 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 
 
         $scope.pastDate = function(advent, when){
-            console.log(advent);
             var today = new Date();
             var adventDay = new Date(advent.date.year, advent.date.month - 1, advent.date.day);
-            console.log(today.getDate() + ' ' + today.getMonth() + ' ' + today.getFullYear());
-            console.log(adventDay.getTime() + ' ' + today.getTime());
             if(when === 'upcoming'){
                 if(adventDay.getTime() >= today.getTime()){
-                    console.log('true');
                     return true;
                 }
-                console.log('false');
                 return false;
             }else {
                 if(adventDay.getTime() < today.getTime()){
-                    console.log('true');
                     return true;
                 }
-                console.log('false');
                 return false;
             }
 
@@ -101,7 +94,6 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 
             while(advent.editableDescription !== advent.editableDescription.replace('\n', '<br />')){
                 advent.editableDescription = advent.editableDescription.replace('\n', '<br />');
-                console.log(advent.editableDescription);
             }
             advent.description = advent.editableDescription;
 
@@ -127,7 +119,6 @@ angular.module('advents').controller('AdventsController', ['$scope', '$statePara
 
                 while($scope.advent.editableDescription !== $scope.advent.editableDescription.replace('<br />','\n')){
                     $scope.advent.editableDescription =  $scope.advent.editableDescription.replace('<br />', '\n');
-                    console.log( $scope.advent.editableDescription);
                 }
             }, 1500);
 

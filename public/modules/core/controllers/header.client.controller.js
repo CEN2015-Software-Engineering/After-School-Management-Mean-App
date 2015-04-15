@@ -68,7 +68,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 			$scope.passcode = document.getElementById('PINchange').value;
             $scope.passcodeJSON = {
                 passcode: $scope.passcode
-            }
+            };
             $http.post('/modules/core/controllers/passcode.json', $scope.passcodeJSON, {headers: {'Content-Type': 'application/json'}} ).success(function(data) {
                 $scope.passcode = data.passcode;
                 console.log(data.passcode);

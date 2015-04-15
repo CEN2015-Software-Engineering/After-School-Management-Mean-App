@@ -141,13 +141,9 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 		// Find a list of Attendances
 		$scope.find = function() {
 			$scope.attendances = Attendances.query();
-            console.log($scope.attendances);
             $scope.day = moment().date();
-            console.log($scope.day);
             $scope.month = moment().month();
-            console.log($scope.month);
             $scope.year = moment().year();
-            console.log($scope.year);
 		};
 
 		// Find existing Attendance
@@ -183,6 +179,8 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                                     else if( ((!$scope.attendances[j].attended && !$scope.attendances[j].scheduledAbsent ) || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent) ){
                                         // has existing attendance but shouldn't display
                                         // can probably comment this if statement out
+                                        var lol = 'not empty';
+
                                     }
                                 }
                             }
@@ -212,9 +210,6 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                             }
                         }
                     }
-                    //these children are eligible to be signed out
-                    console.log($scope.children);
-                    console.log("kids" + $scope.kids);
                 });
             });
 
@@ -245,9 +240,10 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         this.signOut = function(child,attendances,guardian){
         	var attend;
         	var attendance;
+            var date;
         	attend = this.selectTodaysAttend(child,attendances);
         	if(attend !== false){
-                var date = new Date;
+                date = new Date();
                 console.log(date.toString());
         		attend.signout.time = date.toString();
         		attend.signout.guardian = guardian;
@@ -256,7 +252,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 $location.path('attendances/' + attend._id);
         	}else{
         		var name = child.firstName + ' ' + child.lastName;
-                var date = new Date;
+                date = new Date();
         		attendance = new Attendances({
         			childID: child._id,
                 childName: name,
@@ -338,9 +334,6 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
             var tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             $scope.dt = tomorrow;
-            console.log("Month: " + $scope.dt.getMonth() + 1);
-            console.log("Year: " + $scope.dt.getFullYear());
-            console.log("Day: " + $scope.dt.getDate() + 1);
         };
         $scope.todayPicker();
 
