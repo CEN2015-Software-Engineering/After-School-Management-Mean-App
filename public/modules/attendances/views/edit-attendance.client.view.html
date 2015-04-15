@@ -14,11 +14,10 @@
 
                 <div class="row text-center">
                     <div class="col-sm-5 col-sm-offset-3">
-                    <button type="button" class="btn btn-sm"
+                    <button type="button" class="btn btn-lg"
                             ng-class="{'btn-success': attendance.attended, 'btn-danger': !attendance.attended}"
                             ng-model="attendance.attended" btn-checkbox
-                            btn-checkbox-true="true" btn-checkbox-false="false"
-                            ng-disabled="button">
+                            btn-checkbox-true="true" btn-checkbox-false="false" data-ng-click="!attendance.attended">
                         <p data-ng-show="attendance.attended">Present</p>
                         <p data-ng-show="!attendance.attended">Absent</p>
                     </button>
@@ -29,11 +28,10 @@
 
                 <div class="row text-center" data-ng-hide="attendance.attended">
                     <div class="col-sm-5 col-sm-offset-3">
-                    <button type="button" class="btn btn-sm"
+                    <button type="button" class="btn btn-lg"
                             ng-class="{'btn-primary': attendance.scheduledAbsent, 'btn-danger': !attendance.scheduledAbsent}"
                             ng-model="attendance.scheduledAbsent" btn-checkbox
-                            btn-checkbox-true="true" btn-checkbox-false="false"
-                            ng-disabled="button">
+                            btn-checkbox-true="true" btn-checkbox-false="false" data-ng-click="!attendance.scheduledAbsent">
                         <p data-ng-show="attendance.scheduledAbsent">Scheduled</p>
                         <p data-ng-show="!attendance.scheduledAbsent">Unscheduled</p>
 
