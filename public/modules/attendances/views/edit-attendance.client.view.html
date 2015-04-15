@@ -8,46 +8,45 @@
 </div>
 
 <div class="modal-body row">
-<form class="form-horizontal" data-ng-submit="update()" novalidate>
-<fieldset>
-<div class="form-group">
+    <form class="form-horizontal" data-ng-submit="update()" novalidate>
+        <fieldset>
+            <div class="form-group">
 
-    <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="attended">Present</label>
-            <div class="controls">
-                <input type="radio" name="attended" value="true" data-ng-model="attendance.attended" id="attended"
-                       class="radio btn-lg">
-            </div>
-            <label class="control-label" for="absent">Absent</label>
-            <div class="controls">
-                <input type="radio" name="absent" value="false" data-ng-model="attendance.attended" id="absent"
-                       class="radio btn-lg">
-            </div>
-        </div>
-    </div>
+                <div class="row">
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <label class="control-label" for="attended">Is {{attendance.childName}} present?</label>
+                        <span data-ng-hide="!attendance.attended">Yes</span>
+                        <span data-ng-hide="attendance.attended">No</span>
+                        <div class="controls">
+                            <input type="checkbox"
+                                   name="attended"
+                                   data-ng-model="attendance.attended"
+                                   id="attended"
+                                   class="checkbox">
+                        </div>
 
-    <div class="row" data-ng-hide="attendance.attended">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="scheduledAbsent">Scheduled</label>
-            <div class="controls">
-                <input type="radio" name="scheduledAbsent" value="true" data-ng-model="attendance.scheduledAbsent" id="scheduledAbsent"
-                       class="radio btn-lg">
-            </div>
-            <label class="control-label" for="unscheduledAbsent">Unscheduled</label>
-            <div class="controls">
-                <input type="radio" name="unscheduledAbsent" value="false" data-ng-model="attendance.scheduledAbsent" id="unscheduledAbsent"
-                       class="radio btn-lg">
-            </div>
-        </div>
-    </div>
+                    </div>
+                </div>
 
+                <div class="row" data-ng-hide="attendance.attended">
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <label class="control-label" for="scheduled">Is the absence scheduled?</label>
+                        <span data-ng-hide="!attendance.scheduledAbsent">Yes</span>
+                        <span data-ng-hide="attendance.scheduledAbsent">No</span>
+                        <div class="controls">
+                            <input type="checkbox"
+                                   name="scheduled"
+                                   data-ng-model="attendance.scheduledAbsent"
+                                   id="scheduled"
+                                   class="checkbox">
+                        </div>
+                    </div>
+                </div>
 
-
+        </fieldset>
+    </form>
 </div>
-</fieldset>
-</form>
-</div>
+
 <div class="row">
     <div class="modal-footer">
         <div class="col-sm-4 col-sm-offset-8">
