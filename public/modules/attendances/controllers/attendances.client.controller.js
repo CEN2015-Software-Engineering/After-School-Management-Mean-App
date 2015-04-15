@@ -234,14 +234,13 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
         //signs out the given child by either editing its attendance or creating one
         this.signOut = function(child,attendances,guardian){
-            console.log("hurr");
         	var attend;
         	var attendance;
         	attend = this.selectTodaysAttend(child,attendances);
         	if(attend !== false){
-                console.log("FML");
                 console.log(attend);
                 var date = new Date;
+                console.log(date.toString());
         		attend.signout.time = date.toString();
         		attend.signout.guardian = guardian;
         		attend.signedOut = true;
