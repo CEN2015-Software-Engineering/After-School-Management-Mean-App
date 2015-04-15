@@ -211,6 +211,9 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
             });
 
         };
+
+
+
         this.getProperTime = function(fulltime) {
             $scope.time = moment(fulltime).format('hh:mm A');
             $timeout(function(){

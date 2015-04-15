@@ -4,10 +4,19 @@
         <div class="page-header">
             <h1>{{roster.theDate()}} Roster</h1>
             <div class="pull-right">
-                <a class="btn btn-warning btn-sm" name="createAttendanceButton" data-ng-click="">
+                <a class="btn btn-warning btn-sm" name="createAttendanceButton" data-ng-click="add=!add">
                     <i class="glyphicon glyphicon-user"></i> Add Student
                 </a>
             </div>
+        </div>
+
+        <br />
+
+        <div class="list-group roster-list" data-ng-if="add">
+            <a data-ng-repeat="child in addableChildren | orderBy: 'lastName'" class="list-group-item list-group-item-roster"
+               data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances))">
+                <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
+            </a>
         </div>
 
         <br />
