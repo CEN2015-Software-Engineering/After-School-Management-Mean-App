@@ -167,7 +167,7 @@
                                 <td><span data-ng-show="attend.isAdvent"
                                           data-ng-hide="(attend.past && !attend.signedOut )|| attend.scheduledAbsent || attend.signedOut"> - </span>{{attend.signout.guardian}}
                                     <span data-ng-show="attend.past && (!attend.signedOut && attended.attended)"
-                                          data-ng-hide="attend.scheduledAbsent || attend.signedOut || !attend.attended">Child Not Signed Out!</span>
+                                          data-ng-hide="attend.scheduledAbsent || attend.signedOut || !attend.attended">Student Not Signed Out!</span>
 
                                 <td>{{attend.date.month}}/{{attend.date.day}}/{{attend.date.year}}<br/>{{attend.date.theTime}}
                                 </td>
@@ -204,7 +204,7 @@
                                 <th scope="row">{{attend.date.dayOfWeek}}</th>
                                 <td><span data-ng-show="attend.isAdvent && !attend.scheduleAbsent"
                                           data-ng-hide="!attend.signedOut || !attend.scheduleAbsent"> - </span>{{attend.signout.guardian}}
-                                    <span data-ng-show="attend.past && !attend.signedOut">Child Not Signed Out!</span>
+                                    <span data-ng-show="attend.past && !attend.signedOut">Student Not Signed Out!</span>
                                 </td>
                                 <td>{{attend.date.month}}/{{attend.date.day}}/{{attend.date.year}}</td>
                                 <td><span data-ng-show="attend.scheduledAbsent"> Scheduled Absent</span><span

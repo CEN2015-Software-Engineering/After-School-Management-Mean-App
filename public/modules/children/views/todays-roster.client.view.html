@@ -14,7 +14,7 @@
 
         <div class="list-group roster-list" data-ng-if="add">
             <a data-ng-repeat="child in addableChildren | orderBy: 'lastName'" class="list-group-item list-group-item-roster"
-               data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances))">
+               data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances), true)">
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
             </a>
         </div>
@@ -23,7 +23,7 @@
 
         <div class="list-group roster-list">
             <a data-ng-repeat="child in rosterChildren | orderBy: 'lastName'"
-               data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances))"
+               data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances), false)"
                class="list-group-item list-group-item-roster"
                ng-class="{'list-group-item-unsched-ab' : att.selectTodaysAttend(child, attendances) &&
                !att.selectTodaysAttend(child, attendances).attended

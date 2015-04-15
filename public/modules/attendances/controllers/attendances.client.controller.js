@@ -21,7 +21,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
 
         //Open Modal Window to Update Guardian
-        this.modalUpdate = function (size, child, selectedAttendance) {
+        this.modalUpdate = function (size, child, selectedAttendance, isExtra) {
             if( !selectedAttendance ){
                 var name = child.firstName + ' ' + child.lastName;
                 var attendance = new Attendances({
@@ -39,7 +39,8 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                         guardian: null
                     },
                     isAdvent: false,
-                    signedOut: false
+                    signedOut: false,
+                    extraClass: isExtra
                 });
                 attendance.$save(function(response) {
                     $location.path('/todays-roster');

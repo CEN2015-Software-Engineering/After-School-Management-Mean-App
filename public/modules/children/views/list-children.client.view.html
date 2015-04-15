@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-sm-6 col-sm-offset-1">
             <div class="page-header">
-                <h1>List of All Children</h1>
+                <h1>Enrolled Students</h1>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="page-header">
-                <a data-ng-show="editGuardians" data-ng-href="#!/children/create" name="addChildButton">
-                    <h1>Add Child</h1>
+                <a class="btn btn-warning btn-lg" data-ng-show="editGuardians" data-ng-href="#!/children/create" name="addChildButton">
+                    <i class="glyphicon glyphicon-user"></i> Add Student
                 </a>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-sm-8 col-sm-offset-1">
                 <div class="page-header">
-                    <h1>Children Not Enrolled:</h1>
+                    <h1>Unenrolled Students</h1>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
             </a>
         </div>
         <div class="alert alert-warning text-center" data-ng-hide="!children.$resolved || children.length">
-            No Children yet, why don't you <a href="/#!/children/create">create one</a>?
+            No students yet, why don't you <a href="/#!/children/create">add one</a>?
         </div>
     </div>
 </section>
