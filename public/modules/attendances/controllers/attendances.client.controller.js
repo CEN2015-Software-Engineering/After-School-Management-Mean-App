@@ -21,8 +21,37 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
 
         //Open Modal Window to Update Guardian
-        this.modalUpdate = function (size, selectedAttendance) {
+        this.modalUpdate = function (size, child, selectedAttendance) {
+            if( !selectedAttendance ){
+                console.log("must create for " + child.firstName );
+                var name = child.firstName + ' ' + child.lastName;
+                var attendance = new Attendances({
+                    childID: child._id,
+                    childName: name,
+                    date:{
+                        day: $scope.day,
+                        month: $scope.month+1,
+                        year: $scope.year
+                    },
+                    attended: true,
+                    scheduledAbsent: false,
+                    signout:{
+                        time:null,
+                        guardian: null
+                    },
+                    isAdvent: false,
+                    signedOut: false
+                });
+                attendance.$save(function(response) {
+                    $location.path('/todays-roster');
+                    console.log("whoops");
 
+                }, function(errorResponse) {
+                    console.log("whoops");
+                    $scope.error = errorResponse.data.message;
+                });
+                selectedAttendance = attendance;
+            }
             var modalInstance = $modal.open({
                 templateUrl: '/modules/attendances/views/edit-attendance.client.view.html',
                 controller: function ($scope, $modalInstance, $stateParams, attendance) {
@@ -30,6 +59,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
 
                     $scope.ok = function () {
+                        $location.path('/todays-roster?');
                         $modalInstance.close($scope.attendance);
                     };
 
@@ -289,7 +319,7 @@ angular.module('attendances').controller('AttendancesUpdateController', ['$scope
         this.update = function(selectedAttendance) {
             var attendance = selectedAttendance;
             attendance.$update(function() {
-                $location.path('attendances/' + attendance._id);
+                $location.path('todays-roster');
 }, function(errorResponse) {
     $scope.error = errorResponse.data.message;
     });
