@@ -16,6 +16,7 @@
             <a data-ng-repeat="child in rosterChildren | orderBy: 'lastName'" data-ng-click="att.modalUpdate('md', child, att.selectTodaysAttend(child, attendances))" class="list-group-item">
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
                 <p data-ng-if="att.selectTodaysAttend(child, attendances)">This child has an attendance.</p>
+                <p data-ng-if="att.selectTodaysAttend(child, attendances)">This child has an attendance.</p>
                 <p data-ng-if="!att.selectTodaysAttend(child, attendances)">This child doesn't have anb attendance.</p>
                 <p data-ng-if="!att.selectTodaysAttend(child, attendances).scheduledAbsent && !att.selectTodaysAttend(child, attendances).attended">This child is unscheduled absent.</p>
                 <p data-ng-if="att.selectTodaysAttend(child, attendances).scheduledAbsent && !att.selectTodaysAttend(child, attendances).attended">This child is scheduled absent.</p>

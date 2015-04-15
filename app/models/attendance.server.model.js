@@ -54,7 +54,7 @@ var AttendanceSchema = new Schema({
     signout: {
         // Exact time the child was signed out
         time:{
-            type: Date,
+            type: String,
             default: null
         },
         // Name of person who signed the child out

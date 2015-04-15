@@ -174,7 +174,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                     for(var i in $scope.childrenTemp){
                         var childHasAtt = false;
                         for(var j in $scope.attendances){
-                            if($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ($scope.attendances[j].attended || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent))
+                            if($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ((!$scope.attendances[j].attended && !$scope.attendances[j].scheduledAbsent ) || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent))
                             {
                                 childHasAtt = true;
                                 console.log($scope.childrenTemp[i]);
@@ -233,13 +233,18 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
         //signs out the given child by either editing its attendance or creating one
         this.signOut = function(child,attendances,guardian){
+            console.log("hurr");
         	var attend;
         	var attendance;
         	attend = this.selectTodaysAttend(child,attendances);
         	if(attend !== false){
-        		//attend.signOut.time = Date.now();
+                console.log("FML");
+                console.log(attend);
+                var date = new Date;
+        		attend.signOut.time = date;
         		attend.signout.guardian = guardian;
         		attend.signedOut = true;
+                $http.put('attendances/' + attend._id, attend);
         	}else{
         		var name = child.firstName + ' ' + child.lastName;
         		attendance = new Attendances({
