@@ -23,7 +23,6 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         //Open Modal Window to Update Guardian
         this.modalUpdate = function (size, child, selectedAttendance) {
             if( !selectedAttendance ){
-                console.log("must create for " + child.firstName );
                 var name = child.firstName + ' ' + child.lastName;
                 var attendance = new Attendances({
                     childID: child._id,
@@ -44,10 +43,8 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 });
                 attendance.$save(function(response) {
                     $location.path('/todays-roster');
-                    console.log("whoops");
 
                 }, function(errorResponse) {
-                    console.log("whoops");
                     $scope.error = errorResponse.data.message;
                 });
                 selectedAttendance = attendance;
@@ -85,7 +82,6 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 		// Create new Attendance
 		$scope.create = function() {
 			// Create new Attendance object
-            console.log(this.adventID);
 			var attendance = new Attendances ({
 				childID: this.childID,
                 childName: this.childName,
@@ -211,6 +207,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
             });
 
         };
+
         this.getProperTime = function(fulltime) {
             $scope.time = moment(fulltime).format('hh:mm A');
             $timeout(function(){
@@ -234,13 +231,10 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
         //signs out the given child by either editing its attendance or creating one
         this.signOut = function(child,attendances,guardian){
-            console.log("hurr");
         	var attend;
         	var attendance;
         	attend = this.selectTodaysAttend(child,attendances);
         	if(attend !== false){
-                console.log("FML");
-                console.log(attend);
                 var date = new Date;
         		attend.signout.time = date.toString();
         		attend.signout.guardian = guardian;
@@ -283,14 +277,10 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
             $http.get('/children/' + $stateParams.childId).success(function(child) {
                 $scope.child = child;
                 $http.get('/guardians').success(function (data) {
-                    console.log(data);
                     $scope.guardians = [];
                     var tempG = data;
                     for (var a in tempG) {
-                        console.log('here');
-                        console.log(tempG);
                         if (tempG[a].childID === $scope.child._id) {
-                            console.log(tempG[a].gName);
                             $scope.guardians.push(tempG[a].gName);
                         }
                     }
@@ -299,14 +289,14 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
         $scope.createAbsence = function() {
             // Create new Attendance object
-            console.log(this.adventID);
+            console.log($scope.dt.getMonth() + 1);
             var attendance = new Attendances ({
                 childID: $scope.child._id,
                 childName: $scope.child.firstName + ' ' + $scope.child.lastName,
                 date:{
-                    day: this.day,
-                    month: this.month,
-                    year: this.year
+                    day: $scope.dt.getDate(),
+                    month: $scope.dt.getMonth() + 1,
+                    year: $scope.dt.getFullYear()
                 },
                 attended: false,
                 scheduledAbsent: true,
@@ -327,6 +317,48 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
             });
 
         };
+
+    //**DatePicker**//
+        $scope.todayPicker = function() {
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            $scope.dt = tomorrow;
+            console.log("Month: " + $scope.dt.getMonth() + 1);
+            console.log("Year: " + $scope.dt.getFullYear());
+            console.log("Day: " + $scope.dt.getDate() + 1);
+        };
+        $scope.todayPicker();
+
+        $scope.clearPicker = function () {
+            $scope.dt = null;
+        };
+
+        // Disable weekend selection
+        $scope.disabledPicker = function(date, mode) {
+            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+        };
+
+        $scope.toggleMinPicker = function() {
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            $scope.minDate = $scope.minDate ? null : tomorrow;
+        };
+        $scope.toggleMinPicker();
+
+        $scope.openPicker = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.openedPicker = true;
+        };
+
+        $scope.dateOptionsPicker = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        $scope.formats = ['MM/dd/yyyy'];
+        $scope.format = $scope.formats[0];
 
 }]);
 
