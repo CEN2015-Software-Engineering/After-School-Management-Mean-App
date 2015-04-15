@@ -2,8 +2,8 @@
 
 // Attendances controller
 
-angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Children', 'Attendances', '$modal', '$log', 'instructorPerm','$http',
-	function($scope, $stateParams, $location, Children, Attendances, $modal, $log, instructorPerm,$http) {
+angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Children', 'Attendances', '$modal', '$log', 'instructorPerm','$http', '$timeout',
+	function($scope, $stateParams, $location, Children, Attendances, $modal, $log, instructorPerm,$http, $timeout) {
 
         $scope.editGuardians = instructorPerm.getEditGuardians();
         $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
@@ -210,7 +210,14 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
             });
 
         };
+        this.getProperTime = function(fulltime) {
+            $scope.time = moment(fulltime).format('HH:MM A');
+            $timeout(function(){
+                $location.path('/#!');
+            }, 2000);
 
+
+        };
         //returns todays attendance for the given child returns false if the child doesnt have one
         this.selectTodaysAttend = function(child,attendances)
         {
@@ -253,7 +260,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 signedOut: true
         		});
         		attendance.$save(function(response) {
-				$location.path('/#!/');
+                    $location.path('attendances/' + response._id);
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
@@ -262,21 +269,24 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
 
         $scope.findChild = function() {
-            $scope.child = Children.get({
-                childId: $stateParams.childId
-            });
-            $http.get('/guardians').success(function(data){
-                console.log(data);
-                $scope.guardians = [];
-                var tempG = data;
-                for(var a in tempG){
-                    console.log('here');
-                    console.log(tempG);
-                    if(tempG[a].childID === $scope.child._id){
-                        console.log(tempG[a].gName);
-                        $scope.guardians.push(tempG[a].gName);
+            //$scope.child = Children.get({
+               // childId: $stateParams.childId
+           // });
+            $http.get('/children/' + $stateParams.childId).success(function(child) {
+                $scope.child = child;
+                $http.get('/guardians').success(function (data) {
+                    console.log(data);
+                    $scope.guardians = [];
+                    var tempG = data;
+                    for (var a in tempG) {
+                        console.log('here');
+                        console.log(tempG);
+                        if (tempG[a].childID === $scope.child._id) {
+                            console.log(tempG[a].gName);
+                            $scope.guardians.push(tempG[a].gName);
+                        }
                     }
-                }
+                });
             });
         };
         $scope.createAbsence = function() {
