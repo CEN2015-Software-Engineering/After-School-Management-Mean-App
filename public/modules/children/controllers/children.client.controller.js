@@ -202,7 +202,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
                                 if(attendances[attend].signedOut){
                                     attendances[attend].date.fullDate = (new Date(attendances[attend].signout.time)).valueOf();
                                     attendances[attend].date.dayOfWeek = moment(attendances[attend].signout.time).format('ddd');
-                                    attendances[attend].date.theTime = moment((new Date(attendances[attend].signout.time))).format('hh:MM A');
+                                    attendances[attend].date.theTime = moment((new Date(attendances[attend].signout.time))).format('hh:mm A');
 
                                 }else{
                                     attendances[attend].date.fullDate = (new Date(attendances[attend].date.year, attendances[attend].date.month - 1, attendances[attend].date.day)).valueOf();

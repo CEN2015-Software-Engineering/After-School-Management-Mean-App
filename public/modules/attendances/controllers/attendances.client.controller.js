@@ -211,10 +211,10 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
         };
         this.getProperTime = function(fulltime) {
-            $scope.time = moment(fulltime).format('HH:MM A');
+            $scope.time = moment(fulltime).format('hh:mm A');
             $timeout(function(){
                 $location.path('/#!');
-            }, 2000);
+            }, 3000);
 
 
         };
@@ -241,12 +241,14 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 console.log("FML");
                 console.log(attend);
                 var date = new Date;
-        		attend.signOut.time = date;
+        		attend.signout.time = date.toString();
         		attend.signout.guardian = guardian;
         		attend.signedOut = true;
                 $http.put('attendances/' + attend._id, attend);
+                $location.path('attendances/' + attend._id);
         	}else{
         		var name = child.firstName + ' ' + child.lastName;
+                var date = new Date;
         		attendance = new Attendances({
         			childID: child._id,
                 childName: name,
@@ -258,7 +260,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 attended: true,
                 scheduledAbsent: false,
                 signout:{
-                    time: Date.now(),
+                    time: date.toString(),
                     guardian: guardian
                 },
                 isAdvent: false,
