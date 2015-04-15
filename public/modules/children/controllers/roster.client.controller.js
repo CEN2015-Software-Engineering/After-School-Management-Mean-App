@@ -47,18 +47,20 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                         var childHasAttToday = false;
                         for(var j in $scope.attendances){
                             if( $scope.allChildren[i]._id === $scope.attendances[j].childID ) {
-
-                                if( $scope.attendances[j].date.day === $scope.dayNumerical ){
-
+                                // attendance j is for child i
+                                if( $scope.attendances[j].date.year === $scope.year ){
+                                    // attendance j is this year
                                     if( $scope.attendances[j].date.month === $scope.month ){
-
-                                        if(  $scope.attendances[j].date.year === $scope.year ){
-
+                                        // attendance j is this month
+                                        if(   $scope.attendances[j].date.day === $scope.dayNumerical){
+                                            // attendance j is today
                                             childHasAttToday = true;
                                             if( $scope.attendances[j].signedOut ){
+                                                //this child was already signed out today, add to signed out children
                                                 $scope.signedOutChildren.push($scope.allChildren[i]);
                                             }
                                             else{
+                                                //this child has an open attendance for today, add to roster children
                                                 $scope.rosterChildren.push($scope.allChildren[i]);
                                             }
                                         }
@@ -68,27 +70,32 @@ angular.module('children').controller('TodaysRosterController', ['$scope', '$win
                             }
                         }
 
-                        if(!childHasAttToday) {
-                            $scope.day = moment().format('ddd').toLowerCase();
-                            var enrolled = false;
-                            if ($scope.day === 'sun' && $scope.allChildren[i].schedule.sun) {
-                                enrolled = true;
-                            } else if ($scope.day === 'mon' && $scope.allChildren[i].schedule.mon) {
-                                enrolled = true;
-                            } else if ($scope.day === 'tue' && $scope.allChildren[i].schedule.tue) {
-                                enrolled = true;
-                            } else if ($scope.day === 'wed' && $scope.allChildren[i].schedule.wed) {
-                                enrolled = true;
-                            } else if ($scope.day === 'thu' && $scope.allChildren[i].schedule.thu) {
-                                enrolled = true;
-                            } else if ($scope.day === 'fri' && $scope.allChildren[i].schedule.fri) {
-                                enrolled = true;
-                            } else if ($scope.day === 'sat' && $scope.allChildren[i].schedule.sat) {
-                                enrolled = true;
-                            }
-                            if (enrolled) {
-                                console.log($scope.allChildren[i].firstName + " is enrolled with no attendance");
-                                $scope.rosterChildren.push($scope.allChildren[i]);
+                        if( !childHasAttToday ) {
+                            // this child has no existing attendance
+                            if( $scope.allChildren[i].enrolled ) {
+                                // this child is currently enrolled in the school
+                                $scope.day = moment().format('ddd').toLowerCase();
+                                var enrolledToday = false;
+                                if ( $scope.day === 'sun' && $scope.allChildren[i].schedule.sun ) {
+                                    enrolledToday = true;
+                                } else if ( $scope.day === 'mon' && $scope.allChildren[i].schedule.mon ) {
+                                    enrolledToday = true;
+                                } else if ( $scope.day === 'tue' && $scope.allChildren[i].schedule.tue ) {
+                                    enrolledToday = true;
+                                } else if ( $scope.day === 'wed' && $scope.allChildren[i].schedule.wed ) {
+                                    enrolledToday = true;
+                                } else if ( $scope.day === 'thu' && $scope.allChildren[i].schedule.thu ) {
+                                    enrolledToday = true;
+                                } else if ( $scope.day === 'fri' && $scope.allChildren[i].schedule.fri ) {
+                                    enrolledToday = true;
+                                } else if ( $scope.day === 'sat' && $scope.allChildren[i].schedule.sat ) {
+                                    enrolledToday = true;
+                                }
+                                if ( enrolledToday ) {
+                                    // this child is expected to attend today, add to roster children
+                                    console.log($scope.allChildren[i].firstName + " is enrolled today with no attendance");
+                                    $scope.rosterChildren.push($scope.allChildren[i]);
+                                }
                             }
                         }
                     }
