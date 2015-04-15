@@ -76,24 +76,24 @@
 }
 
 .list-group-item-roster:nth-child(odd){
-    background-color: rgba(255,255,255,1) !important;
+    background-color: rgb(255,255,255) !important;
 }
 .list-group-item-roster:nth-child(even){
-    background-color: rgba(255,255,255,1) !important;
+    background-color: rgb(255,255,255) !important;
 }
 .list-group-item-roster:nth-child(odd):hover{
-    background-color: rgba(255,255,255,1) !important;
+    background-color: rgb(255,255,255) !important;
 }
 .list-group-item-roster:nth-child(even):hover{
-    background-color: rgba(255,255,255,1) !important;
+    background-color: rgb(255,255,255) !important;
 }
 
 .list-group-item-gone:nth-child(even){
-    color: rgba(150, 150, 150, 1) !important;
+    color: rgb(150, 150, 150) !important;
     background-color: rgba(212,212,212,.8) !important;
 }
 .list-group-item-gone:nth-child(odd){
-    color: rgba(150, 150, 150, 1) !important;
+    color: rgb(150, 150, 150) !important;
     background-color: rgba(212,212,212,.8) !important;
 }
 .list-group-item-gone:nth-child(odd):hover{
@@ -104,33 +104,33 @@
 }
 
 .list-group-item-sched-ab:nth-child(odd){
-    background-color: rgba(217, 237, 247, 1) !important;
+    background-color: rgb(217, 237, 247) !important;
 }
 .list-group-item-sched-ab:nth-child(even){
-    background-color: rgba(217, 237, 247, 1) !important;
+    background-color: rgb(217, 237, 247) !important;
 }
 .list-group-item-sched-ab:nth-child(odd):hover{
-    background-color: rgba(217, 237, 247, 1) !important;
+    background-color: rgb(217, 237, 247) !important;
 }
 .list-group-item-sched-ab:nth-child(even):hover{
-    background-color: rgba(217, 237, 247, 1) !important;
+    background-color: rgb(217, 237, 247) !important;
 }
 
 .list-group-item-unsched-ab:nth-child(odd){
-    background-color: rgba(242, 222, 222, 1) !important;
+    background-color: rgb(242, 222, 222) !important;
 }
 .list-group-item-unsched-ab:nth-child(even){
-    background-color: rgba(242, 222, 222, 1) !important;
+    background-color: rgb(242, 222, 222) !important;
 }
 .list-group-item-unsched-ab:nth-child(odd):hover{
-    background-color: rgba(242, 222, 222, 1) !important;
+    background-color: rgb(242, 222, 222) !important;
 }
 .list-group-item-unsched-ab:nth-child(even):hover{
-    background-color: rgba(242, 222, 222, 1) !important;
+    background-color: rgb(242, 222, 222) !important;
 }
 
 .text-gone {
-    color: rgba(100, 100, 100, 1) !important;
+    color: rgb(100, 100, 100) !important;
 }
 
 /* johns stuff */
