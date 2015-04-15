@@ -17,7 +17,8 @@
                     <button type="button" class="btn btn-sm"
                             ng-class="{'btn-success': attendance.attended, 'btn-danger': !attendance.attended}"
                             ng-model="attendance.attended" btn-checkbox
-                            btn-checkbox-true="true" btn-checkbox-false="false">
+                            btn-checkbox-true="true" btn-checkbox-false="false"
+                            ng-disabled="button">
                         <p data-ng-show="attendance.attended">Present</p>
                         <p data-ng-show="!attendance.attended">Absent</p>
                     </button>
@@ -31,7 +32,8 @@
                     <button type="button" class="btn btn-sm"
                             ng-class="{'btn-primary': attendance.scheduledAbsent, 'btn-danger': !attendance.scheduledAbsent}"
                             ng-model="attendance.scheduledAbsent" btn-checkbox
-                            btn-checkbox-true="true" btn-checkbox-false="false">
+                            btn-checkbox-true="true" btn-checkbox-false="false"
+                            ng-disabled="button">
                         <p data-ng-show="attendance.scheduledAbsent">Scheduled</p>
                         <p data-ng-show="!attendance.scheduledAbsent">Unscheduled</p>
 
