@@ -76,7 +76,19 @@ angular.module('core').controller('HeaderController', ['$scope', 'Menus', 'instr
 			alert('Pin Changed');
 		};
 
-		$scope.goHome = function() {
+        $scope.resetPinToDefault = function(){
+            $scope.passcode = document.getElementById('PINchange').value;
+            $scope.passcodeJSON = {
+                passcode: '0000'
+            };
+            $http.post('/modules/core/controllers/passcode.json', $scope.passcodeJSON, {headers: {'Content-Type': 'application/json'}} ).success(function(data) {
+                $scope.passcode = data.passcode;
+                console.log(data.passcode);
+            });
+            alert('Pin Changed');
+        };
+
+        $scope.goHome = function() {
 			window.location.href = '/#!/';
 		};
 		$scope.addNumber = function(numValue){
