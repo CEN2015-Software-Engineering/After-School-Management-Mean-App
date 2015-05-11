@@ -12,7 +12,8 @@
                         <label class="control-label" for="name">Listed As</label>
 
                         <div class="controls">
-                            <input type="text" name="name" data-ng-model="medicalCreateCtrl.name" id="name" class="form-control"
+                            <input type="text" name="name" data-ng-model="medicalCreateCtrl.name" id="name"
+                                   class="form-control"
                                    placeholder="Name" required>
                         </div>
                     </div>
@@ -20,21 +21,18 @@
                         <label class="control-label" for="type">Type</label>
 
                         <div class="controls">
-                            <select class="btn btn-default btn-lg" name="type" data-ng-model="medicalCreateCtrl.type" id="type"
+                            <select class="btn btn-default btn-lg" name="type" data-ng-model="medicalCreateCtrl.type"
+                                    id="type"
                                     ng-options="medicalType for medicalType in medicalTypes"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="desc">Description</label>
-                        <div class="controls">
-                            <textarea type="text" name="desc" data-ng-model="medicalCreateCtrl.desc" id="desc" class="form-control" placeholder="Enter a brief description"></textarea>
-                        </div>
-                    </div>
-                    <label class="control-label" for="childID">For Debug: childID</label>
 
-                    <div class="controls">
-                        <input type="text" data-ng-model="child._id" id="childID" class="form-control"
-                               placeholder="childID" required>
+                        <div class="controls">
+                            <textarea type="text" name="desc" data-ng-model="medicalCreateCtrl.desc" id="desc"
+                                      class="form-control" placeholder="Enter a brief description"></textarea>
+                        </div>
                     </div>
                 </fieldset>
             </form>

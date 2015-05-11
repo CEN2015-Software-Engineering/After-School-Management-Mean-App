@@ -152,14 +152,16 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 		// Update existing Child
 		$scope.update = function() {
 			var child = $scope.child;
-            //child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
-            //child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
+            console.log('here');
+            child.contact.home = ('' + child.contact.home).replace(/\D/g,'');
+            child.contact.work = ('' + child.contact.work).replace(/\D/g,'');
 
-	    	child.$update(function() {
-				$location.path('children/' + child._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+            $http.put('/children/' + child._id, child).
+                success(function (advent) {
+                    console.log(advent);
+                    $location.path('children/' + child._id);
+
+                });
 		};
 
 
@@ -174,6 +176,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
 			/*$scope.child = Children.get({
 				childId: $stateParams.childId
 			});*/
+            $http.get('/advents/').
+                success(function (advent) {
+                    console.log(advent);
+                    $scope.advents = advent;
+            });
             $http.get('/children/' + $stateParams.childId).success(function(data){
                 $scope.child = data;
                 var ageDifMs  = Date.now() - new Date($scope.child.dob.year, $scope.child.dob.month, $scope.child.dob.day, 0, 0, 0, 0);
@@ -184,12 +191,57 @@ angular.module('children').controller('ChildrenController', ['$scope', '$window'
                 $scope.child.contact.home = ufh.substr(0,3) + '-' + ufh.substr(3,3) + '-' + ufh.substr(6);
                 var ufw = $scope.child.contact.work;
                 $scope.child.contact.work = ufw.substr(0,3) + '-' + ufw.substr(3,3) + '-' + ufw.substr(6);
-                console.log($scope.child);
+                $scope.attendances = [];
+                $scope.upCommingAttendances = [];
+                $scope.today = (new Date()).valueOf() + 86400;
+                $http.get('/attendances/').
+                    success(function (attendances) {
+                        for(var attend in attendances){
+                            if(attendances[attend].childID === $scope.child._id){
+
+                                if(attendances[attend].signedOut){
+                                    attendances[attend].date.fullDate = (new Date(attendances[attend].signout.time)).valueOf();
+                                    attendances[attend].date.dayOfWeek = moment(attendances[attend].signout.time).format('ddd');
+                                    attendances[attend].date.theTime = moment((new Date(attendances[attend].signout.time))).format('hh:mm A');
+                                    if((moment((new Date(attendances[attend].signout.time))).format('HH')) >= 18  &&(moment((new Date(attendances[attend].signout.time))).format('mm')) >= 1 && (moment((new Date(attendances[attend].signout.time))).format('A')) === 'PM'){
+                                        //console.log(attendances[attend].date.theTime);
+                                        //console.log((moment((new Date(attendances[attend].signout.time))).format('HH')));
+                                        //console.log((moment((new Date(attendances[attend].signout.time))).format('mm')));
+                                        //console.log((moment((new Date(attendances[attend].signout.time))).format('A')));
+                                        //console.log('Checked Out after 6');
+                                        attendances[attend].late = true;
+                                    }else {
+                                        attendances[attend].late = false;
+                                    }
+
+                                }else{
+                                    attendances[attend].date.fullDate = (new Date(attendances[attend].date.year, attendances[attend].date.month - 1, attendances[attend].date.day)).valueOf();
+                                    attendances[attend].date.dayOfWeek = moment({day:attendances[attend].date.day ,month:attendances[attend].date.month - 1, year: attendances[attend].date.year}).format('ddd');
+
+                                }
+                                for(var a in $scope.advents) {
+                                    if($scope.advents[a]._id === attendances[attend].adventID){
+                                        attendances[attend].adventName = $scope.advents[a].name;
+                                    }
+                                }
+                                if($scope.today >= attendances[attend].date.fullDate) {
+                                    attendances[attend].past = true;
+                                    $scope.attendances.push(attendances[attend]);
+                                    $scope.attendances.sort(function(a,b){return b.date.fullDate - a.date.fullDate;});
+                                }else {
+                                    $scope.upCommingAttendances.push(attendances[attend]);
+                                    $scope.upCommingAttendances.sort(function(a, b){return a.date.fullDate - b.date.fullDate;});
+                                }
+                            }
+
+                        }
+                    });
 
             });
 
 
 		};
+
 
 
 		//Open Modal Window to Update Guardian

@@ -1,5 +1,4 @@
 <section data-ng-controller="GuardiansController as guardianCtrl" data-ng-init="find()">
-
 	<div class="guardiansCheckOutButtons" data-ng-repeat="guardian in guardians" data-ng-if="guardian.childID == child._id">
 		<div class="btn checkout-btn col-sm-4 col-sm-offset-1" data-ng-href="#!/guardians/{{guardian._id}}">
 			<span data-ng-bind="guardian.gName"></span>

@@ -20,7 +20,7 @@
             <h3>Allergies:</h3>
         </div>
     </div>
-    <div class="list-group col-sm-10 col-sm-offset-1">
+    <div class="list-group col-sm-8 col-sm-offset-2">
         <span data-ng-repeat="medical in medicals | filter: {type: 'Allergy'}" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id && medical.type == 'Allergy'" >
 			<small class="list-group-item-text">
                 <div class="pull-right">
@@ -34,7 +34,8 @@
                 </div>
 
             </small>
-            <h3 class="list-group-item-heading" name="medicalNameField" data-ng-bind="medical.name"></h3>
+            <h4 class="list-group-item-heading" name="medicalNameField" data-ng-bind="medical.name"></h4>
+            <p class="list-group-item-heading" name="medicalDescField" data-ng-bind="medical.desc"></p>
             <h4 data-ng-bind="guardian.rel"> </h4>
         </span>
     </div>
@@ -43,7 +44,7 @@
             <h3>Disabilities:</h3>
         </div>
     </div>
-    <div class="list-group col-sm-10 col-sm-offset-1">
+    <div class="list-group col-sm-8 col-sm-offset-2">
         <span data-ng-repeat="medical in medicals | filter: {type: 'Disability'}" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id && medical.type == 'Disability'" >
 			<small class="list-group-item-text">
                 <div class="pull-right">
@@ -57,7 +58,8 @@
                 </div>
 
             </small>
-            <h3 class="list-group-item-heading" name="medicalNameField" data-ng-bind="medical.name"></h3>
+            <h4 class="list-group-item-heading" name="medicalNameField" data-ng-bind="medical.name"></h4>
+             <p class="list-group-item-heading" name="medicalDescField" data-ng-bind="medical.desc"></p>
             <h4 data-ng-bind="guardian.rel"> </h4>
         </span>
     </div>
@@ -66,7 +68,7 @@
             <h3>Others:</h3>
         </div>
     </div>
-    <div class="list-group col-sm-10 col-sm-offset-1">
+    <div class="list-group col-sm-8 col-sm-offset-2">
         <!--data-ng-if="medical.childID == child._id"-->
         <span data-ng-repeat="medical in medicals | filter: filterFunction" data-ng-onclick="#!/medical/{{medical._id}}" class="list-group-item" data-ng-if="medical.childID == child._id" >
 			<small class="list-group-item-text">
@@ -81,12 +83,13 @@
                 </div>
 
             </small>
-            <h3 class="list-group-item-heading" name="medicalNameField" data-ng-bind="medical.name"></h3>
+            <h4 class="list-group-item-heading" name="medicalNameField" data-ng-bind="medical.name"></h4>
+             <p class="list-group-item-heading" name="medicalDescField" data-ng-bind="medical.desc"></p>
             <h4 data-ng-bind="guardian.rel"> </h4>
         </span>
     </div>
     <div class="alert alert-warning text-center col-sm-10 col-sm-offset-1" data-ng-hide="!medicals.$resolved || medicals.length">
-        <br />This child has no disabilities or allergies listed
+        <br />This student has no listed disabilities or allergies.
     </div>
     <div class="page-break"></div>
 </section>

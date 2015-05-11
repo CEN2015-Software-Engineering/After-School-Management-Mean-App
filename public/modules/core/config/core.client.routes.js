@@ -11,6 +11,11 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('home', {
 			url: '/',
 			templateUrl: 'modules/core/views/home.client.view.html'
-		});
+		}).
+        // reset pin routing
+        state('resetingPin', {
+            url: '/resetpin',
+            templateUrl: 'modules/core/views/resetpin.html'
+        });
 	}
 ]);

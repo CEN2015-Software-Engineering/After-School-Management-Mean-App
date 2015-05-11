@@ -4,8 +4,7 @@
             <h1>{{roster.theDate()}} </br>Student Sign-Out</h1>
         </div>
         <div class="list-group col-sm-10 col-sm-offset-1">
-            <a data-ng-repeat="child in children | orderBy:'lastName'" data-ng-href="#!/sign-out-list/{{child._id}}" class="list-group-item">
-                <!--need to take out children who are marked absent by the instructor-->
+            <a data-ng-repeat="child in children |filter:{enrolled:true}| orderBy:'lastName'" data-ng-href="#!/sign-out-list/{{child._id}}" class="list-group-item">
                 <h1 class="list-group-item-heading text-center" data-ng-bind="child.firstName + ' ' + child.lastName"></h1>
             </a>
 

@@ -2,8 +2,8 @@
     <section data-ng-controller="GuardiansController as guardianCtrl" data-ng-init="find()">
         <section data-ng-controller="AttendancesController as attendCtrl" data-ng-init="find()">
                 <div class="row">
-                    <div class="col-sm-7 col-sm-offset-3">
-                        <h1>Checkout: {{child.firstName}} {{child.lastName}}</h1>
+                    <div class="col-sm-7 col-sm-offset-1">
+                        <h1>Sign Out {{child.firstName}} {{child.lastName}}</h1>
                     </div>
                 </div>
                 <div class="row">
@@ -17,13 +17,28 @@
                        <h4>Guardians Approved For Pickup:</h4>
                         <br />
                     </div>
+                    <div class="col-sm-4 pull-right">
+                        <h1>
+                            <a class="btn btn-warning btn-sm" data-ng-show = "addGuardians" name="createGuardianButton" data-ng-click="guardianCtrl.modalCreate('lg', child)">
+                                <i class="glyphicon glyphicon-user"></i> Add Guardian
+                            </a>
+                        </h1>
+                    </div>
                 </div>
+
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
                         <div class="guardiansCheckOutButtons" data-ng-repeat="guardian in guardians" data-ng-if="guardian.childID == child._id">
                             <!--btn checkout-btn-->
-                            <input type="checkbox" id="{{guardian.gName}}" class="checkout-btn-radio" ng-disabled="guardianCtrl.selected"  id="checkoutBtn" ng-click = "guardianCtrl.selected = !guardianCtrl.selected; guardianCtrl.setselected(guardian); setMychillun(true)" />
-                            <label for="{{guardian.gName}}" class="btn checkout-btn  col-sm-3 col-sm-offset-1">
+                            <input type="checkbox"
+                                   id="{{guardian.gName}}"
+                                   class="checkout-btn-radio"
+                                   ng-disabled="guardianCtrl.selected"
+                                   id="checkoutBtn"
+                                   ng-click = "guardianCtrl.selected = !guardianCtrl.selected; guardianCtrl.setselected(guardian); setMychillun(true)" />
+                            <label for="{{guardian.gName}}"
+                                   class="btn checkout-btn
+                                   col-sm-3 col-sm-offset-1">
                                 <span data-ng-bind="guardian.gName"></span>
                                 <br />
                                 <span data-ng-bind="guardian.rel"></span>
@@ -38,7 +53,7 @@
                         <canvas width="800" height="250" id="signature-pad" class="signaturepad" ng-signature-pad="signature"></canvas>
                         <br />
                         <button class = "btn btn-sm today-button" ng-disabled = "signature.isEmpty() || !guardianCtrl.selected" ng-click="guardianCtrl.setMyChillun(false);attendCtrl.signOut(child,attendances,guardianCtrl.getSelected().gName)">
-                            <i class="glyphicon glyphicon-user"></i><br/>Confirm Child Sign out
+                            <i class="glyphicon glyphicon-user"></i><br/>Confirm Student Sign-out
                         </button>
                         <button class="btn btn-sm today-button" id="signature-clear" data-ng-click="signature.clear(); guardianCtrl.selected = false; guardianCtrl.deselectParent(guardianCtrl.getSelected().gName)">
                             <i class="fa fa-refresh"></i><br/>Clear

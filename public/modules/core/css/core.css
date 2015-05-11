@@ -11,8 +11,12 @@
 
 
 }
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    background-color: rgba(224,224,224,1) !important;
+}
+
 .content {
-    margin-top: -10px;
+    margin-top: 40px;
 
 }
 .undecorated-link:hover {
@@ -50,7 +54,9 @@
     background-color: rgb(235, 64, 51) !important;
     color: white;
 }
-
+.late {
+    color: red;
+}
 
 .line-height {
     padding-top: 29px;
@@ -65,11 +71,70 @@
     padding-right: 0;
 }
 .list-group-item:nth-child(odd){
-    background-color: rgba(235, 64, 51,.6); !important;
+    background-color: rgba(224,224,224,1) !important;
 }
 .list-group-item:nth-child(odd):hover{
-    background-color: rgba(235, 64, 51, .5); !important;
+    background-color: rgba(235, 64, 51, .5) !important;
 }
+
+.list-group-item-roster:nth-child(odd){
+    background-color: rgb(255,255,255) !important;
+}
+.list-group-item-roster:nth-child(even){
+    background-color: rgb(255,255,255) !important;
+}
+.list-group-item-roster:nth-child(odd):hover{
+    background-color: rgb(255,255,255) !important;
+}
+.list-group-item-roster:nth-child(even):hover{
+    background-color: rgb(255,255,255) !important;
+}
+
+.list-group-item-gone:nth-child(even){
+    color: rgb(150, 150, 150) !important;
+    background-color: rgba(212,212,212,.8) !important;
+}
+.list-group-item-gone:nth-child(odd){
+    color: rgb(150, 150, 150) !important;
+    background-color: rgba(212,212,212,.8) !important;
+}
+.list-group-item-gone:nth-child(odd):hover{
+    background-color: rgba(212, 212, 212, .8) !important;
+}
+.list-group-item-gone:nth-child(even):hover{
+    background-color: rgba(212, 212, 212, .8) !important;
+}
+
+.list-group-item-sched-ab:nth-child(odd){
+    background-color: rgb(217, 237, 247) !important;
+}
+.list-group-item-sched-ab:nth-child(even){
+    background-color: rgb(217, 237, 247) !important;
+}
+.list-group-item-sched-ab:nth-child(odd):hover{
+    background-color: rgb(217, 237, 247) !important;
+}
+.list-group-item-sched-ab:nth-child(even):hover{
+    background-color: rgb(217, 237, 247) !important;
+}
+
+.list-group-item-unsched-ab:nth-child(odd){
+    background-color: rgb(242, 222, 222) !important;
+}
+.list-group-item-unsched-ab:nth-child(even){
+    background-color: rgb(242, 222, 222) !important;
+}
+.list-group-item-unsched-ab:nth-child(odd):hover{
+    background-color: rgb(242, 222, 222) !important;
+}
+.list-group-item-unsched-ab:nth-child(even):hover{
+    background-color: rgb(242, 222, 222) !important;
+}
+
+.text-gone {
+    color: rgb(100, 100, 100) !important;
+}
+
 /* johns stuff */
 .header {
     overflow: hidden;
@@ -154,31 +219,31 @@
 }
 .round-button {
    /* width:25%;*/
-    padding-top: .25vw;
-    padding-left: 4vw;
+
+
 }
 .round-button-circle {
-    width: 5.5vw;
-    height: 5.5vw;
-    border-radius: 50%;
+    width: 6vw;
+    height: 100%;
+
     overflow:hidden;
     background: rgb(235, 64, 51);
     text-align: center;
 
 }
 .round-button-circle:hover {
-    background:rgb(235, 64, 51);
+    background:rgb(250, 70, 55);
 }
 .round-button .round-button-link {
     padding-bottom:75%;
-    margin-left: -4vw;
+
     text-align: center;
     font-size: 4.5vw;
     color:#e2eaf3;
 }
 
 .round-back-button{
-     padding-top: .125vw;
+
 
 }
 
@@ -273,9 +338,7 @@ textarea:focus,
 button:focus {
     outline: none;
 }
-.givemesomespace {
-    margin-top: 10px;
-}
+
 #PINform {
     position: absolute;
     width: 100%; height: 5vw;
@@ -330,13 +393,16 @@ button:focus {
 
 }
 .hideSidebar{
-    padding-top: 35px;
+    padding-top: 5px;
 }
 
 .sidebarBtn{
-    margin-top: 5px;
+    margin-top: 1px;
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 5px;
     padding-right: 5px;
+}
+.changePinBox{
+    width: 40%;
 }

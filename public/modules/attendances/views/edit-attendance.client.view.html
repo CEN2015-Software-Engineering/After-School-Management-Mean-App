@@ -2,135 +2,51 @@
 <div class="modal-header">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-0">
-            <h3>Editing Attendance</h3>
+            <h3>{{attendance.childName}} - {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}</h3>
         </div>
     </div>
 </div>
 
 <div class="modal-body row">
-<form class="form-horizontal" data-ng-submit="update()" novalidate>
-<fieldset>
-<div class="form-group">
+    <form class="form-horizontal" data-ng-submit="update()" novalidate>
+        <fieldset>
+            <div class="form-group">
 
-    <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="childName">Child's ID</label>
+                <div class="row text-center">
+                    <div class="col-sm-5 col-sm-offset-3">
+                    <button type="button" class="btn btn-lg"
+                            ng-class="{'btn-success': attendance.attended, 'btn-danger': !attendance.attended}"
+                            ng-model="attendance.attended" btn-checkbox
+                            btn-checkbox-true="true" btn-checkbox-false="false" data-ng-click="!attendance.attended">
+                        <p data-ng-show="attendance.attended">Present</p>
+                        <p data-ng-show="!attendance.attended">Absent</p>
+                    </button>
+                        </div>
+                </div>
 
-            <div class="controls">
-                <input type="text" name="childID" data-ng-model="attendance.childID" id="childID"
-                       class="form-control" placeholder="Child's ID">
+                <br />
+
+                <div class="row text-center" data-ng-hide="attendance.attended">
+                    <div class="col-sm-5 col-sm-offset-3">
+                    <button type="button" class="btn btn-lg"
+                            ng-class="{'btn-primary': attendance.scheduledAbsent, 'btn-danger': !attendance.scheduledAbsent}"
+                            ng-model="attendance.scheduledAbsent" btn-checkbox
+                            btn-checkbox-true="true" btn-checkbox-false="false" data-ng-click="!attendance.scheduledAbsent">
+                        <p data-ng-show="attendance.scheduledAbsent">Scheduled</p>
+                        <p data-ng-show="!attendance.scheduledAbsent">Unscheduled</p>
+                    </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-    <div class="col-sm-5 col-sm-offset-1">
-        <label class="control-label" for="childName">Name</label>
-
-        <div class="controls">
-            <input type="text" name="childName" data-ng-model="attendance.childName" id="childName"
-                   class="form-control" placeholder="Child's Name">
-        </div>
-    </div>
-    </div>
-
-    <div class="row">
-    <div class="col-sm-5 col-sm-offset-1">
-        <label class="control-label" for="date">Date</label>
-        <div class="controls form-inline">
-            <select type="text" name="month" data-ng-model="attendance.date.month" id="date" class="form-control">
-                <option value="1">January</option><option value="2">February</option><option value="3">March</option>
-                <option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option>
-                <option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
-            </select>
-            <select type="text" name="day "data-ng-model="attendance.date.day" id="day" class="form-control">
-                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
-                <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
-                <option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
-            </select>
-            <select type="text" name="year" data-ng-model="attendance.date.year" id="year" class="form-control">
-                <option value="2016">2016</option><option value="2015">2015</option>
-            </select>
-        </div>
-    </div>
-    </div>
-
-    <div class="row>">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="attended">Attended</label>
-            <div class="controls">
-                <input type="checkbox" name="attended" data-ng-model="attendance.attended" id="attended"
-                       class="checkbox">
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="row>">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="scheduledAbsent">Scheduled Absent</label>
-            <div class="controls">
-                <input type="checkbox" name="scheduledAbsent" data-ng-model="attendance.scheduledAbsent" id="scheduledAbsent"
-                       class="checkbox">
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="isAdvent">Is this an Event or Class?</label>
-            <div class ="controls form-inline">
-                <input type="radio" name="!isAdvent" value="false" data-ng-model="attendance.attended" id="!isAdvent"
-                       class="radio"><span>  Class</span><br/>
-                <input type="radio" name="isAdvent" value="true" data-ng-model="attendance.attended" id="isAdvent"
-                       class="radio"><span>  Advent</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="adventID">Event ID</label>
-            <div class ="controls">
-                <input type="text" data-ng-model="adventID" id="adventID" class="form-control" placeholder="Enter the adventID">
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="guardian">Signout Guardian</label>
-            <div class="controls">
-                <input type="text" data-ng-model="signout.guardian" id="guardian" class="form-control" placeholder="Enter the guardian name">
-            </div>
-        </div>
-    </div>
-
-    <div class="row>">
-        <div class="col-sm-5 col-sm-offset-1">
-            <label class="control-label" for="time">Signout Time</label>
-            <div class ="controls form-inline">
-                <select type="text" name="time" data-ng-model="signout.time" id="time" class="form-control">
-                    <option value="null">Null</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-
-
+        </fieldset>
+    </form>
 </div>
-</fieldset>
-</form>
-</div>
+
 <div class="row">
     <div class="modal-footer">
         <div class="col-sm-4 col-sm-offset-8">
-            <button class="btn btn-success btn-lg" name="confirmButton" ng-click="AttendancesCtrl.update(attendance); ok()">Update</button>
-            <button class="btn btn-warning btn-lg" name="cancelButton" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-success btn-sm" name="confirmButton" ng-click="AttendancesCtrl.update(attendance); ok()">Update</button>
+            <button class="btn btn-warning btn-sm" name="cancelButton" ng-click="cancel()">Cancel</button>
         </div>
     </div>
 </div>

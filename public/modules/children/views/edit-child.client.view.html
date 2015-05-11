@@ -1,8 +1,8 @@
-<section data-ng-controller="ChildrenUpdateController as ChildrenCtrl" data-ng-init="findOne()">
+<section data-ng-controller="ChildrenController as ChildrenCtrl" data-ng-init="findOne()">
     <div class="modal-header">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-0">
-                <h1>Editing Child: {{child.firstName}} {{child.lastName}}</h1>
+                <h1>Editing Student: {{child.firstName}} {{child.lastName}}</h1>
             </div>
         </div>
     </div>
@@ -238,20 +238,13 @@
                             <h1><h4>Schedule:</h4>
 
                                 <div class="btn-group">
-                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sun"
-                                           btn-checkbox>Sunday</label>
-                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.mon"
-                                           btn-checkbox>Monday</label>
-                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.tue"
-                                           btn-checkbox>Tuesday</label>
-                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.wed"
-                                           btn-checkbox>Wednesday</label>
-                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.thu"
-                                           btn-checkbox>Thursday</label>
-                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.fri"
-                                           btn-checkbox>Friday</label>
-                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sat"
-                                           btn-checkbox>Saturday</label>
+                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sun" btn-checkbox>Sunday</label>
+                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.mon" btn-checkbox>Monday</label>
+                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.tue" btn-checkbox>Tuesday</label>
+                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.wed" btn-checkbox>Wednesday</label>
+                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.thu" btn-checkbox>Thursday</label>
+                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.fri" btn-checkbox>Friday</label>
+                                    <label class="btn btn-day btn-lg custom-date-btn" data-ng-model="child.schedule.sat" btn-checkbox>Saturday</label>
                                 </div>
                             </h1>
                         </div>
@@ -273,10 +266,10 @@
     <div class="row">
         <div class="modal-footer">
             <div class="col-sm-2 col-sm-offset-7">
-                <button class="btn btn-success btn-lg" name="confirmButton" ng-click="ChildrenCtrl.update(child); ok()">Update</button>
+                <button class="btn btn-success btn-lg" name="confirmButton" ng-click="update(); ok()">Update</button>
             </div>
             <div class="col-sm-2">
-                <button class="btn btn-warning btn-lg" name="cancelButton" ng-click="cancel()">Cancel</button>
+                <a data-ng-href="/#!/children/{{child._id}}"><button class="btn btn-warning btn-lg" name="cancelButton">Cancel</button></a>
             </div>
         </div>
     </div>

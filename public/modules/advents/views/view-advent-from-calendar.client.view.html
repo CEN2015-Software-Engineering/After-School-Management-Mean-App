@@ -1,5 +1,4 @@
-<section data-ng-controller="AdventsAttendModalController as modalWindowAdvent" data-ng-init="init(advent._id)"
-         data-ng-swipe-right="cancel()" data-ng-swipe-left="cancel()">
+<section data-ng-controller="AdventsAttendModalController as modalWindowAdvent" data-ng-init="init(advent._id)">
     <div class="modal-header">
         <button name="close" type="button" class="close" ng-click="cancel()" aria-hidden="true"><i class="fa fa-times fa-2x"></i>
         </button>
@@ -25,21 +24,11 @@
             <div class="col-md-12">
                 Description:
                 <span class="text-muted" data-ng-bind-html="advent.description"></span>
-                <br/>
-                DEBUG: Advent ID {{advent._id}}
             </div>
         </div>
 
         <div class="pull-right">
-            <a class="btn btn-info" data-ng-click="ok()" href="/#!/calendar" name="addPDF">
-                <i class="fa fa-file-pdf-o fa-lg"></i>
-            </a>
-            <a class="btn btn-primary" data-ng-click="ok()" href="/#!/advents/{{advent._id}}/edit" name="updateAdventButton">
-                <i class="glyphicon glyphicon-edit"></i>
-            </a>
-            <a class="btn btn-danger" data-ng-click="remove(advent); ok()" name="deleteAdventButton">
-                <i class="glyphicon glyphicon-trash"></i>
-            </a>
+
         </div>
         <small>
             <em class="text-muted">

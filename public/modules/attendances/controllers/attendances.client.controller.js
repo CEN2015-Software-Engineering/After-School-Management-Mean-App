@@ -2,8 +2,8 @@
 
 // Attendances controller
 
-angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Children', 'Attendances', '$modal', '$log', 'instructorPerm','$http',
-	function($scope, $stateParams, $location, Children, Attendances, $modal, $log, instructorPerm,$http) {
+angular.module('attendances').controller('AttendancesController', ['$scope', '$stateParams', '$location', 'Children', 'Attendances', '$modal', '$log', 'instructorPerm','$http', '$timeout',
+	function($scope, $stateParams, $location, Children, Attendances, $modal, $log, instructorPerm,$http, $timeout) {
 
         $scope.editGuardians = instructorPerm.getEditGuardians();
         $scope.deleteGuardians = instructorPerm.getDeleteGuardians();
@@ -21,8 +21,35 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
 
         //Open Modal Window to Update Guardian
-        this.modalUpdate = function (size, selectedAttendance) {
+        this.modalUpdate = function (size, child, selectedAttendance, isExtra) {
+            if( !selectedAttendance ){
+                var name = child.firstName + ' ' + child.lastName;
+                var attendance = new Attendances({
+                    childID: child._id,
+                    childName: name,
+                    date:{
+                        day: $scope.day,
+                        month: $scope.month+1,
+                        year: $scope.year
+                    },
+                    attended: true,
+                    scheduledAbsent: false,
+                    signout:{
+                        time:null,
+                        guardian: null
+                    },
+                    isAdvent: false,
+                    signedOut: false,
+                    extraClass: isExtra
+                });
+                attendance.$save(function(response) {
+                    $location.path('/todays-roster');
 
+                }, function(errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+                selectedAttendance = attendance;
+            }
             var modalInstance = $modal.open({
                 templateUrl: '/modules/attendances/views/edit-attendance.client.view.html',
                 controller: function ($scope, $modalInstance, $stateParams, attendance) {
@@ -30,6 +57,7 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
 
                     $scope.ok = function () {
+                        $location.path('/todays-roster?');
                         $modalInstance.close($scope.attendance);
                     };
 
@@ -55,7 +83,6 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 		// Create new Attendance
 		$scope.create = function() {
 			// Create new Attendance object
-            console.log(this.adventID);
 			var attendance = new Attendances ({
 				childID: this.childID,
                 childName: this.childName,
@@ -115,13 +142,9 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 		// Find a list of Attendances
 		$scope.find = function() {
 			$scope.attendances = Attendances.query();
-            console.log($scope.attendances);
             $scope.day = moment().date();
-            console.log($scope.day);
             $scope.month = moment().month();
-            console.log($scope.month);
             $scope.year = moment().year();
-            console.log($scope.year);
 		};
 
 		// Find existing Attendance
@@ -141,46 +164,66 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 }).then(function(){
                     $scope.children = [];
                     $scope.kids = 0;
+                    // iterate through all children, add if they are able to be signed out
                     for(var i in $scope.childrenTemp){
-                        var childHasAtt = false;
-                        for(var j in $scope.attendances){
-                            if($scope.childrenTemp[i]._id === $scope.attendances[j].childID && ($scope.attendances[j].attended || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent))
-                            {
-                                childHasAtt = true;
-                                console.log($scope.childrenTemp[i]);
+                        // only check currently enrolled children
+                        if( $scope.childrenTemp[i].enrolled) {
+                            var childHasAtt = false;
+                            for (var j in $scope.attendances) {
+                                if ($scope.childrenTemp[i]._id === $scope.attendances[j].childID ) {
+                                    childHasAtt = true;
+                                    if( $scope.attendances[j].attended && !$scope.attendances[j].signedOut ){
+                                        // has existing attendance and should display
+                                        $scope.children.push($scope.childrenTemp[i]);
+                                        ++$scope.kids;
+                                    }
+                                    else if( ((!$scope.attendances[j].attended && !$scope.attendances[j].scheduledAbsent ) || $scope.attendances[j].signedOut || $scope.attendances[j].scheduledAbsent) ){
+                                        // has existing attendance but shouldn't display
+                                        // can probably comment this if statement out
+                                        var lol = 'not empty';
+
+                                    }
+                                }
                             }
-                        } 
-                        if(!childHasAtt) {
-                            $scope.day = moment().format('ddd').toLowerCase();
-                            var enrolled = false;
-                            if ($scope.day === 'sun' && $scope.childrenTemp[i].schedule.sun) {
-                                enrolled = true;
-                            } else if ($scope.day === 'mon' && $scope.childrenTemp[i].schedule.mon) {
-                                enrolled = true;
-                            } else if ($scope.day === 'tue' && $scope.childrenTemp[i].schedule.tue) {
-                                enrolled = true;
-                            } else if ($scope.day === 'wed' && $scope.childrenTemp[i].schedule.wed) {
-                                enrolled = true;
-                            } else if ($scope.day === 'thu' && $scope.childrenTemp[i].schedule.thu) {
-                                enrolled = true;
-                            } else if ($scope.day === 'fri' && $scope.childrenTemp[i].schedule.fri) {
-                                enrolled = true;
-                            } else if ($scope.day === 'sat' && $scope.childrenTemp[i].schedule.sat) {
-                                enrolled = true;
-                            }
-                            if (enrolled) {
-                                $scope.children.push($scope.childrenTemp[i]);
-                                ++$scope.kids;
+                            if (!childHasAtt) {
+                                // display children who are expected today
+                                $scope.day = moment().format('ddd').toLowerCase();
+                                var enrolled = false;
+                                if ($scope.day === 'sun' && $scope.childrenTemp[i].schedule.sun) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'mon' && $scope.childrenTemp[i].schedule.mon) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'tue' && $scope.childrenTemp[i].schedule.tue) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'wed' && $scope.childrenTemp[i].schedule.wed) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'thu' && $scope.childrenTemp[i].schedule.thu) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'fri' && $scope.childrenTemp[i].schedule.fri) {
+                                    enrolled = true;
+                                } else if ($scope.day === 'sat' && $scope.childrenTemp[i].schedule.sat) {
+                                    enrolled = true;
+                                }
+                                if (enrolled) {
+                                    $scope.children.push($scope.childrenTemp[i]);
+                                    ++$scope.kids;
+                                }
                             }
                         }
                     }
-                    console.log($scope.children);
-                    console.log($scope.kids);
                 });
             });
 
         };
 
+        this.getProperTime = function(fulltime) {
+            $scope.time = moment(fulltime).format('hh:mm A');
+            $timeout(function(){
+                $location.path('/#!');
+            }, 3000);
+
+
+        };
         //returns todays attendance for the given child returns false if the child doesnt have one
         this.selectTodaysAttend = function(child,attendances)
         {
@@ -198,13 +241,19 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         this.signOut = function(child,attendances,guardian){
         	var attend;
         	var attendance;
+            var date;
         	attend = this.selectTodaysAttend(child,attendances);
         	if(attend !== false){
-        		//attend.signOut.time = Date.now();
+                date = new Date();
+                console.log(date.toString());
+        		attend.signout.time = date.toString();
         		attend.signout.guardian = guardian;
         		attend.signedOut = true;
+                $http.put('attendances/' + attend._id, attend);
+                $location.path('attendances/' + attend._id);
         	}else{
         		var name = child.firstName + ' ' + child.lastName;
+                date = new Date();
         		attendance = new Attendances({
         			childID: child._id,
                 childName: name,
@@ -216,14 +265,14 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
                 attended: true,
                 scheduledAbsent: false,
                 signout:{
-                    time: Date.now(),
+                    time: date.toString(),
                     guardian: guardian
                 },
                 isAdvent: false,
                 signedOut: true
         		});
         		attendance.$save(function(response) {
-				$location.path('/#!/');
+                    $location.path('attendances/' + response._id);
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
@@ -232,42 +281,43 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
         };
 
         $scope.findChild = function() {
-            $scope.child = Children.get({
-                childId: $stateParams.childId
-            });
-            $http.get('/guardians').success(function(data){
-                console.log(data);
-                $scope.guardians = [];
-                var tempG = data;
-                for(var a in tempG){
-                    console.log('here');
-                    console.log(tempG);
-                    if(tempG[a].childID === $scope.child._id){
-                        console.log(tempG[a].gName);
-                        $scope.guardians.push(tempG[a].gName);
+            //$scope.child = Children.get({
+               // childId: $stateParams.childId
+           // });
+            $http.get('/children/' + $stateParams.childId).success(function(child) {
+                $scope.child = child;
+                $http.get('/guardians').success(function (data) {
+                    $scope.guardians = [];
+                    var tempG = data;
+                    for (var a in tempG) {
+                        if (tempG[a].childID === $scope.child._id) {
+                            $scope.guardians.push(tempG[a].gName);
+                        }
                     }
-                }
+                });
             });
         };
+        $scope.addClassBoolean = false;
         $scope.createAbsence = function() {
             // Create new Attendance object
-            console.log(this.adventID);
+            console.log($scope.dt.getMonth() + 1);
             var attendance = new Attendances ({
                 childID: $scope.child._id,
                 childName: $scope.child.firstName + ' ' + $scope.child.lastName,
                 date:{
-                    day: this.day,
-                    month: this.month,
-                    year: this.year
+                    day: $scope.dt.getDate(),
+                    month: $scope.dt.getMonth() + 1,
+                    year: $scope.dt.getFullYear()
                 },
-                attended: false,
-                scheduledAbsent: true,
+                attended: $scope.addClassBoolean ? true : false,
+                scheduledAbsent: $scope.addClassBoolean ? false : true,
                 signout:{
                     time: this.time,
                     guardian: this.guardian
                 },
                 isAdvent: false,
-                adventID: this.adventID
+                adventID: this.adventID,
+                extraClass: $scope.addClassBoolean ? true : false
             });
 
             // Redirect after save
@@ -280,6 +330,45 @@ angular.module('attendances').controller('AttendancesController', ['$scope', '$s
 
         };
 
+    //**DatePicker**//
+        $scope.todayPicker = function() {
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            $scope.dt = tomorrow;
+        };
+        $scope.todayPicker();
+
+        $scope.clearPicker = function () {
+            $scope.dt = null;
+        };
+
+        // Disable weekend selection
+        $scope.disabledPicker = function(date, mode) {
+            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+        };
+
+        $scope.toggleMinPicker = function() {
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            $scope.minDate = $scope.minDate ? null : tomorrow;
+        };
+        $scope.toggleMinPicker();
+
+        $scope.openPicker = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.openedPicker = true;
+        };
+
+        $scope.dateOptionsPicker = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        $scope.formats = ['MM/dd/yyyy'];
+        $scope.format = $scope.formats[0];
+
 }]);
 
 
@@ -289,7 +378,7 @@ angular.module('attendances').controller('AttendancesUpdateController', ['$scope
         this.update = function(selectedAttendance) {
             var attendance = selectedAttendance;
             attendance.$update(function() {
-                $location.path('attendances/' + attendance._id);
+                $location.path('todays-roster');
 }, function(errorResponse) {
     $scope.error = errorResponse.data.message;
     });

@@ -4,50 +4,64 @@
 
 	</div>
     <div>
-        <div class="row">
-            <div class="col-sm-5 col-sm-offset-1">
-                <h4 name="childID">childID: {{attendance.childID}}</h4>
-                <h4 name="childName">childName: {{attendance.childName}}</h4>
-                <h4 name="date">date: {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}</h4>
-                <h4 name="attended">attended:
-                    <span data-ng-show="attendance.attended">True</span>
-                    <span data-ng-show="!attendance.attended">False</span>
-                </h4>
-                <h4 name="scheduledAbsent">scheduledAbsent:
-                    <span data-ng-show="attendance.scheduledAbsent">True</span>
-                    <span data-ng-show="!attendance.scheduledAbsent">False</span>
-                </h4>
-                <h4 name="signout.time">Signed out at:
-                    <span data-ng-show="!attendance.signout.time"><i>No signout time</i></span>
-                    <span data-ng-show="attendance.signout.time">{{attendance.signout.time}}</span>
-                </h4>
-                <h4 name="signout.guardian">Signed out by:
-                    <span data-ng-show="!attendance.signout.guardian"><i>No signout guardian</i></span>
-                    <span data-ng-show="attendance.signout.guardian">{{attendance.signout.guardian}}</span>
-                </h4>
-                <h4 name="isAdvent">isAdvent:
-                    <span data-ng-show="attendance.isAdvent">True</span>
-                    <span data-ng-show="!attendance.isAdvent">False</span>
-                </h4>
-                <h4 name="adventID">adventID:
-                    <span data-ng-show="attendance.attended">
-                        <span data-ng-show="attendance.adventID">{{attendance.adventID}}</span>
-                        <span data-ng-show="!attendance.adventID"><i>No adventID</i></span>
-                    </span>
-                </h4>
-
+        <!-- Shown on signout -->
+        <div class="row" data-ng-show="attendance.attended && !attendance.extraClass">
+            <div class="col-sm-5 col-sm-offset-3">
+                <h1 name="childName">
+                    <span >Successfully signed out</span> {{attendance.childName}}
+                </h1>
+                <h2 name="date">On {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}} at
+                    <span data-ng-show="!attendance.signout.time" data-ng-hide="attendance.scheduleAbsent"><i>{{time}}</i></span>
+                    <span data-ng-show="attendance.signout.time" data-ng-init="AttController.getProperTime(attendance.signout.time)">{{time}}</span>
+                </h2>
             </div>
         </div>
-        <h3>
-            <div class="pull-right" data-ng-show="true">
-                <a class="btn btn-primary" name="editAttendanceButton" data-ng-click="AttController.modalUpdate('lg', attendance)">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-                <a class="btn btn-danger" name="deleteAttendaceButton" data-ng-click="remove(attendance);">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </a>
+        <!-- Shown on Scheduling Extra Class -->
+        <div class="row" data-ng-show="attendance.extraClass && !attendance.signedOut">
+            <div class="col-sm-5 col-sm-offset-3">
+                <h1 name="childName">
+                    <span>Successfully scheduled an extra class for</span> {{attendance.childName}}
+                </h1>
+                <h2 name="date">
+                    On {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}
+                </h2>
             </div>
-        </h3>
+        </div>
+
+        <!-- Shown on Signing Out Extra Class -->
+        <div class="row" data-ng-show="attendance.extraClass && attendance.signedOut">
+            <div class="col-sm-5 col-sm-offset-3">
+                <h1 name="childName">
+                    <span>Successfully signed out </span>{{attendance.childName}}
+                    <span>from an extra class</span>
+                </h1>
+                <h2 name="date">
+                    on {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}
+                </h2>
+            </div>
+        </div>
+
+        <!-- Shown on scheduling absence -->
+        <div class="row" data-ng-show="attendance.scheduledAbsent">
+            <div class="col-sm-5 col-sm-offset-3">
+                <h1 name="childName">
+                    <span>Successfully scheduled an absence for</span> {{attendance.childName}}
+                </h1>
+                <h2 name="date">
+                    on {{attendance.date.month}}/{{attendance.date.day}}/{{attendance.date.year}}
+                </h2>
+            </div>
+        </div>
+
+        <!-- Edit/Delete buttons, functional but hidden -->
+        <div class="pull-right" data-ng-show="false">
+            <a class="btn btn-primary" name="editAttendanceButton" data-ng-click="AttController.modalUpdate('lg', attendance)">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn btn-danger" name="deleteAttendaceButton" data-ng-click="remove(attendance);">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
     </div>
 
 

@@ -1,8 +1,7 @@
-
 <meta name="apple-mobile-web-app-capable"
-      content="yes" />
+      content="yes"/>
 
-<div  data-ng-controller="HeaderController">
+<div data-ng-controller="HeaderController" data-ng-init="getPin()">
     <!--
     <div class="navbar-header">
         <a href="/#!/" class="navbar-brand">Development Menu</a>
@@ -31,45 +30,105 @@
         <section>
             <div class="slideout" name="slideoutTab">
                 <img src="http://i.imgur.com/4TIgz2h.png" alt="Instructor" height="60%" width="60%"/>
+
                 <div class="slideout_inner">
-                    Instructor Menu
-                    <div class="givemesomespace">
-
-                        <div id="PINcode" ng-show="!isUnlocked">
-                            <form action='' method='' name='PINform' id='PINform' autocomplete='off'><input id='PINbox' type='password' value='' name='PINbox' disabled /><br/><input type='button' class='PINbutton' name='1' value='1' id='1' data-ng-click="addNumber(1)"; /><input type='button' class='PINbutton' name='2' value='2' id='2' data-ng-click="addNumber(2)"; /><input type='button' class='PINbutton' name='3' value='3' id='3' data-ng-click="addNumber(3)"; /><br><input type='button' class='PINbutton' name='4' value='4' id='4' data-ng-click="addNumber(4)"; /><input type='button' class='PINbutton' name='5' value='5' id='5' data-ng-click="addNumber(5)"; /><input type='button' class='PINbutton' name='6' value='6' id='6' data-ng-click="addNumber(6)"; /><br><input type='button' class='PINbutton' name='7' value='7' id='7' data-ng-click="addNumber(7)"; /><input type='button' class='PINbutton' name='8' value='8' id='8' data-ng-click="addNumber(8)"; /><input type='button' class='PINbutton' name='9' value='9' id='9' data-ng-click="addNumber(9)"; /><br><input type='button' class='PINbutton clear' name='-' value='clear' id='-' data-ng-click="clearForm(this)"; /><input type='button' class='PINbutton' name='0' value='0' id='0' data-ng-click="addNumber(0)"; /><input type='button' class='PINbutton enter' name='+' value='enter' id='+' data-ng-click="submitForm(PINbox)"; /></form>
-                        </div>
-                        </body>
-                        <!-- this is the div for ui routing-->
-                        {{test}}
-                        <button data-ng-model="editGuardians" name="editGuardianBtn" ng-show="false" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Edit Guardians </button>
-
-                        <div class="hideSidebar" ng-show="isUnlocked">
-                            
-                            ROSTER
-                            <div class="sidebarSection" >
-                            <a href="/#!/todays-roster"> <button class="sidebarBtn" href="/#!/todays-roster"> Today's Roster </button></a>
-                            </div>
-
-                            EVENTS
-                            <div class="sidebarSection" >
-                            <a href="/#!/advents/create"> <button class="sidebarBtn" href="/#!/todays-roster"> Add Event </button></a>
-                            
-                            <a href="/#!/advents"> <button class="sidebarBtn" href="/#!/todays-roster"> List Events </button></a>
-                            </div>
-
-                            STUDENTS
-                            <div class="sidebarSection" >
-                            <a href="/#!/children/create"> <button class="sidebarBtn" href="/#!/todays-roster">Add Child</button></a>
-                            </div>
-
-                             DELETE PERMISSION
-                            <div class="sidebarSection" >
-                            <button class="sidebarBtn" data-ng-model="deleteGuardians" name="deleteGuardianBtn" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Allow Deleting </button>
-                            </div>
-                        </div>
 
 
+                    <div id="PINcode" ng-show="!isUnlocked">
+                        <form action='' method='' name='PINform' id='PINform' autocomplete='off'><input id='PINbox'
+                                                                                                        type='password'
+                                                                                                        value=''
+                                                                                                        name='PINbox'
+                                                                                                        disabled/><br/><input
+                                type='button' class='PINbutton' name='1' value='1' id='1' data-ng-click="addNumber(1)"
+                                ;/><input type='button' class='PINbutton' name='2' value='2' id='2'
+                                          data-ng-click="addNumber(2)" ;/><input type='button' class='PINbutton'
+                                                                                 name='3' value='3' id='3'
+                                                                                 data-ng-click="addNumber(3)"
+                                                                                 ;/><br><input type='button'
+                                                                                               class='PINbutton'
+                                                                                               name='4' value='4' id='4'
+                                                                                               data-ng-click="addNumber(4)"
+                                                                                               ;/><input type='button'
+                                                                                                         class='PINbutton'
+                                                                                                         name='5'
+                                                                                                         value='5'
+                                                                                                         id='5'
+                                                                                                         data-ng-click="addNumber(5)"
+                                                                                                         ;/><input
+                                type='button' class='PINbutton' name='6' value='6' id='6' data-ng-click="addNumber(6)"
+                                ;/><br><input type='button' class='PINbutton' name='7' value='7' id='7'
+                                              data-ng-click="addNumber(7)" ;/><input type='button' class='PINbutton'
+                                                                                     name='8' value='8' id='8'
+                                                                                     data-ng-click="addNumber(8)"
+                                                                                     ;/><input type='button'
+                                                                                               class='PINbutton'
+                                                                                               name='9' value='9' id='9'
+                                                                                               data-ng-click="addNumber(9)"
+                                                                                               ;/><br><input
+                                type='button' class='PINbutton clear' name='-' value='clear' id='-'
+                                data-ng-click="clearForm(this)" ;/><input type='button' class='PINbutton' name='0'
+                                                                          value='0' id='0' data-ng-click="addNumber(0)"
+                                                                          ;/><input type='button'
+                                                                                    class='PINbutton enter' name='+'
+                                                                                    value='enter' id='+'
+                                                                                    data-ng-click="submitForm(PINbox)"
+                                                                                    ;/></form>
                     </div>
+                    </body>
+                    <!-- this is the div for ui routing-->
+                    {{test}}
+                    <button data-ng-model="editGuardians" name="editGuardianBtn" ng-show="false" btn-checkbox
+                            btn-checkbox-true="true" btn-checkbox-false="false"> Edit Guardians
+                    </button>
+
+                    <div class="hideSidebar" ng-show="isUnlocked">
+                        Instructor Menu
+                        <div class="sidebarSection">
+                            <button class="sidebarBtn" data-ng-click="relock()">Relock</button>
+                        </div>
+
+                        ROSTER
+                        <div class="sidebarSection">
+                            <a href="/#!/todays-roster">
+                                <button class="sidebarBtn" href="/#!/todays-roster"> Today's Roster</button>
+                            </a>
+                        </div>
+
+                        EVENTS
+                        <div class="sidebarSection">
+                            <a href="/#!/advents/create">
+                                <button class="sidebarBtn" href="/#!/todays-roster"> Add Event</button>
+                            </a>
+
+                            <a href="/#!/advents">
+                                <button class="sidebarBtn" href="/#!/todays-roster"> List Events</button>
+                            </a>
+                        </div>
+
+                        STUDENTS
+                        <div class="sidebarSection">
+                            <a href="/#!/children/create">
+                                <button class="sidebarBtn" href="/#!/todays-roster">Add Student</button>
+                            </a>
+                            <a href="/#!/schedule-absence">
+                                <button class="sidebarBtn" href="/#!/schedule-absence">Add Extra Day</button>
+                            </a>
+                        </div>
+
+                        DELETE PERMISSION
+                        <div class="sidebarSection">
+                            <button class="sidebarBtn" data-ng-model="deleteGuardians" name="deleteGuardianBtn"
+                                    btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"> Allow Deleting
+                            </button>
+                        </div>
+                        <form action='' method='' name='PINchangeForm' id='PINchangeForm' autocomplete='off'>
+                            <input class="changePinBox" id='PINchange' type='password' name='PINchangebox'/><input
+                                type='button' class='PINbuttonChange' name='Change Pin' id='Change Pin'
+                                data-ng-click="changePasscode()" value='Change' ;/></form>
+                    </div>
+
+
                 </div>
             </div>
         </section>
@@ -83,7 +142,8 @@
                             <div class="round-button">
                                 <div class="round-button-circle">
                                     <div class="round-back-button">
-                                        <a data-ng-click="doTheBack()" class="round-button round-button-link round-back-button">
+                                        <a data-ng-click="doTheBack()"
+                                           class="round-button round-button-link round-back-button">
                                             <i class="fa fa-caret-left "></i><!--javascript:history.go(-1)-->
                                         </a>
                                     </div>
@@ -93,7 +153,8 @@
                         <td>
                             <div class="round-button">
                                 <div class="round-button-circle">
-                                    <a data-ng-click="goHome()" class="round-button round-button-link round-home-button">
+                                    <a data-ng-click="goHome()"
+                                       class="round-button round-button-link round-home-button">
                                         <i class="fa fa-home "></i>
                                     </a>
                                 </div>
